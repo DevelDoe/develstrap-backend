@@ -1,4 +1,5 @@
-var Todo = require('./models/todo')
+var Todo = require('./models/todo'),
+    Resource = require('./models/resource')
 
 module.exports = function ( api ) {
 
@@ -52,6 +53,57 @@ module.exports = function ( api ) {
         })
     })
     // #################
+
+    // #################   RESOURCES
+    api.get( '/resources', ( req, res ) => {
+        Resource.find( ( err, resource ) => {
+            if( err ) {
+                error( res, err )
+                return
+            }
+            res.json( resource )
+        })
+    })
+    api.post( '/resources', ( req, res ) => {
+        var resource = new Resource()
+        resource.name = req.body.name
+        resource.fields = req.body.fields
+        resource.save( err => {
+            if( err ) {
+                error( res, err )
+                return
+            }
+            res.json( resource )
+        })
+    })
+    api.delete( '/resources/:_id', ( req, res ) => {
+        Resource.remove( { _id: req.params._id }, ( err, resource ) => {
+            if( err ) {
+                error( res, err)
+                return
+            }
+            res.sendStatus( 200 )
+        })
+    })
+    api.put( '/resources/:_id', ( req, res ) => {
+        Resource.findById( req.params._id, ( err, resource ) => {
+            if( err ) {
+                error( res, err)
+                return
+            }
+            resource.name = req.body.name
+            resource.fields = req.body.fields
+            resource.save( err => {
+                if( err ) {
+                    error( res, err )
+                    return
+                }
+                res.json( resource )
+            })
+        })
+    })
+    // #################
+
     function error ( res, err )  {
         res.json( { err: 'Server error:' + err } )
     }

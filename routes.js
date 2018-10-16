@@ -119,7 +119,8 @@ module.exports = function ( api ) {
         var user = new User()
         user.fname = req.body.fname
         user.lname = req.body.lname
-        user.username = req.body.username
+        if(req.body.username === "") user.username = req.body.email
+        else user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
         user.image_src = req.body.image_src

@@ -4,9 +4,9 @@ const mongoose = require('mongoose'),
 let UserScema = new mongoose.Schema({
     fname     : { type: String  },
     lname     : { type: String  },
-    username  : { type: String , unique: true , required: true },
+    username  : { type: String , unique: true },
     password  : { type: String , required: true },
-    email     : { type: String },
+    email     : { type: String , unique: true , required: true },
     image_src : { type: String },
     role      : { type: String }
 })

@@ -6,6 +6,6 @@ var express  = require( 'express' ),
 var port = process.env.PORT || 4002,
     db   = 'mongodb://localhost:27017/develstrap'
 
-mongoose.connect( db )
+mongoose.connect( db, { useNewUrlParser: true } )
 api.listen( port )
 console.log( 'http://localhost:', port )

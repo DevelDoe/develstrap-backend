@@ -1,5 +1,6 @@
-var Todo = require('./models/todo'),
-    Resource = require('./models/resource')
+var Todo     = require('./models/todo'),
+    Resource = require('./models/resource'),
+    User     = require('./models/user')
 
 module.exports = function ( api ) {
 
@@ -99,6 +100,54 @@ module.exports = function ( api ) {
                     return
                 }
                 res.json( resource )
+            })
+        })
+    })
+    // #################
+
+    // #################   USERS
+    api.get( '/users', ( req, res ) => {
+        User.find( ( err, user ) => {
+            if( err ) {
+                error( res, err )
+                return
+            }
+            res.json( user )
+        })
+    })
+    api.post( '/users', ( req, res ) => {
+        var resource = new User()
+        user.name = req.body.name
+        user.save( err => {
+            if( err ) {
+                error( res, err )
+                return
+            }
+            res.json( user )
+        })
+    })
+    api.delete( '/users/:_id', ( req, res ) => {
+        User.remove( { _id: req.params._id }, ( err, user ) => {
+            if( err ) {
+                error( res, err)
+                return
+            }
+            res.sendStatus( 200 )
+        })
+    })
+    api.put( '/users/:_id', ( req, res ) => {
+        User.findById( req.params._id, ( err, user ) => {
+            if( err ) {
+                error( res, err)
+                return
+            }
+            user.name = req.body.name
+            user.save( err => {
+                if( err ) {
+                    error( res, err )
+                    return
+                }
+                res.json( user )
             })
         })
     })

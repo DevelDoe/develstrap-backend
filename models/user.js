@@ -8,7 +8,7 @@ let UserScema = new mongoose.Schema({
     password  : { type: String , required: true },
     email     : { type: String , unique: true , required: true },
     image_src : { type: String },
-    role      : { type: Number }
+    sec_lv    : { type: Number }
 })
 
 UserScema.pre( 'save', function(next) {

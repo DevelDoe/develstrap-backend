@@ -116,8 +116,14 @@ module.exports = function ( api ) {
         })
     })
     api.post( '/users', ( req, res ) => {
-        var resource = new User()
-        user.name = req.body.name
+        var user = new User()
+        user.fname = req.body.fname
+        user.lname = req.body.lname
+        user.username = req.body.username
+        user.email = req.body.email
+        user.password = req.body.password
+        user.image_src = req.body.image_src
+        user.sec_lv = req.body.sec_lv
         user.save( err => {
             if( err ) {
                 error( res, err )
@@ -141,7 +147,13 @@ module.exports = function ( api ) {
                 error( res, err)
                 return
             }
-            user.name = req.body.name
+            user.fname = req.body.fname
+            user.lname = req.body.lname
+            user.username = req.body.username
+            user.email = req.body.email
+            user.password = req.body.password
+            user.image_src = req.body.image_src
+            user.sec_lv = req.body.sec_lv
             user.save( err => {
                 if( err ) {
                     error( res, err )

@@ -16,7 +16,7 @@ function authenticate(req, res, next) {
     if(/(login|register)/.test(req.originalUrl)) {
         return next()
     } else {
-        function a(req, res, next) {
+        (passport.authenticate('jwt', { session: false}), function(req, res, next) {
             var token = getToken(req.headers)
             if(token) {
                 let decodedJWT = jwt.decode(token, config.secret)
@@ -33,8 +33,7 @@ function authenticate(req, res, next) {
             } else {
                 res.json({ msg: 'no token provided' })
             }
-        }
-        passport.authenticate('jwt', {session: false}), a)
+        })(req, res, next)
     }
 }
 

@@ -10,7 +10,7 @@ var bcrupt   = require('bcrypt'),
 module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
-    app.post('/login', (req, res) => {
+    api.post('/login', (req, res) => {
         User.findOne({ 'email': req.body.email }, (err, user) => {
 
             if(err) {
@@ -29,10 +29,10 @@ module.exports = function ( api ) {
                     else res.json({ msg: 'Invalid password' })
                 })
             }
-            
+
         })
     })
-    app.post( '/logout', function( req, res ) {
+    api.post( '/logout', function( req, res ) {
         req.logout()
         res.json({ msg: 'Loged out' })
         res.end()

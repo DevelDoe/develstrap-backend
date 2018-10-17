@@ -1,7 +1,8 @@
 var cors        = require('cors'),
     bp          = require('body-parser'),
     config      = require('./config'),
-    passport    = require('passport')
+    passport    = require('passport'),
+    jwt      = require('jwt-simple'),
 
 module.exports = function( api ) {
     api.use( bp.urlencoded( { extended: true } ) )
@@ -22,7 +23,7 @@ function authenticate(req, res, next) {
                 let decodedJWT = jwt.decode(token, config.secret)
                 Todo.findOne({ name: decodedJWT.name }, (err, user) => {
                     if(err) {
-                        res.json( { err: 'Server error:' + err } )
+                        res.json( { err: 'Server ' + err } )
                         return
                     }
                     if(!user) res.json( { message: 'Not authenticated' } )

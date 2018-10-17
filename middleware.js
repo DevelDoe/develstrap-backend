@@ -8,4 +8,30 @@ module.exports = function( api ) {
     api.use( cors() )
     api.use(passport.initialize())
     require('./passport')(passport)
+    api.use(authenticate)
+}
+
+function authenticate(req, res, next) {
+    if(/(login|register).test(req.originalUrl)) {
+        return next()
+    } else {
+        passport.authenticate('jwt', { session: false }, (req, res, info) => {
+            var token = getToken(req.headers)
+            if(token) {
+                let decodedJWT = jwt.decode(token, config.secret)
+                Todo.findOne({ name: decodedJWT.name }, (err, user) => {
+                    if(err) {
+                        error(res, err)
+                        return
+                    }
+                    if(!user) res.json( { message: 'Not authenticated' } )
+                    else {
+                        next()
+                    }
+                })
+            } else {
+                res.json({ msg: 'no token provided' })
+            }
+        })
+    }
 }

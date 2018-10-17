@@ -2,7 +2,7 @@ var cors        = require('cors'),
     bp          = require('body-parser'),
     config      = require('./config'),
     passport    = require('passport'),
-    jwt      = require('jwt-simple')
+    jwt         = require('jwt-simple')
 
 module.exports = function( api ) {
     api.use( bp.urlencoded( { extended: true } ) )

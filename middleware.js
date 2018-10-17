@@ -34,7 +34,7 @@ function authenticate(req, res, next) {
                     }
                 })
             } else {
-                res.json({ msg: 'no token provided' })
+                res.sendStatus( 403 )
             }
         })(req, res, next)
     }

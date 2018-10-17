@@ -1,5 +1,6 @@
 var cors        = require('cors'),
     bp          = require('body-parser'),
+    config      = require('./config'),
     passport    = require('passport')
 
 module.exports = function( api ) {

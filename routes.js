@@ -1,4 +1,4 @@
-var bcrupt   = require('bcrypt'),
+var bcrypt   = require('bcrypt'),
     config   = require('./config'),
     jwt      = require('jwt-simple'),
     passport = require('passport'),

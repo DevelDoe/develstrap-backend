@@ -13,7 +13,6 @@ module.exports = function( api ) {
 }
 
 function authenticate(req, res, next) {
-    console.log(req)
     if(/(login|register)/.test(req.originalUrl)) {
         return next()
     } else {

@@ -21,9 +21,10 @@ module.exports = function ( api ) {
                 res.json({ msg: 'User not found!' })
             } else {
                 user.comparePassword(req.body.password, function( err, isMatched ) {
+                    console.log(isMatched)
                     if ( isMatched && !err ) {
                         var token = jwt.encode(user, config.secret)
-                        console.log(token)
+
                         res.json({ user: user, token : 'JWT ' + token})
                     }
                     else {

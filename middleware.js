@@ -16,7 +16,7 @@ function authenticate(req, res, next) {
     if(/(login|register)/.test(req.originalUrl)) {
         return next()
     } else {
-        passport.authenticate('jwt', { session: false}), function(req, res, next) {
+        passport.authenticate('jwt', { session: false}, function(req, res, next) {
            // Do something now you know that the user has been authenticated
            return next(); // this will call the next middleware on the stack
        })(req, res, next);

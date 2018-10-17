@@ -23,7 +23,7 @@ function authenticate(req, res, next) {
             var token = getToken(req.headers)
             if(token) {
                 let decodedJWT = jwt.decode(token, config.secret)
-                Todo.findOne({ name: decodedJWT.name }, (err, user) => {
+                User.findOne({ name: decodedJWT.name }, (err, user) => {
                     if(err) {
                         res.json( { err: 'Server ' + err } )
                         return

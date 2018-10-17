@@ -15,13 +15,13 @@ function authenticate(req, res, next) {
     if(/(login|register)/.test(req.originalUrl)) {
         return next()
     } else {
-        passport.authenticate('jwt', { session: false }, (req, res, info) => {
+        passport.authenticate('jwt', { session: false }, (req, res, next) => {
             var token = getToken(req.headers)
             if(token) {
                 let decodedJWT = jwt.decode(token, config.secret)
                 Todo.findOne({ name: decodedJWT.name }, (err, user) => {
                     if(err) {
-                        error(res, err)
+                        res.json( { err: 'Server error:' + err } )
                         return
                     }
                     if(!user) res.json( { message: 'Not authenticated' } )
@@ -32,6 +32,6 @@ function authenticate(req, res, next) {
             } else {
                 res.json({ msg: 'no token provided' })
             }
-        })
+        })()
     }
 }

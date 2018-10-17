@@ -2,9 +2,11 @@ var cors        = require('cors'),
     bp          = require('body-parser'),
     config      = require('./config'),
     passport    = require('passport'),
-    jwt         = require('jwt-simple')
+    jwt         = require('jwt-simple'),
+    morgan     = require('morgan')
 
 module.exports = function( api ) {
+    api.use(morgan('dev'))
     api.use( bp.urlencoded( { extended: true } ) )
     api.use( bp.json() )
     api.use( cors() )

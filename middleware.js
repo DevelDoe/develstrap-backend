@@ -7,4 +7,5 @@ module.exports = function( api ) {
     api.use( bp.json() )
     api.use( cors() )
     api.use(passport.initialize())
+    require('./passport')(passport)
 }

@@ -41,14 +41,29 @@ module.exports = function ( api ) {
 
 
     // #################   TODOS
-    api.get( '/todos', ( req, res ) => {
-        Todo.find( ( err, todos ) => {
-            if( err ) {
-                error( res, err )
-                return
-            }
-            res.json( todos )
-        })
+    api.get( '/todos', passport.authenticate('jwt', { session: false }) , ( req, res ) => {
+        var token = getToken(req.headers)
+        if(token) {
+            let decodedJWT = jwt.decode(token, config.secret)
+            Todo.findOne({ name: decodedJWT.name }, (err, user) => {
+                if(err) {
+                    error(res, err)
+                    return
+                }
+                if(!user) res.json( { message: 'Not authenticated' } )
+                else {
+                    Todo.find( ( err, todos ) => {
+                        if( err ) {
+                            error( res, err )
+                            return
+                        }
+                        res.json( todos )
+                    })
+                }
+            })
+        } else {
+            res.json({ msg: 'no token provided' })
+        }
     })
     api.post( '/todos', ( req, res ) => {
         var todo = new Todo()
@@ -203,5 +218,14 @@ module.exports = function ( api ) {
 
     function error ( res, err )  {
         res.json( { err: 'Server error:' + err } )
+    }
+    function getToken(headers) {
+        if( headers && headers.authorization) {
+            var parted = headers.authorization.split(' ')
+            if( parted.length = 2) return parted[1]
+            else return null
+        } else {
+            return null
+        }
     }
 }

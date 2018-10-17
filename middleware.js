@@ -35,7 +35,7 @@ function authenticate(req, res, next) {
             }
         }
         passport.authenticate('jwt', { session: false}, lala);
-    }
+    } 
 }
 
 function getToken(headers) {

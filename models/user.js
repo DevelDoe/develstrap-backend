@@ -11,13 +11,13 @@ let UserScema = new mongoose.Schema({
     sec_lv    : { type: Number }
 })
 
-UserScema.pre( 'save', function(next) {
+UserScema.pre('save', function(next) {
     var user = this
-    if (this.isModified('password') || user.isNew) {
-        bcrypt.genSalt(10, ( err, salt ) => {
-            if( err ) return next( err )
-            bcrypt.hash(user.password, salt, (err, hash) => {
-                if (err) return next(err)
+    if( this.isModified( 'password' ) || user.isNew ) {
+        bcrypt.genSalt( 10 , ( err , salt ) => {
+            if ( err ) return next( err )
+            bcrypt.hash( user.password , salt , ( err , hash ) => {
+                if ( err ) return next( err )
                 user.password = hash
                 next()
             })

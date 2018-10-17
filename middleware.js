@@ -18,22 +18,23 @@ function authenticate(req, res, next) {
         return next()
     } else {
         passport.authenticate('jwt', { session: false}, function(req, res, next) {
-            var token = getToken(req.headers)
-            if(token) {
-                let decodedJWT = jwt.decode(token, config.secret)
-                Todo.findOne({ name: decodedJWT.name }, (err, user) => {
-                    if(err) {
-                        res.json( { err: 'Server error:' + err } )
-                        return
-                    }
-                    if(!user) res.json( { message: 'Not authenticated' } )
-                    else {
-                        next()
-                    }
-                })
-            } else {
-                res.json({ msg: 'no token provided' })
-            }
+            console.log(req)
+            // var token = getToken(req.headers)
+            // if(token) {
+            //     let decodedJWT = jwt.decode(token, config.secret)
+            //     Todo.findOne({ name: decodedJWT.name }, (err, user) => {
+            //         if(err) {
+            //             res.json( { err: 'Server error:' + err } )
+            //             return
+            //         }
+            //         if(!user) res.json( { message: 'Not authenticated' } )
+            //         else {
+            //             next()
+            //         }
+            //     })
+            // } else {
+            //     res.json({ msg: 'no token provided' })
+            // }
         })(req, res, next)
     }
 }

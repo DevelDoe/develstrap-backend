@@ -27,10 +27,10 @@ UserScema.pre( 'save', function(next) {
     }
 })
 
-UserScema.methods.comparePassword = function(passwd, cb) {
-    bcrypt.compare(passwd, this.password, (err, isMatched) => {
-        if (err) return cb(err)
-        cb(null, isMatched)
+UserScema.methods.comparePassword = function ( passwd , cb ) {
+    bcrypt.compare( passwd , this.password , ( err , isMatched ) => {
+        if ( err ) return cb( err )
+        cb( null , isMatched )
     })
 }
 

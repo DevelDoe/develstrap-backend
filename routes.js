@@ -20,14 +20,14 @@ module.exports = function ( api ) {
                 res.json({ msg: 'User not found!' })
             } else {
                 console.log(req.body.password)
-                user.comparePassword(req.body.password, function(err, isMatched) {
-                    if(isMatched && !err)
-                        res.json({ user: user, token: 'JWT' + jwt.encode(user, config.secret)})
-                    else if(err) {
-                        error(res, err)
-                        return
+                user.comparePassword(req.body.password, function( err, isMatched ) {
+                    if ( isMatched && !err ) {
+                        var token = jwt.encode(user, config.secret)
+                        res.json({ user: user, token : 'JWT ' + token})
                     }
-                    else res.json({ msg: 'Invalid password' })
+                    else {
+                        res.json( { message: 'Invalid password'  } )
+                    }
                 })
             }
 

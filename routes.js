@@ -1,4 +1,5 @@
 var config   = require('./config'),
+    bCrypt         = require('bcrypt'),
     jwt      = require('jwt-simple'),
     passport = require('passport'),
 

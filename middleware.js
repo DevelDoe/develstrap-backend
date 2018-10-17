@@ -16,25 +16,29 @@ function authenticate(req, res, next) {
     if(/(login|register)/.test(req.originalUrl)) {
         return next()
     } else {
-        passport.authenticate('jwt', { session: false}, function(req, res, next) {
-            console.log(req)
-            // var token = getToken(req.headers)
-            // if(token) {
-            //     let decodedJWT = jwt.decode(token, config.secret)
-            //     Todo.findOne({ name: decodedJWT.name }, (err, user) => {
-            //         if(err) {
-            //             res.json( { err: 'Server error:' + err } )
-            //             return
-            //         }
-            //         if(!user) res.json( { message: 'Not authenticated' } )
-            //         else {
-            //             next()
-            //         }
-            //     })
-            // } else {
-            //     res.json({ msg: 'no token provided' })
-            // }
-        })(req, res, next)
+        passport.authenticate('jwt', { session: false}), function(req, res, next) {
+           // Do something now you know that the user has been authenticated
+           return next(); // this will call the next middleware on the stack
+       })(req, res, next);
+        // passport.authenticate('jwt', { session: false}, function(req, res, next) {
+        //     console.log(req)
+        //     // var token = getToken(req.headers)
+        //     // if(token) {
+        //     //     let decodedJWT = jwt.decode(token, config.secret)
+        //     //     Todo.findOne({ name: decodedJWT.name }, (err, user) => {
+        //     //         if(err) {
+        //     //             res.json( { err: 'Server error:' + err } )
+        //     //             return
+        //     //         }
+        //     //         if(!user) res.json( { message: 'Not authenticated' } )
+        //     //         else {
+        //     //             next()
+        //     //         }
+        //     //     })
+        //     // } else {
+        //     //     res.json({ msg: 'no token provided' })
+        //     // }
+        // })(req, res, next)
     }
 }
 

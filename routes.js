@@ -1,8 +1,43 @@
-var Todo     = require('./models/todo'),
+var bcrupt   = require('bcrypt'),
+    config   = require('./config'),
+    jwt      = require('jwt-simple'),
+    passport = require('passport'),
+
+    Todo     = require('./models/todo'),
     Resource = require('./models/resource'),
     User     = require('./models/user')
 
 module.exports = function ( api ) {
+
+    // #################   AUTHENTICATION
+    app.post('/login', (req, res) => {
+        User.findOne({ 'email': req.body.email }, (err, user) => {
+
+            if(err) {
+                error(res, err)
+                return
+            }
+            if(!user) {
+                res.json({ msg: 'User not found!' })
+            } else {
+                user.comparePassword(req.body.password, function(err, isMatched) {
+                    if(isMatched && !err) res.json({ user: user, token: 'JWT' + jwt.encode(user, config.secret)})
+                    else if(err) {
+                        error(res, err)
+                        return
+                    }
+                    else res.json({ msg: 'Invalid password' })
+                })
+            }
+            
+        })
+    })
+    app.post( '/logout', function( req, res ) {
+        req.logout()
+        res.json({ msg: 'Loged out' })
+        res.end()
+    })
+    // #################
 
 
     // #################   TODOS

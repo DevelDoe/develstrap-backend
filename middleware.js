@@ -32,7 +32,7 @@ function authenticate(req, res, next) {
             } else {
                 res.json({ msg: 'no token provided' })
             }
-        })()
+        })(req, res, next)
     }
 }
 

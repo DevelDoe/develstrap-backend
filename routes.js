@@ -2,7 +2,6 @@ var config   = require('./config'),
     bCrypt         = require('bcrypt'),
     jwt      = require('jwt-simple'),
     passport = require('passport'),
-
     Todo     = require('./models/todo'),
     Resource = require('./models/resource'),
     User     = require('./models/user')

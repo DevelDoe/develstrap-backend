@@ -16,7 +16,7 @@ function authenticate(req, res, next) {
     if(/(login|register)/.test(req.originalUrl)) {
         return next()
     } else {
-        passport.authenticate('jwt', { session: false})(function(req, res, next) {
+        passport.authenticate('jwt', { session: false}, function(req, res, next) {
             console.log(req)
             // var token = getToken(req.headers)
             // if(token) {

@@ -159,7 +159,7 @@ module.exports = function ( api ) {
         else user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
-        if(req.body.img_src === '') user.img_src = 'http://orig03.deviantart.net/9670/f/2016/057/9/e/technomancy_tracks_by_valenberg-d9t6qzy.gif'
+        if(req.body.img_src === '') user.img_src = 'https://pbs.twimg.com/profile_images/775121306324918273/UNKCi7ee_400x400.jpg'
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applications

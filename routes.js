@@ -189,7 +189,7 @@ module.exports = function ( api ) {
             user.username = req.body.username
             user.email = req.body.email
             user.password = req.body.password
-            user.image_src = req.body.image_src
+            user.img_src = req.body.img_src
             user.sec_lv = req.body.sec_lv
             user.save( err => {
                 if( err ) {

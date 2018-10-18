@@ -2,13 +2,15 @@ const mongoose = require('mongoose'),
       bcrypt   = require('bcrypt')
 
 let UserScema = new mongoose.Schema({
-    fname     : { type: String  },
-    lname     : { type: String  },
-    username  : { type: String , unique: true },
-    password  : { type: String , required: true },
-    email     : { type: String , unique: true , required: true },
-    img_src   : { type: String },
-    sec_lv    : { type: Number }
+    fname           : { type: String  },
+    lname           : { type: String  },
+    username        : { type: String , unique: true },
+    password        : { type: String , required: true },
+    email           : { type: String , unique: true , required: true },
+    img_src         : { type: String },
+    sec_lv          : { type: String , required },
+    applications    : { type: String},
+    administrations : { type: String},
 })
 
 UserScema.pre('save', function(next) {

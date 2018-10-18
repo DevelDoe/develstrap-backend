@@ -7,7 +7,7 @@ let UserScema = new mongoose.Schema({
     username  : { type: String , unique: true },
     password  : { type: String , required: true },
     email     : { type: String , unique: true , required: true },
-    image_src : { type: String },
+    img_src   : { type: String },
     sec_lv    : { type: Number }
 })
 

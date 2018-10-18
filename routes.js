@@ -162,10 +162,8 @@ module.exports = function ( api ) {
         if(req.body.img_src === '') user.img_src = 'https://pbs.twimg.com/profile_images/775121306324918273/UNKCi7ee_400x400.jpg'
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
-        if(req.body.applications[0] === '') user.applications = []
-        else user.applications = req.body.applications
-        if(req.body.administrations[0] === '') user.administrations = []
-        else user.administrations = req.body.administrations
+        user.applications = []
+        user.administrations = []
         user.save( err => {
             if( err ) {
                 error( res, err )
@@ -196,10 +194,8 @@ module.exports = function ( api ) {
             user.password = req.body.password
             user.img_src = req.body.img_src
             user.sec_lv = req.body.sec_lv
-            if(req.body.applications[0] === '') user.applications = []
-            else user.applications = req.body.applications
-            if(req.body.administrations[0] === '') user.administrations = []
-            else user.administrations = req.body.administrations
+            if(req.body.applications.length > 0) req.body.applications
+            if(req.body.administrations.length > 0) req.body.administrations
             user.save( err => {
                 if( err ) {
                     error( res, err )

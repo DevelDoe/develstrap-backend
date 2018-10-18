@@ -9,8 +9,8 @@ let UserScema = new mongoose.Schema({
     email           : { type: String , unique: true , required: true },
     img_src         : { type: String },
     sec_lv          : { type: String, required: true },
-    applications    : { type: String},
-    administrations : { type: String},
+    applications    : { type: Array},
+    administrations : { type: Array},
 })
 
 UserScema.pre('save', function(next) {
@@ -27,7 +27,7 @@ UserScema.pre('save', function(next) {
     } else {
         return next()
     }
-}) 
+})
 
 UserScema.methods.comparePassword = function ( passwd , cb ) {
     bcrypt.compare( passwd , this.password , ( err , isMatched ) => {

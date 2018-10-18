@@ -27,7 +27,7 @@ UserScema.pre('save', function(next) {
     } else {
         return next()
     }
-})
+}) 
 
 UserScema.methods.comparePassword = function ( passwd , cb ) {
     bcrypt.compare( passwd , this.password , ( err , isMatched ) => {

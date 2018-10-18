@@ -155,7 +155,8 @@ module.exports = function ( api ) {
         var user = new User()
         user.fname = req.body.fname
         user.lname = req.body.lname
-        user.username = req.body.username
+        if(req.body.username === '') user.username = null
+        else user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
         if(req.body.img_src === '') user.img_src = 'http://orig03.deviantart.net/9670/f/2016/057/9/e/technomancy_tracks_by_valenberg-d9t6qzy.gif'

@@ -161,6 +161,8 @@ module.exports = function ( api ) {
         if(req.body.img_src === '') user.img_src = 'http://orig03.deviantart.net/9670/f/2016/057/9/e/technomancy_tracks_by_valenberg-d9t6qzy.gif'
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
+        user.applications = req.body.applications
+        user.administrations = req.body.administrations
         user.save( err => {
             if( err ) {
                 error( res, err )

@@ -8,7 +8,7 @@ let UserScema = new mongoose.Schema({
     password        : { type: String , required: true },
     email           : { type: String , unique: true , required: true },
     img_src         : { type: String },
-    sec_lv          : { type: String , required },
+    sec_lv          : { type: String, required: true },
     applications    : { type: String},
     administrations : { type: String},
 })

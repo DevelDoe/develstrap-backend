@@ -107,6 +107,8 @@ module.exports = function ( api ) {
         var resource = new Resource()
         resource.name = req.body.name
         resource.fields = req.body.fields
+        resource.read = req.body.read
+        resource.write = req.body.write
         resource.save( err => {
             if( err ) {
                 error( res, err )
@@ -132,6 +134,8 @@ module.exports = function ( api ) {
             }
             resource.name = req.body.name
             resource.fields = req.body.fields
+            resource.read = req.body.read
+            resource.write = req.body.write
             resource.save( err => {
                 if( err ) {
                     error( res, err )

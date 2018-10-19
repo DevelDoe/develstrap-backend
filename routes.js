@@ -73,7 +73,7 @@ module.exports = function ( api ) {
             res.sendStatus( 200 )
         })
     })
-    api.put( '/todos/:_id', ( req, res ) => {
+    api.put( '/todos/:_id', ( req, res ) => { 
         Todo.findById( req.params._id, ( err, todo ) => {
             if( err ) {
                 error( res, err)

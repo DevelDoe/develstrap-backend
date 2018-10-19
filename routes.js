@@ -200,8 +200,8 @@ module.exports = function ( api ) {
             user.password = req.body.password
             user.img_src = req.body.img_src
             user.sec_lv = req.body.sec_lv
-            if(req.body.applications.length > 0) req.body.applications
-            if(req.body.administrations.length > 0) req.body.administrations
+            req.body.applications
+            req.body.administrations
             user.save( err => {
                 if( err ) {
                     error( res, err )

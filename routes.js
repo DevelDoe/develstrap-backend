@@ -165,7 +165,7 @@ module.exports = function ( api ) {
         else user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
-        if(req.body.img_src === '') user.img_src = 'https://pbs.twimg.com/profile_images/775121306324918273/UNKCi7ee_400x400.jpg'
+        if(req.body.img_src === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
         user.applications = []

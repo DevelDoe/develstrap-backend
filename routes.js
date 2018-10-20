@@ -192,12 +192,13 @@ module.exports = function ( api ) {
                 error( res, err)
                 return
             }
-            user.fname = req.body.fname
-            user.lname = req.body.lname
-            user.username = req.body.username
+            if(req.body.fname) user.fname = req.body.fname
+            if(req.body.lname) user.lname = req.body.lname
+            if(req.body.username) user.username = req.body.username
             user.email = req.body.email
             user.password = req.body.password
-            user.img_src = req.body.img_src
+            if(req.body.img_src === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
+            else user.img_src = req.body.img_src
             user.sec_lv = req.body.sec_lv
             if(req.body.applications) user.applications = req.body.applications
             if(req.body.administrations) user.administrations = req.body.administrations

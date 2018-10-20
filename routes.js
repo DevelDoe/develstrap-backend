@@ -3,7 +3,8 @@ var config   = require('./config'),
     passport = require('passport'),
     Todo     = require('./models/todo'),
     Resource = require('./models/resource'),
-    User     = require('./models/user')
+    User     = require('./models/user'),
+    Note     = require('./models/note')
 
 module.exports = function ( api ) {
 
@@ -208,6 +209,58 @@ module.exports = function ( api ) {
                     return
                 }
                 res.json( user )
+            })
+        })
+    })
+    // #################
+
+    // #################   TODOS
+    api.get( '/notes', ( req, res ) => {
+        Note.find( ( err, notes ) => {
+            if( err ) {
+                error( res, err )
+                return
+            }
+            res.json( notes )
+        })
+    })
+    api.post( '/notes', ( req, res ) => {
+        var note = new Note()
+        note.title      = req.body.title
+        note.completed  = req.body.completed
+        note.user_id    = req.body.user_id
+        note.save( err => {
+            if( err ) {
+                error( res, err )
+                return
+            }
+            res.json( note )
+        })
+    })
+    api.delete( '/notes/:_id', ( req, res ) => {
+        Note.remove( { _id: req.params._id }, ( err, note ) => {
+            if( err ) {
+                error( res, err)
+                return
+            }
+            res.sendStatus( 200 )
+        })
+    })
+    api.put( '/notes/:_id', ( req, res ) => {
+        Note.findById( req.params._id, ( err, note ) => {
+            if( err ) {
+                error( res, err)
+                return
+            }
+            note.title      = req.body.title
+            note.completed  = req.body.completed
+            note.user_id    = req.body.user_id
+            note.save( err => {
+                if( err ) {
+                    error( res, err )
+                    return
+                }
+                res.json( note )
             })
         })
     })

@@ -162,7 +162,7 @@ module.exports = function ( api ) {
         if(req.body.fname !== '') user.fname = req.body.fname
         if(req.body.lname !== '') user.lname = req.body.lname
         console.log('username:', req.body.username)
-        if(req.body.username === '' && req.body.username !== null) user.username = req.body.username
+        if(req.body.username) user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
         if(req.body.img_src === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'

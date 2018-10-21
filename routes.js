@@ -43,7 +43,7 @@ module.exports = function ( api ) {
 
 
     // #################   TODOS
-    api.get( '/todos', ( req, res ) => {
+    api.get( '/tasks', ( req, res ) => {
         Todo.find( ( err, todos ) => {
             if( err ) {
                 error( res, err )
@@ -52,7 +52,7 @@ module.exports = function ( api ) {
             res.json( todos )
         })
     })
-    api.post( '/todos', ( req, res ) => {
+    api.post( '/tasks', ( req, res ) => {
         var todo = new Todo()
         todo.title      = req.body.title
         todo.completed  = req.body.completed
@@ -65,7 +65,7 @@ module.exports = function ( api ) {
             res.json( todo )
         })
     })
-    api.delete( '/todos/:_id', ( req, res ) => {
+    api.delete( '/tasks/:_id', ( req, res ) => {
         Todo.remove( { _id: req.params._id }, ( err, todo ) => {
             if( err ) {
                 error( res, err)
@@ -74,7 +74,7 @@ module.exports = function ( api ) {
             res.sendStatus( 200 )
         })
     })
-    api.put( '/todos/:_id', ( req, res ) => {
+    api.put( '/tasks/:_id', ( req, res ) => {
         Todo.findById( req.params._id, ( err, todo ) => {
             if( err ) {
                 error( res, err)

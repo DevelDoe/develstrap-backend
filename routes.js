@@ -227,7 +227,7 @@ module.exports = function ( api ) {
     api.post( '/notes', ( req, res ) => {
         var note = new Note()
         note.title      = req.body.title
-        note.completed  = req.body.completed
+        note.overview  = req.body.overview
         note.user_id    = req.body.user_id
         note.save( err => {
             if( err ) {
@@ -253,7 +253,7 @@ module.exports = function ( api ) {
                 return
             }
             note.title      = req.body.title
-            note.completed  = req.body.completed
+            note.overview  = req.body.overview
             note.user_id    = req.body.user_id
             note.save( err => {
                 if( err ) {

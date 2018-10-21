@@ -41,20 +41,6 @@ module.exports = function ( api ) {
     })
     // #################
 
-    // #################   CONFIGURATION
-    api.post('/config', (req, res) => {
-        var fs = require('fs');
-        fs.writeFile("/tmp/site_config", "Hey there!", function(err) {
-            if( err ) {
-                error( res, err )
-                return
-            }
-
-            res.sendStatus( 200 )
-        });
-    })
-    // #################
-
 
     // #################   TODOS
     api.get( '/todos', ( req, res ) => {

@@ -71,9 +71,9 @@ module.exports = function ( api ) {
         avatarUpload(req, res, (err) => {
             if( err ) {
                 error( res, err )
-                return
+                res.json({ err: error})
             }
-            res.json({ path: req.file})
+            res.json({ file: req.file})
         })
     })
     api.post('/images', upload.array('avatari', 30), (req,res) => {

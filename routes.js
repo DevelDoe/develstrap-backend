@@ -27,9 +27,7 @@ const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5  }, // 5 MB
     fileFilter: fileFilter
-})
-
-var avatarUpload = upload
+}).single('avatar')
 
 module.exports = function ( api ) {
 
@@ -67,7 +65,7 @@ module.exports = function ( api ) {
 
     // #################   IMAGES
     api.post('/image',( req, res ) => {
-        avatarUpload(req, res, (err) => {
+        upload(req, res, (err) => {
             if( err ) {
                 if(err) {
                     error(res, err)

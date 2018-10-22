@@ -4,8 +4,7 @@ const config   = require('./config'),
       Todo     = require('./models/todo'),
       Resource = require('./models/resource'),
       User     = require('./models/user'),
-      Note     = require('./models/note'),
-      File     = require('./models/file')
+      Note     = require('./models/note')
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {

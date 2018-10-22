@@ -1,11 +1,11 @@
-var config   = require('./config'),
-    jwt      = require('jwt-simple'),
-    multer   = require('multer'),
-    Todo     = require('./models/todo'),
-    Resource = require('./models/resource'),
-    User     = require('./models/user'),
-    Note     = require('./models/note'),
-    File     = require('./models/file')
+const config   = require('./config'),
+      jwt      = require('jwt-simple'),
+      multer   = require('multer'),
+      Todo     = require('./models/todo'),
+      Resource = require('./models/resource'),
+      User     = require('./models/user'),
+      Note     = require('./models/note'),
+      File     = require('./models/file')
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -16,7 +16,9 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload   = multer({ storage: storage })
+const upload = multer({ storage: storage, limits: {
+    fileSize: 1024 * 1024 * 5 // 5 MB
+}})
 
 module.exports = function ( api ) {
 

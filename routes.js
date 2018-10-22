@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 const fileFilter = (req, file, cb) => {
     // accept image only
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-        return cb(new Error('Only image files are allowed!'));
+        return cb(new Error('Only image files are allowed!'), false);
     }
     cb(null, true)
 }
@@ -67,8 +67,8 @@ module.exports = function ( api ) {
     // #################
 
     // #################   IMAGES
-    api.post('/image', upload.single('img_src'),( req, res ) => {
-        avatarUpload(req, res, (err) => {
+    api.post('/image',( req, res ) => {
+        upload(req, res, (err) => {
             if( err ) {
                 console.log('ERROR!!!!!!!!!!!!!!!!!!!!!!!')
                 return res.json({ error: 'invalid_file' })

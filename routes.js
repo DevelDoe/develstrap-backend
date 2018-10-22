@@ -70,7 +70,7 @@ module.exports = function ( api ) {
     api.post('/image', upload.single('img_src'),( req, res ) => {
         avatarUpload(req, res, (err) => {
             if( err ) return res.send({ error: 'invalid_file' })
-            console.log('save the file', req.file)
+            return res.send({ file: req.file })
         })
     })
     api.post('/images', upload.array('avatari', 30), (req,res) => {

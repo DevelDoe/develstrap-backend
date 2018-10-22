@@ -1,7 +1,6 @@
 var config   = require('./config'),
     jwt      = require('jwt-simple'),
     multer   = require('multer'),
-    upload   = multer({ dest: 'uploads/' }),
     Todo     = require('./models/todo'),
     Resource = require('./models/resource'),
     User     = require('./models/user'),
@@ -16,6 +15,8 @@ const storage = multer.diskStorage({
         cb(null, new Date().toISOString() + file.originalname)
     }
 })
+
+const upload   = multer({ dest: 'uploads/' }),
 
 module.exports = function ( api ) {
 

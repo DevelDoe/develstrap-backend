@@ -199,8 +199,7 @@ module.exports = function ( api ) {
             res.json( user )
         })
     })
-    api.post( '/users', upload.single('avatar'),( req, res ) => {
-        console.log(req.file)
+    api.post( '/users', ( req, res ) => {
         var user = new User()
         if(req.body.fname !== '') user.fname = req.body.fname
         if(req.body.lname !== '') user.lname = req.body.lname

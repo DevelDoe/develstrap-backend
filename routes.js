@@ -1,7 +1,7 @@
 var config   = require('./config'),
     jwt      = require('jwt-simple'),
     multer   = require('multer'),
-    upload   = multer({ dest: '/uploads/' }),
+    upload   = multer({ dest: 'uploads/' }),
     Todo     = require('./models/todo'),
     Resource = require('./models/resource'),
     User     = require('./models/user'),

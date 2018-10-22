@@ -69,7 +69,7 @@ module.exports = function ( api ) {
         console.log(req.file)
     })
     api.post('/images', upload.array('images', 30), (req,res) => {
-        console.log(req.file)
+        console.log(req)
     })
     // #################
 

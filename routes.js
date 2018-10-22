@@ -71,7 +71,7 @@ module.exports = function ( api ) {
         avatarUpload(req, res, (err) => {
             if( err ) {
                 console.log('ERROR!!!!!!!!!!!!!!!!!!!!!!!')
-                return res.json({ error: 'invalid_file' })
+                return res.send({ error: 'invalid_file' })
             }
             console.log('SUCCESS!!!!!!!!!!!!!!!!!!!!!!!')
             return res.json({ file: req.file })

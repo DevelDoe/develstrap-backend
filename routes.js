@@ -36,7 +36,6 @@ module.exports = function ( api ) {
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
         User.findOne({ 'email': req.body.email }, (err, user) => {
-
             if(err) {
                 error(res, err)
                 return
@@ -70,11 +69,11 @@ module.exports = function ( api ) {
     api.post('/image',( req, res ) => {
         avatarUpload(req, res, (err) => {
             if( err ) {
-                res.status(500)
-                console.log('ERROR!!!!!!!!!!!!!!!!!!!!!!!')
-                return res.send({ error: 'invalid_file' })
+                if(err) {
+                    error(res, err)
+                    return
+                }
             }
-            console.log('SUCCESS!!!!!!!!!!!!!!!!!!!!!!!')
             return res.json({ file: req.file })
         })
     })

@@ -16,9 +16,18 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage, limits: {
-    fileSize: 1024 * 1024 * 5 // 5 MB
-}})
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') cb(null, true)
+    else cb(null, false)
+})
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5 // 5 MB
+    },
+    fileFilter: fileFilter
+})
 
 module.exports = function ( api ) {
 
@@ -186,8 +195,8 @@ module.exports = function ( api ) {
         if(req.body.username === '' && req.body.username !== null) user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
-        if(req.body.img_src === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
-        else user.img_src = req.body.img_src
+        if(file.path === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
+        user.img_src = req.file.path
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applications
         user.administrations = req.body.administrations

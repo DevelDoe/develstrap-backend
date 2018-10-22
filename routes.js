@@ -17,12 +17,11 @@ const storage = multer.diskStorage({
 })
 
 const fileFilter = (req, file, cb) => {
-    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-        cb(null, true)
+    // accept image only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+        return cb(new Error('Only image files are allowed!'), false);
     }
-    else {
-        cb(null, false)
-    }
+    cb(null, true);
 }
 
 const upload = multer({
@@ -66,8 +65,13 @@ module.exports = function ( api ) {
     })
     // #################
 
-    // #################   FILES
-
+    // #################   IMAGES
+    app.post('/image', upload.single('image'), (req,res) => {
+        console.log(req.file)
+    })
+    app.post('/images', upload.array('images', 30), (req,res) => {
+        console.log(req.file)
+    })
     // #################
 
 

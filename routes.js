@@ -74,7 +74,7 @@ module.exports = function ( api ) {
                 return res.send({ error: 'invalid_file' })
             }
             console.log('SUCCESS!!!!!!!!!!!!!!!!!!!!!!!')
-            return res.json({ file: req.file })
+            
         })
     })
     api.post('/images', upload.array('avatari', 30), (req,res) => {

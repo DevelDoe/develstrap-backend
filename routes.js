@@ -23,13 +23,13 @@ const fileFilter = (req, file, cb) => {
     cb(null, true)
 }
 
-const multer = multer({
+const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5  }, // 5 MB
     fileFilter: fileFilter
 })
 
-var avatarUpload = multer.single('avatar')
+var avatarUpload = upload.single('avatar')
 
 module.exports = function ( api ) {
 

@@ -29,7 +29,7 @@ const upload = multer({
     fileFilter: fileFilter
 })
 
-var avatarUpload = upload.single('avatar')
+var avatarUpload = upload
 
 module.exports = function ( api ) {
 
@@ -312,6 +312,6 @@ module.exports = function ( api ) {
 
     function error ( res, err )  {
         res.status(500)
-        res.json( { err: 'Server ' + err } )
+        res.json( { err: 'Server Error' + err } )
     }
 }

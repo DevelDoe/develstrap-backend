@@ -311,6 +311,7 @@ module.exports = function ( api ) {
     // #################
 
     function error ( res, err )  {
+        res.status(500)
         res.json( { err: 'Server ' + err } )
     }
 }

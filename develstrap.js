@@ -5,7 +5,7 @@ var express  = require( 'express' ),
     config   = require('./config'),
     fs       = require('fs')
 
-api.use(express.static())
+
 var port = process.env.PORT || 4002
 mongoose.connect(config.database, { useNewUrlParser: true } )
 api.listen( port )

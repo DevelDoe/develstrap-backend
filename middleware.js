@@ -16,7 +16,7 @@ module.exports = function( api ) {
 }
 
 function authenticate(req, res, next) {
-    if(/(login)|(users)/.test(req.originalUrl)) {
+    if(/(login)|/.test(req.originalUrl)) {
         next()
     } else {
         (passport.authenticate('jwt', { session: false}), function(req, res, next) {

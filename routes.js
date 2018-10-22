@@ -75,9 +75,9 @@ module.exports = function ( api ) {
             return res.json({ file: req.file })
         })
     })
-    api.post('/images', upload.array('avatari', 30), (req,res) => {
-        console.log(req)
-    })
+    // api.post('/images', upload.array('avatari', 30), (req,res) => {
+    //     console.log(req)
+    // })
     // #################
 
 

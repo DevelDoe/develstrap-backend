@@ -107,6 +107,7 @@ module.exports = function ( api ) {
     api.post( '/resources', ( req, res ) => {
         var resource = new Resource()
         resource.name = req.body.name
+        resource.details = req.body.details
         resource.fields = req.body.fields
         resource.read = req.body.read
         resource.write = req.body.write
@@ -134,6 +135,7 @@ module.exports = function ( api ) {
                 return
             }
             resource.name = req.body.name
+            if(req.body.details!== '') resource.details = req.body.details
             resource.fields = req.body.fields
             resource.read = req.body.read
             resource.write = req.body.write

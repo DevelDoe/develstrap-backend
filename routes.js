@@ -65,10 +65,10 @@ module.exports = function ( api ) {
     // #################
 
     // #################   IMAGES
-    app.post('/image', upload.single('image'), (req,res) => {
+    api.post('/image', upload.single('image'), (req,res) => {
         console.log(req.file)
     })
-    app.post('/images', upload.array('images', 30), (req,res) => {
+    api.post('/images', upload.array('images', 30), (req,res) => {
         console.log(req.file)
     })
     // #################

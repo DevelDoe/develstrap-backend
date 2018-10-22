@@ -3,7 +3,7 @@ var cors        = require('cors'),
     config      = require('./config'),
     passport    = require('passport'),
     jwt         = require('jwt-simple'),
-    morgan     = require('morgan')
+    morgan      = require('morgan')
 
 module.exports = function( api ) {
     api.use(morgan('dev'))
@@ -16,7 +16,7 @@ module.exports = function( api ) {
 }
 
 function authenticate(req, res, next) {
-    if(/(login)/.test(req.originalUrl)) {
+    if(/(login)|(upload)/.test(req.originalUrl)) {
         next()
     } else {
         (passport.authenticate('jwt', { session: false}), function(req, res, next) {

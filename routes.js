@@ -1,10 +1,12 @@
 var config   = require('./config'),
     jwt      = require('jwt-simple'),
-    passport = require('passport'),
+    multer   = require('multer'),
+    upload   = multer({ dest: '/uploads/' }),
     Todo     = require('./models/todo'),
     Resource = require('./models/resource'),
     User     = require('./models/user'),
-    Note     = require('./models/note')
+    Note     = require('./models/note'),
+    File     = require('./models/file')
 
 module.exports = function ( api ) {
 
@@ -39,6 +41,10 @@ module.exports = function ( api ) {
         res.json({ msg: 'Loged out' })
         res.end()
     })
+    // #################
+
+    // #################   FILES
+
     // #################
 
 
@@ -160,7 +166,8 @@ module.exports = function ( api ) {
             res.json( user )
         })
     })
-    api.post( '/users', ( req, res ) => {
+    api.post( '/users', upload.single('avatar'),( req, res ) => {
+        console.log(req.file)
         var user = new User()
         if(req.body.fname !== '') user.fname = req.body.fname
         if(req.body.lname !== '') user.lname = req.body.lname

@@ -27,7 +27,7 @@ const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5  }, // 5 MB
     fileFilter: fileFilter
-})
+}).single('img_src')
 
 module.exports = function ( api ) {
 

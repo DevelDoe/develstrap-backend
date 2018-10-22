@@ -8,6 +8,15 @@ var config   = require('./config'),
     Note     = require('./models/note'),
     File     = require('./models/file')
 
+const storage = multer.diskStorage({
+    destination: function(req, res, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req, res, cb) {
+        cb(null, new Date().toISOString() + file.originalname)
+    }
+})
+
 module.exports = function ( api ) {
 
     // #################   AUTHENTICATION

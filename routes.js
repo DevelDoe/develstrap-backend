@@ -1,6 +1,5 @@
 const config   = require('./config'),
       jwt      = require('jwt-simple'),
-      multer   = require('multer'),
       Todo     = require('./models/todo'),
       Resource = require('./models/resource'),
       User     = require('./models/user'),
@@ -20,14 +19,16 @@ const fileFilter = (req, file, cb) => {
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
         return cb(new Error('Only image files are allowed!'), false);
     }
-    cb(null, true);
+    cb(null, true)
 }
 
-const upload = multer({
+const multer = require('multer')({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5  }, // 5 MB
     fileFilter: fileFilter
 })
+
+var avatarUpload = multer.single('avatar')
 
 module.exports = function ( api ) {
 
@@ -66,7 +67,14 @@ module.exports = function ( api ) {
 
     // #################   IMAGES
     api.post('/image', upload.single('img_src'),( req, res ) => {
-        res.json({ path: req.file})
+        avatarUpload(req, res, (err) => {
+            if( err ) {
+                error( res, err )
+                return
+            }
+            res.json({ path: req.file})
+        })
+
     })
     api.post('/images', upload.array('avatari', 30), (req,res) => {
         console.log(req)

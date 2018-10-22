@@ -66,8 +66,8 @@ module.exports = function ( api ) {
 
     // #################   IMAGES
     api.post('/image', upload.single('img_src'),( req, res ) => {
-        console.log(file.path)
-        res.send( 200 )
+        console.log(req.file.path)
+        res.send( req.file.path )
     })
     api.post('/images', upload.array('avatari', 30), (req,res) => {
         console.log(req)
@@ -201,7 +201,7 @@ module.exports = function ( api ) {
         if(req.body.username === '' && req.body.username !== null) user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
-        if(file.path === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
+        if(req.file.path === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
         user.img_src = req.file.path
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applications

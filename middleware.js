@@ -9,7 +9,7 @@ var cors        = require('cors'),
 
 module.exports = function( api ) {
     api.use(morgan('dev'))
-    app.use(session({secret: config.secret }))
+    api.use(session({secret: config.secret }))
     api.use( bp.urlencoded( { extended: true } ) )
     api.use( bp.json() )
     api.use( cors() )

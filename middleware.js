@@ -3,10 +3,13 @@ var cors        = require('cors'),
     config      = require('./config'),
     passport    = require('passport'),
     jwt         = require('jwt-simple'),
-    morgan      = require('morgan')
+    morgan      = require('morgan'),
+    session     = require('express-session'),
+    config      = require('./config')
 
 module.exports = function( api ) {
     api.use(morgan('dev'))
+    app.use(session({secret: config.secret }))
     api.use( bp.urlencoded( { extended: true } ) )
     api.use( bp.json() )
     api.use( cors() )

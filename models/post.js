@@ -1,4 +1,4 @@
-import {mongoose} from 'mongoose'
+var mongoose = require('mongoose')
 
 module.exports = mongoose.model('Post', {
     title: { type: String, required: true, unique: true },

@@ -4,7 +4,8 @@ const config   = require('./config'),
       Todo     = require('./models/todo'),
       Resource = require('./models/resource'),
       User     = require('./models/user'),
-      Note     = require('./models/note')
+      Note     = require('./models/note'),
+      Post     = require('./models/post')
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -174,7 +175,7 @@ module.exports = function ( api ) {
                 return
             }
             resource.name = req.body.name
-            if(req.body.details!== '') resource.details = req.body.details
+            resource.details = req.body.details
             resource.fields = req.body.fields
             resource.read = req.body.read
             resource.write = req.body.write
@@ -201,9 +202,9 @@ module.exports = function ( api ) {
     })
     api.post( '/users', ( req, res ) => {
         var user = new User()
-        if(req.body.fname !== '') user.fname = req.body.fname
-        if(req.body.lname !== '') user.lname = req.body.lname
-        if(req.body.username === '' && req.body.username !== null) user.username = req.body.username
+        user.fname = req.body.fname
+        user.lname = req.body.lname
+        if(req.body.username === '' ) user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
         if(req.file.path === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
@@ -234,9 +235,9 @@ module.exports = function ( api ) {
                 error( res, err)
                 return
             }
-            if(req.body.fname === '') user.fname = req.body.fname
+            user.fname = req.body.fname
             if(req.body.lname === '') user.lname = req.body.lname
-            if(req.body.username === '' && req.body.username !== null) user.username = req.body.username
+            if(req.body.username === '' ) user.username = req.body.username
             user.email = req.body.email
             user.password = req.body.password
             if(req.body.img_src === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
@@ -302,6 +303,69 @@ module.exports = function ( api ) {
                     return
                 }
                 res.json( note )
+            })
+        })
+    })
+    // #################
+
+    // #################   POSTS
+    api.get('/posts', (req, res) => {
+        Post.find((err, posts) => {
+            if (err) {
+                error(res, err)
+                return
+            }
+            res.json(posts)
+        })
+    })
+    api.post('/posts', (req, res) => {
+         var post = new Post()
+         post.title = req.body.title
+         post.original = req.body.original
+         ipost.summary = req.body.summary
+         post.body = req.body.body
+         post.category = req.body.category
+         post.published = req.body.published
+         post.createdAt = req.body.createdAt
+         post.tags = req.body.tags
+
+         post.save(function (err) {
+             if (err) {
+                 error(res, err)
+                 return
+             }
+             res.json(post)
+         })
+    })
+    api.delete('/posts/:_id', (req, res) => {
+        Post.remove({ _id: req.params._id }, (err, post) => {
+            if (err) {
+                error(res, err)
+                return
+            }
+            res.sendStatus(200)
+        })
+    })
+    api.put('/posts/:_id', (req, res) => {
+        Post.findById(req.params._id, (err, post) => {
+            if (err) {
+                error(res, err)
+                return
+            }
+            post.title = req.body.title
+            post.original = req.body.original
+            ipost.summary = req.body.summary
+            post.body = req.body.body
+            post.category = req.body.category
+            post.published = req.body.published
+            post.createdAt = req.body.createdAt
+            post.tags = req.body.tags
+            post.save(err => {
+                if (err) {
+                    error(res, err)
+                    return
+                }
+                res.json(post)
             })
         })
     })

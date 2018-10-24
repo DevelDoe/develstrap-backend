@@ -354,7 +354,7 @@ module.exports = function ( api ) {
             }
             post.title = req.body.title
             post.original = req.body.original
-            ipost.summary = req.body.summary
+            post.summary = req.body.summary
             post.body = req.body.body
             post.category = req.body.category
             post.published = req.body.published

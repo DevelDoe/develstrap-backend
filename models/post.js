@@ -9,5 +9,6 @@ module.exports = mongoose.model('Post', {
     createdAt: { type: Number },
     updatedAt: { type: Number },
     category: { type: String },
-    tags: { type: Array }
+    tags: { type: Array },
+    user_id: { type: String, required: true }
 })

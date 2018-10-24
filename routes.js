@@ -328,7 +328,7 @@ module.exports = function ( api ) {
          post.published = req.body.published
          post.createdAt = req.body.createdAt
          post.tags = req.body.tags
-
+         post.user_id = req.body.user_id
          post.save(function (err) {
              if (err) {
                  error(res, err)
@@ -360,6 +360,7 @@ module.exports = function ( api ) {
             post.published = req.body.published
             post.createdAt = req.body.createdAt
             post.tags = req.body.tags
+            post.user_id = req.body.user_id
             post.save(err => {
                 if (err) {
                     error(res, err)

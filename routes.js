@@ -50,7 +50,7 @@ module.exports = function ( api ) {
                     }
                 })
             }
-        }
+        })
         User.findOne({ 'email': req.body.email }, (err, user) => {
             if(err) {
                 error(res, err)

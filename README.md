@@ -14,4 +14,4 @@ export default {
     'secret'   : '{its a secrete}',
     'database' : '{urltodatabase}'
 }
-```
+``` 

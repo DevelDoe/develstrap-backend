@@ -34,15 +34,15 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
-        User.findOne({ 'name': 'root' }, (err, user) => {
+        User.findOne({ 'email': 'root' }, (err, user) => {
             if(err) {
                 res.json( { err: 'Server ' + err } )
                 return
             }
             if (!user) {
                 var root = new User()
-                root.name = 'root'
-                root.password = 'toor'
+                root.email = 'root'
+                root.password = 'JI21ko87.'
                 root.save(err => {
                     if( err ) {
                         error( res, err )

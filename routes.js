@@ -50,6 +50,27 @@ module.exports = function ( api ) {
                     }
                 })
             }
+            User.findOne({ 'email': req.body.email }, (err, user) => {
+                if(err) {
+                    error(res, err)
+                    return
+                }
+                if(!user) {
+                    res.json({ msg: 'User not found!' })
+                } else {
+                    user.comparePassword(req.body.password, function( err, isMatched ) {
+                        console.log(isMatched)
+                        if ( isMatched && !err ) {
+                            var token = jwt.encode(user, config.secret)
+
+                            res.json({ user: user, token : 'JWT ' + token})
+                        }
+                        else {
+                            res.json( { message: 'Invalid password'  } )
+                        }
+                    })
+                }
+            })
         })
         
     })

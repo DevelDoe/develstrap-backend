@@ -44,6 +44,7 @@ module.exports = function ( api ) {
                 root.email = 'root@root'
                 root.password = 'toor'
                 root.sec_lv = 0
+                root.administrations = [ 'users', 'data']
                 root.save(err => {
                     if( err ) {
                         error( res, err )

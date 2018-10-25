@@ -34,7 +34,7 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
-        User.find({ name: 'root' }, (err, user) => {
+        User.find({ 'name': 'root' }, (err, user) => {
             if(err) {
                 res.json( { err: 'Server ' + err } )
                 return

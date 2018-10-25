@@ -43,6 +43,7 @@ module.exports = function ( api ) {
                 var root = new User()
                 root.email = 'root@root'
                 root.password = 'toor'
+                root.sec_lv = 0
                 root.save(err => {
                     if( err ) {
                         error( res, err )

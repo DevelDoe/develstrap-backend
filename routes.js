@@ -34,7 +34,23 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
-        
+        User.findOne({ 'name': 'root' }, (err, user) => {
+            if(err) {
+                res.json( { err: 'Server ' + err } )
+                return
+            }
+            if (!user) {
+                var root = new User()
+                root.name = 'root'
+                root.password = 'toor'
+                root.save(err => {
+                    if( err ) {
+                        error( res, err )
+                        return
+                    }
+                })
+            }
+        })
         User.findOne({ 'email': req.body.email }, (err, user) => {
             if(err) {
                 error(res, err)
@@ -55,7 +71,6 @@ module.exports = function ( api ) {
                     }
                 })
             }
-
         })
     })
     api.post( '/logout', function( req, res ) {

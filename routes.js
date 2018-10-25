@@ -35,7 +35,10 @@ module.exports = function ( api ) {
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
         Model.find( { 'email': 'root' }, function (err, results) {
-            if (err) { ... }
+             if(err) {
+                error(res, err)
+                return
+            }
             if (!results.length) {
                 var root = new User()
                 root.email = 'root@root'

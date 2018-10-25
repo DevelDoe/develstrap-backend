@@ -39,7 +39,7 @@ module.exports = function ( api ) {
                 res.json( { err: 'Server ' + err } )
                 return
             }
-            if (!results.length) {
+            if (!user.length) {
                 var root = new User()
                 root.name = 'root'
                 root.password = 'toor'

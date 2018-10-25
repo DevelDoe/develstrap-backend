@@ -34,24 +34,8 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
-        User.find({ 'email': 'root' }, (err, results) => {
-            if(err) {
-                res.json( { err: 'Server ' + err } )
-                return
-            }
-            if (!results.length) {
-                var root = new User()
-                root.email = 'root'
-                root.password = 'JI21ko87.'
-                root.save(err => {
-                    if( err ) {
-                        error( res, err )
-                        return
-                    }
-                })
-            }
-        })
-        User.findOne({ 'email': req.body.email }, (err, user) => {
+        
+        User.find({ 'email': req.body.email }, (err, user) => {
             if(err) {
                 error(res, err)
                 return

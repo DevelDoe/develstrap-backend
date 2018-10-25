@@ -34,8 +34,7 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
-        
-        User.find({ 'email': req.body.email }, (err, user) => {
+        User.findOne({ 'email': req.body.email }, (err, user) => {
             if(err) {
                 error(res, err)
                 return
@@ -55,6 +54,7 @@ module.exports = function ( api ) {
                     }
                 })
             }
+
         })
     })
     api.post( '/logout', function( req, res ) {

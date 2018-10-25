@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # develstrap-backend
 
 This is the backend API for devel-admin. It uses a mongodb database, token jwt based authentication with passport.
@@ -15,3 +16,6 @@ export default {
     'database' : '{urltodatabase}'
 }
 ``` 
+=======
+# wisme
+>>>>>>> 9a1773d... readme changes

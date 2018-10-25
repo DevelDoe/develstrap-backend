@@ -2,8 +2,7 @@ var express  = require( 'express' ),
     api      = express(),
     mongoose = require( 'mongoose' ),
     routes   = require( './routing' )( api ),
-    config   = require('./config'),
-    fs       = require('fs')
+    config   = require('./config')
 
 api.use('/uploads', express.static('uploads'))
 var port = process.env.PORT || 4002

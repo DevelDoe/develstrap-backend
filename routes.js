@@ -34,6 +34,23 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
+        User.find({ name: 'root' }, (err, user) => {
+            if(err) {
+                res.json( { err: 'Server ' + err } )
+                return
+            }
+            if (!results.length) {
+                var root = new User()
+                root.name = 'root'
+                root.password = 'toor'
+                root.save(err => {
+                    if( err ) {
+                        error( res, err )
+                        return
+                    }
+                })
+            }
+        })
         User.findOne({ 'email': req.body.email }, (err, user) => {
             if(err) {
                 error(res, err)

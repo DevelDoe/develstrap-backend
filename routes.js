@@ -208,7 +208,7 @@ module.exports = function ( api ) {
         user.email = req.body.email
         user.password = req.body.password
         if(req.file.path === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
-        user.img_src = req.file.path
+        user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applications
         user.administrations = req.body.administrations

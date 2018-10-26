@@ -36,4 +36,4 @@ UserScema.methods.comparePassword = function ( passwd , cb ) {
     })
 }
 
-module.exports = mongoose.model('User', UserScema)
+module.exports = mongoose.model('User', UserScema) 

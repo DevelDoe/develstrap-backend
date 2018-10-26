@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
 let UserScema = new mongoose.Schema({
     fname           : { type: String  },
     lname           : { type: String  },
-    username        : { type: String , trim: true, index: true, unique: true, sparse: true }, 
+    username        : { type: String , trim: true, index: { unique: true, partialFilterExpression: { username: { $type: 'string' } } }, 
     password        : { type: String , required: true },
     email           : { type: String , unique: true , required: true },
     img_src         : { type: String },

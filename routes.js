@@ -223,7 +223,7 @@ module.exports = function ( api ) {
         var user = new User()
         user.fname = req.body.fname
         user.lname = req.body.lname
-        if(req.body.username === '' ) user.username = req.body.username
+        if(req.body.username !== '' ) user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
         if (req.body.img_src === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'
@@ -255,8 +255,8 @@ module.exports = function ( api ) {
                 return
             }
             user.fname = req.body.fname
-            if(req.body.lname === '') user.lname = req.body.lname
-            if(req.body.username === '' ) user.username = req.body.username
+            user.lname = req.body.lname
+            if(req.body.username !== '' ) user.username = req.body.username
             user.email = req.body.email
             user.password = req.body.password
             if(req.body.img_src === '') user.img_src = 'https://media.giphy.com/media/Im7Adiayxy6zK/giphy.gif'

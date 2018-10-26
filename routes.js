@@ -41,8 +41,9 @@ module.exports = function ( api ) {
             }
             if (!result) {
                 var root = new User()
-                root.email = 'root@root'
-                root.password = 'toor'
+                root.username = 'root'
+                root.email = 'root@develdevils.se'
+                root.password = 'JI21ko87.'
                 root.sec_lv = 0
                 root.administrations = [ 'users', 'data']
                 root.save(err => {
@@ -72,7 +73,6 @@ module.exports = function ( api ) {
                         }
                     })
                 }
-
             })
         })
         

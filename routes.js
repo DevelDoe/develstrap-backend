@@ -34,7 +34,7 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
-        User.findOne( { 'email': 'root@root' }, function (err, result) {
+        User.findOne( { 'email': 'root@develdevils.se' }, function (err, result) {
              if(err) {
                 error(res, err)
                 return

@@ -34,12 +34,12 @@ module.exports = function ( api ) {
 
     // #################   AUTHENTICATION
     api.post('/login', (req, res) => {
-        User.find( { 'email': 'root' }, function (err, results) {
+        User.findOne( { 'email': 'root@root' }, function (err, result) {
              if(err) {
                 error(res, err)
                 return
             }
-            if (!results.length) {
+            if (!result) {
                 var root = new User()
                 root.email = 'root@root'
                 root.password = 'toor'
@@ -52,29 +52,30 @@ module.exports = function ( api ) {
                     }
                 })
             }
-        })
-        User.findOne({ 'email': req.body.email }, (err, user) => {
-            if(err) {
-                error(res, err)
-                return
-            }
-            if(!user) {
-                res.json({ msg: 'User not found!' })
-            } else {
-                user.comparePassword(req.body.password, function( err, isMatched ) {
-                    console.log(isMatched)
-                    if ( isMatched && !err ) {
-                        var token = jwt.encode(user, config.secret)
+            User.findOne({ 'email': req.body.email }, (err, user) => {
+                if(err) {
+                    error(res, err)
+                    return
+                }
+                if(!user) {
+                    res.json({ msg: 'User not found!' })
+                } else {
+                    user.comparePassword(req.body.password, function( err, isMatched ) {
+                        console.log(isMatched)
+                        if ( isMatched && !err ) {
+                            var token = jwt.encode(user, config.secret)
 
-                        res.json({ user: user, token : 'JWT ' + token})
-                    }
-                    else {
-                        res.json( { message: 'Invalid password'  } )
-                    }
-                })
-            }
+                            res.json({ user: user, token : 'JWT ' + token})
+                        }
+                        else {
+                            res.json( { message: 'Invalid password'  } )
+                        }
+                    })
+                }
 
+            })
         })
+        
     })
     api.post( '/logout', function( req, res ) {
         req.logout()

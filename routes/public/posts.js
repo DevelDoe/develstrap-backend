@@ -18,8 +18,10 @@ module.exports = function( api ) {
             }
             if(!post) {
                 res.end( 'No post' )
+            } else {
+                res.json(post)
             }
-            res.json(post)
+            
         })
     })
 } 

@@ -16,21 +16,12 @@ module.exports = function (api) {
                 error(res, err)
                 return
             }
-<<<<<<< HEAD
             if(!post) {
                 res.end( 'No post' )
             } else {
                 res.json(post)
             }
             
-=======
-            if (!post) {
-                res.end('No post')
-            } else {
-                res.json(post)
-            }
-
->>>>>>> master
         })
     })
 } 

@@ -11,8 +11,7 @@ module.exports = function (api) {
         })
     })
     api.get('/public/post', (req, res) => {
-        console.log(req)
-        Post.findById(req.body.id, (err, post) => {
+        Post.findById(req.param('id'), (err, post) => {
             if (err) {
                 error(res, err)
                 return

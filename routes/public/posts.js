@@ -22,4 +22,4 @@ module.exports = function( api ) {
             res.json(post)
         })
     })
-}
+} 

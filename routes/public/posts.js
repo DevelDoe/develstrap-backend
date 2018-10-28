@@ -10,8 +10,8 @@ module.exports = function (api) {
             res.json(posts)
         })
     })
-    api.get('/public/post/:id', (req, res) => {
-        Post.findById(req.body.id, (err, post) => {
+    api.get('/public/post', (req, res) => {
+        Post.findById(req.param('id'), (err, post) => {
             if (err) {
                 error(res, err)
                 return

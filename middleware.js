@@ -47,5 +47,5 @@ function getToken(headers) {
         else return null
     } else {
         return null
-    }
+    } 
 }

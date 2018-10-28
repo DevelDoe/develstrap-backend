@@ -10,4 +10,16 @@ module.exports = function( api ) {
             res.json(posts)
         })
     })
+    api.get('/public/post/:id', (req, res) => {
+        Post.findOne({ _id: req.body.id }, (err, post) => {
+            if (err) {
+                error(res, err)
+                return
+            }
+            if(!post) {
+                res.end( 'No post' )
+            }
+            res.json(post)
+        })
+    })
 }

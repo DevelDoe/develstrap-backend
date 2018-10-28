@@ -1,5 +1,4 @@
 const multer   = require('multer'),
-      Todo     = require('./models/todo'),
       Resource = require('./models/resource'),
       User     = require('./models/user'),
       Note     = require('./models/note'),
@@ -45,59 +44,6 @@ module.exports = function ( api ) {
     // api.post('/images', upload.array('avatari', 30), (req,res) => {
     //     console.log(req)
     // })
-    // #################
-
-
-    // #################   TODOS
-    api.get( '/tasks', ( req, res ) => {
-        Todo.find( ( err, todos ) => {
-            if( err ) {
-                error( res, err )
-                return
-            }
-            res.json( todos )
-        })
-    })
-    api.post( '/tasks', ( req, res ) => {
-        var todo = new Todo()
-        todo.title      = req.body.title
-        todo.completed  = req.body.completed
-        todo.user_id    = req.body.user_id
-        todo.save( err => {
-            if( err ) {
-                error( res, err )
-                return
-            }
-            res.json( todo )
-        })
-    })
-    api.delete( '/tasks/:_id', ( req, res ) => {
-        Todo.remove( { _id: req.params._id }, ( err, todo ) => {
-            if( err ) {
-                error( res, err)
-                return
-            }
-            res.sendStatus( 200 )
-        })
-    })
-    api.put( '/tasks/:_id', ( req, res ) => {
-        Todo.findById( req.params._id, ( err, todo ) => {
-            if( err ) {
-                error( res, err)
-                return
-            }
-            todo.title      = req.body.title
-            todo.completed  = req.body.completed
-            todo.user_id    = req.body.user_id
-            todo.save( err => {
-                if( err ) {
-                    error( res, err )
-                    return
-                }
-                res.json( todo )
-            })
-        })
-    })
     // #################
 
     // #################   RESOURCES

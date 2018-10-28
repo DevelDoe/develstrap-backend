@@ -1,6 +1,6 @@
 const Post = require('../../models/post')
 
-module.exports = function( api ) {
+module.exports = function (api) {
     api.get('/public/posts', (req, res) => {
         Post.find((err, posts) => {
             if (err) {
@@ -16,12 +16,21 @@ module.exports = function( api ) {
                 error(res, err)
                 return
             }
+<<<<<<< HEAD
             if(!post) {
                 res.end( 'No post' )
             } else {
                 res.json(post)
             }
             
+=======
+            if (!post) {
+                res.end('No post')
+            } else {
+                res.json(post)
+            }
+
+>>>>>>> master
         })
     })
 } 

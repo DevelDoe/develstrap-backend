@@ -1,9 +1,10 @@
 var express  = require( 'express' ),
     api      = express(),
     mongoose = require( 'mongoose' ),
-    routes   = require( './routing' )( api ),
     config   = require('./config')
 
+
+require('./routing')(api)
 api.use('/uploads', express.static('uploads'))
 var port = process.env.PORT || config.port
 mongoose.connect(config.database, { useNewUrlParser: true } )

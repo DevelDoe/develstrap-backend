@@ -1,4 +1,4 @@
-const config = require('../config'),
+const config = require('../../config'),
       jwt = require('jwt-simple'),
       User = require('./models/user')
 

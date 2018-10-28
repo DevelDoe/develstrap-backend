@@ -11,7 +11,7 @@ module.exports = function( api ) {
         })
     })
     api.get('/public/post/:id', (req, res) => {
-        Post.findOne({ _id: req.body.id }, (err, post) => {
+        Post.findById(req.body.id, (err, post) => {
             if (err) {
                 error(res, err)
                 return

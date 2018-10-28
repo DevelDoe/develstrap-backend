@@ -10,7 +10,7 @@ module.exports = function (api) {
             res.json(posts)
         })
     })
-    api.get('/public/post/:id', (req, res) => {
+    api.get('/public/post', (req, res) => {
         console.log(req)
         Post.findById(req.body.id, (err, post) => {
             if (err) {

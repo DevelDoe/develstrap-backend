@@ -1,6 +1,6 @@
 const config = require('../../config'),
       jwt = require('jwt-simple'),
-      User = require('./models/user')
+      User = require('../../models/user')
 
 module.exports = function (api) {
 

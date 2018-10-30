@@ -55,9 +55,6 @@ module.exports = (api) => {
                 res.json(todo)
             })
         })
-<<<<<<< HEAD:routes/private/todo.js
-    }) 
-=======
     })
     function error(res, err) {
         res.status(500)
@@ -65,5 +62,4 @@ module.exports = (api) => {
             err: 'Server ' + err
         })
     }
->>>>>>> master:routes/private/todos.js
 }

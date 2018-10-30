@@ -16,4 +16,5 @@ module.exports = mongoose.model('Post', {
     lang: { type: String },
     wip: { type: Boolean },
     feat: { type: Boolean },
+    important: { type: Boolean }
 })

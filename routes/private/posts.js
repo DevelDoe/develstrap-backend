@@ -25,6 +25,7 @@ module.exports = function (api) {
         post.lang = req.body.lang
         post.wip = req.body.wip
         post.feat = req.body.feat
+        post.important = req.body.important
         post.save(function (err) {
             if (err) {
                 error(res, err)
@@ -63,6 +64,7 @@ module.exports = function (api) {
             post.lang = req.body.lang
             post.wip = req.body.wip
             post.feat = req.body.feat
+            post.important = req.body.important
             post.save(err => {
                 if (err) {
                     error(res, err)

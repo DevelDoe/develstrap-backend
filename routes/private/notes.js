@@ -15,6 +15,7 @@ module.exports = function (api) {
         note.title = req.body.title
         note.overview = req.body.overview
         note.user_id = req.body.user_id
+        note.createdAt = Moment().unix()
         note.save(err => {
             if (err) {
                 error(res, err)
@@ -43,6 +44,7 @@ module.exports = function (api) {
             note.title = req.body.title
             note.overview = req.body.overview
             note.user_id = req.body.user_id
+            note.updatedAt = Moment().unix()
             note.save(err => {
                 if (err) {
                     error(res, err)

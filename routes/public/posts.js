@@ -24,9 +24,6 @@ module.exports = function (api) {
             
         })
     })
-<<<<<<< HEAD
-} 
-=======
     function error(res, err) {
         res.status(500)
         res.json({
@@ -34,4 +31,3 @@ module.exports = function (api) {
         })
     }
 }
->>>>>>> master

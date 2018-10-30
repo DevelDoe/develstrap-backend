@@ -21,6 +21,7 @@ module.exports = function (api) {
         post.published = req.body.published
         post.createdAt = Moment().unix()
         post.updatedAt = Moment().unix()
+        
         post.tags = req.body.tags
         post.user_id = req.body.user_id
         post.shared = req.body.shared
@@ -60,6 +61,7 @@ module.exports = function (api) {
             post.category = req.body.category
             post.published = req.body.published
             post.updatedAt = Moment().unix()
+            post.publishedAt = req.body.publishedAt
             post.tags = req.body.tags
             post.user_id = req.body.user_id
             post.shared = req.body.shared

@@ -15,5 +15,5 @@ module.exports = mongoose.model('Post', {
     shared: { type: Boolean },
     lang: { type: String },
     wip: { type: Boolean },
-    featured: { type: Boolean },
+    feat: { type: Boolean },
 })

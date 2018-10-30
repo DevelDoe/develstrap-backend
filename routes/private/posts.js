@@ -21,6 +21,10 @@ module.exports = function (api) {
         post.createdAt = req.body.createdAt
         post.tags = req.body.tags
         post.user_id = req.body.user_id
+        post.shared = req.body.shared
+        post.lang = req.body.lang
+        post.wip = req.body.wip
+        post.feat = req.body.feat
         post.save(function (err) {
             if (err) {
                 error(res, err)
@@ -55,6 +59,10 @@ module.exports = function (api) {
             post.createdAt = req.body.createdAt
             post.tags = req.body.tags
             post.user_id = req.body.user_id
+            post.shared = req.body.shared
+            post.lang = req.body.lang
+            post.wip = req.body.wip
+            post.feat = req.body.feat
             post.save(err => {
                 if (err) {
                     error(res, err)

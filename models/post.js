@@ -8,6 +8,7 @@ module.exports = mongoose.model('Post', {
     published: { type: Boolean },
     createdAt: { type: Number },
     updatedAt: { type: Number },
+    publishedAt: { type: Date },
     category: { type: String },
     tags: { type: Array },
     user_id: { type: String, required: true },

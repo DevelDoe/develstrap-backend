@@ -1,4 +1,5 @@
-const Note = require('../../models/note')
+const Note = require('../../models/note'),
+      Moment = require('moment')
 
 module.exports = function (api) {
     api.get('/notes', (req, res) => {

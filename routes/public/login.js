@@ -5,6 +5,7 @@ const config = require('../../config'),
 module.exports = function (api) {
 
     api.post('/public/login', (req, res) => {
+        // if req header is from certain site just hand over an token.
         User.findOne({
             'email': 'root@develdevils.se'
         }, function (err, result) {
@@ -65,4 +66,10 @@ module.exports = function (api) {
         })
         res.end()
     })
+    function error(res, err) {
+        res.status(500)
+        res.json({
+            err: 'Server ' + err
+        })
+    }
 }

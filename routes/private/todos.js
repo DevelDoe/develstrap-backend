@@ -1,4 +1,5 @@
-const Todo = require('../../models/todo')
+const Todo = require('../../models/todo'),
+      Moment = require('moment')
 
 module.exports = (api) => {
 
@@ -16,6 +17,7 @@ module.exports = (api) => {
         todo.title = req.body.title
         todo.completed = req.body.completed
         todo.user_id = req.body.user_id
+        todo.createdAt = Moment().unix()
         todo.save(err => {
             if (err) {
                 error(res, err)
@@ -44,6 +46,7 @@ module.exports = (api) => {
             todo.title = req.body.title
             todo.completed = req.body.completed
             todo.user_id = req.body.user_id
+            todo.updatedAt = Moment().unix()
             todo.save(err => {
                 if (err) {
                     error(res, err)
@@ -52,5 +55,15 @@ module.exports = (api) => {
                 res.json(todo)
             })
         })
+<<<<<<< HEAD:routes/private/todo.js
     }) 
+=======
+    })
+    function error(res, err) {
+        res.status(500)
+        res.json({
+            err: 'Server ' + err
+        })
+    }
+>>>>>>> master:routes/private/todos.js
 }

@@ -1,4 +1,5 @@
-const Post = require('../../models/post')
+const Post = require('../../models/post'),
+      Moment = require('moment')
 
 module.exports = function (api) {
     api.get('/posts', (req, res) => {
@@ -18,7 +19,8 @@ module.exports = function (api) {
         post.body = req.body.body
         post.category = req.body.category
         post.published = req.body.published
-        post.createdAt = req.body.createdAt
+        post.createdAt = Moment().unix()
+        post.publishedAt = req.body.publishedAt
         post.tags = req.body.tags
         post.user_id = req.body.user_id
         post.shared = req.body.shared
@@ -57,7 +59,8 @@ module.exports = function (api) {
             post.body = req.body.body
             post.category = req.body.category
             post.published = req.body.published
-            post.createdAt = req.body.createdAt
+            post.updatedAt = Moment().unix()
+            post.publishedAt = req.body.publishedAt
             post.tags = req.body.tags
             post.user_id = req.body.user_id
             post.shared = req.body.shared

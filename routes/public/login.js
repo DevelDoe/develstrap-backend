@@ -50,7 +50,7 @@ module.exports = function (api) {
                             })
                         } else {
                             res.json({
-                                message: 'Invalid password'
+                                msg: 'Invalid password'
                             })
                         }
                     })

@@ -7,7 +7,7 @@ module.exports = function ( api ) {
                 error(res, err)
                 return
             }
-            authors.forEeach(author => {
+            authors.forEach(author => {
                 delete author.password
             })
             res.json(authors)

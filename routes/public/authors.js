@@ -7,10 +7,10 @@ module.exports = function ( api ) {
                 error(res, err)
                 return
             }
-            authors.forEach(author => {
+            const sanitized = authors.forEach(author => {
                 delete author.password
             })
-            res.json(authors)
+            res.json(sanitized)
         })
     })
     api.get('/public/author', (req, res) => {

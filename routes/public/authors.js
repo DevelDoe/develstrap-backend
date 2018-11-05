@@ -10,6 +10,9 @@ module.exports = function ( api ) {
             const authors = JSON.parse(JSON.stringify(a))
             authors.forEach(author => {
                 delete author.password
+                delete author.applications
+                delete author.administrations
+                delete author.sec_lv
             })
             res.json(authors)
         })

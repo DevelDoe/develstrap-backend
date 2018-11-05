@@ -8,4 +8,5 @@ module.exports = function ( api ) {
     require('./private/users')(api)
     require('./public/login')(api)
     require('./public/posts')(api)
+    require('./public/authors')(api)
 }

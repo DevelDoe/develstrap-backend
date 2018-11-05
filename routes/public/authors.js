@@ -2,17 +2,16 @@ const User = require('../../models/user')
 
 module.exports = function ( api ) {
     api.get('/public/authors', (req, res) => {
-        User.find((err, authors) => {
+        User.find((err, a) => {
             if (err) {
                 error(res, err)
                 return
             }
-            const sanitized = []
+            const authors = JSON.parse(JSON.stringify(a))
             authors.forEach(author => {
                 delete author.password
-                sanitized.push(author)
             })
-            res.json(sanitized)
+            res.json(authors)
         })
     })
     api.get('/public/author', (req, res) => {

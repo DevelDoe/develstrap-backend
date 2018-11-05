@@ -1,7 +1,7 @@
 const User = require('../../models/user')
 
 module.exports = ( api ) => {
-    api.get('/public/autors', (req, res) => {
+    api.get('/public/authors', (req, res) => {
         User.find((err, authors) => {
             if (err) {
                 error(res, err)

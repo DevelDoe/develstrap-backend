@@ -6,6 +6,7 @@ module.exports = function (api) {
 
     api.post('/public/login', (req, res) => {
         // if req header is from certain site just hand over an token.
+        // if req.originalUrl is log.develdoe
         User.findOne({
             'email': 'root@develdevils.se'
         }, function (err, result) {

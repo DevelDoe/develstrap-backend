@@ -32,5 +32,5 @@ module.exports = ( api ) => {
         res.json({
             err: 'Server ' + err
         })
-    }
+    } 
 }

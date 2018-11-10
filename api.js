@@ -52,6 +52,7 @@ socket.on('connection', (ws, req) => {
             console.log('---------------')
             ws.secondsOnServer = 0
             clearInterval(id)
+            clearInterval(interval)
         })
     })
 

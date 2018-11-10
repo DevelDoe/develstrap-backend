@@ -48,6 +48,7 @@ socket.on('connection', (ws, req) => {
             console.log('ip:', ws.ip)
             console.log('seconds:', secondsOnServer)
             console.log('page:', ws.page)
+            console.log('app:',ws.app)
             secondsOnServer = 0
             clearInterval(id)
         })

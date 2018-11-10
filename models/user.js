@@ -1,18 +1,6 @@
 const mongoose = require('mongoose'),
       bcrypt   = require('bcrypt')
 
-let UserScema = new mongoose.Schema({
-    fname           : { type: String  },
-    lname           : { type: String  },
-    username        : { type: String , trim: true, index: { unique: true, partialFilterExpression: { username: { $type: 'string' } } } },  
-    password        : { type: String , required: true },
-    email           : { type: String , unique: true , required: true },
-    img_src         : { type: String },
-    sec_lv          : { type: String, required: true },
-    applications    : { type: Array},
-    administrations : { type: Array},
-})
-
 UserScema.pre('save', function(next) {
     var user = this
     if( this.isModified( 'password' ) || user.isNew ) {
@@ -36,4 +24,14 @@ UserScema.methods.comparePassword = function ( passwd , cb ) {
     })
 }
 
-module.exports = mongoose.model('User', UserScema) 
+module.exports = mongoose.model('User', {
+    fname           : { type: String  },
+    lname           : { type: String  },
+    username        : { type: String , trim: true, index: { unique: true, partialFilterExpression: { username: { $type: 'string' } } } },  
+    password        : { type: String , required: true },
+    email           : { type: String , unique: true , required: true },
+    img_src         : { type: String },
+    sec_lv          : { type: String, required: true },
+    applications    : { type: Array},
+    administrations : { type: Array},
+}) 

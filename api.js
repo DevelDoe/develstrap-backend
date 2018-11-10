@@ -53,8 +53,9 @@ socket.on('connection', (ws, req) => {
         })
     })
 
-    ws.on('message', (p) => {
-        ws.page = p
+    ws.on('message', (msg) => {
+        ws.page = msg.page 
+        ws.app = msg.app
     })
 
 })

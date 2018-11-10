@@ -1,7 +1,8 @@
 var express  = require( 'express' ),
     api      = express(),
     mongoose = require( 'mongoose' ),
-    config   = require('./config')
+    config   = require('./config'),
+    Visitor = require('./models/visitor')
 
 
 require('./routes/routing')(api)
@@ -50,6 +51,19 @@ socket.on('connection', (ws, req) => {
             console.log('app:',ws.app)
             console.log('user_id:', ws.user_id)
             console.log('---------------')
+            let visitor = new Visitor()
+            visitor.ip = ws.ip 
+            visitor.seconds = ws.ss 
+            visitor.page = ws.page 
+            visitor.app = ws.app 
+            visitor.user_id = ws.user_id
+            visitor.save( err => {
+                if(err) {
+                    error(res.err)
+                    return
+                }
+                console.log('added visitor')
+            })
             ws.secondsOnServer = 0
             clearInterval(id)
             clearInterval(interval)

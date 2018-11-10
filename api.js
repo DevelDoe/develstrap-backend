@@ -15,6 +15,7 @@ mongoose.connect(config.database, { useNewUrlParser: true } )
 // websockets
 const server = require('http').Server(api)
 const ws = require('ws')
+require('events').EventEmitter.prototype._maxListeners = 100
 
 const socket = new ws.Server({
     server

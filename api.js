@@ -34,10 +34,8 @@ socket.on('connection', (ws, req) => {
 
     socket.clients.forEach((ws) => {
 
-        var secondsOnServer = 0
-
         var id = setInterval(function () {
-            secondsOnServer++
+            ws.ss++
         }, 100)
 
         const index = req.connection.remoteAddress.lastIndexOf(':')
@@ -47,18 +45,21 @@ socket.on('connection', (ws, req) => {
         ws.on('close', function () {
             console.log('---------------')
             console.log('ip:', ws.ip)
-            console.log('seconds:', secondsOnServer)
+            console.log('seconds:', ws.ss)
             console.log('page:', ws.page)
             console.log('app:',ws.app)
             console.log('user_id:', ws.user_id)
             console.log('---------------')
-            secondsOnServer = 0
+            ws.secondsOnServer = 0
             clearInterval(id)
         })
     })
 
     ws.on('message', (msg) => {
+
         parsed = JSON.parse(msg)
+        
+        ws.ss = 0
         ws.page = parsed.page
         ws.app = parsed.app
         ws.user_id = parsed.user_id

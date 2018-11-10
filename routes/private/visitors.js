@@ -2,7 +2,7 @@ const Visitor = require('../../models/visitor')
 const { error } = require( '../../hlps')
 
 module.exports = (api) => {
-    api.get('visitors', (req, res) => {
+    api.get('/visitors', (req, res) => {
         Visitor.find( (err, visitors) => {
             if (err) {
                 error(res, err)

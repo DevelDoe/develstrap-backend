@@ -44,13 +44,7 @@ socket.on('connection', (ws, req) => {
         ws.ip = ip
 
         ws.on('close', function () {
-            console.log('---------------')
-            console.log('ip:', ws.ip)
-            console.log('seconds:', ws.ss)
-            console.log('page:', ws.page)
-            console.log('app:',ws.app)
-            console.log('user_id:', ws.user_id)
-            console.log('---------------')
+            
             let visitor = new Visitor()
             visitor.ip = ws.ip 
             visitor.seconds = ws.ss 
@@ -63,6 +57,13 @@ socket.on('connection', (ws, req) => {
                     return
                 }
                 console.log('added visitor')
+                console.log('---------------')
+                console.log('ip:', ws.ip)
+                console.log('seconds:', ws.ss)
+                console.log('page:', ws.page)
+                console.log('app:', ws.app)
+                console.log('user_id:', ws.user_id)
+                console.log('---------------')
             })
             ws.secondsOnServer = 0
             clearInterval(id)

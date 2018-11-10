@@ -3,6 +3,15 @@ var express  = require( 'express' ),
     mongoose = require( 'mongoose' ),
     config   = require('./config')
 
+
+require('./routes/routing')(api)
+
+api.use('/uploads', express.static('uploads'))
+
+var port = process.env.PORT || config.port
+
+mongoose.connect(config.database, { useNewUrlParser: true } )
+
 // websockets
 const server = require('http').Server(api)
 const ws = require('ws')
@@ -62,10 +71,5 @@ const interval = setInterval(function ping() {
     })
 }, 30000)
 
-
-require('./routes/routing')(api)
-api.use('/uploads', express.static('uploads'))
-var port = process.env.PORT || config.port
-mongoose.connect(config.database, { useNewUrlParser: true } )
-api.listen( port )
+server.listen(port)
 console.log( 'http://localhost:', port )

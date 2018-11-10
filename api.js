@@ -45,10 +45,13 @@ socket.on('connection', (ws, req) => {
         ws.ip = ip
 
         ws.on('close', function () {
+            console.log('---------------')
             console.log('ip:', ws.ip)
             console.log('seconds:', secondsOnServer)
             console.log('page:', ws.page)
             console.log('app:',ws.app)
+            console.log('user_id:', ws.user_id)
+             console.log('---------------')
             secondsOnServer = 0
             clearInterval(id)
         })

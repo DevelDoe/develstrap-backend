@@ -56,7 +56,6 @@ socket.on('connection', (ws, req) => {
                     error(res.err)
                     return
                 }
-                console.log('added visitor')
                 console.log('---------------')
                 console.log('ip:', ws.ip)
                 console.log('seconds:', ws.ss)

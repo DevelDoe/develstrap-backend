@@ -38,7 +38,6 @@ socket.on('connection', (ws, req) => {
 
         var id = setInterval(function () {
             secondsOnServer++
-            console.log('set new interval')
         }, 100)
 
         const index = req.connection.remoteAddress.lastIndexOf(':')

@@ -51,7 +51,7 @@ socket.on('connection', (ws, req) => {
             console.log('page:', ws.page)
             console.log('app:',ws.app)
             console.log('user_id:', ws.user_id)
-             console.log('---------------')
+            console.log('---------------')
             secondsOnServer = 0
             clearInterval(id)
         })
@@ -61,7 +61,7 @@ socket.on('connection', (ws, req) => {
         parsed = JSON.parse(msg)
         ws.page = parsed.page
         ws.app = parsed.app
-        ws.user_id = parsed.user_id
+        ws.user_id = parsed.user_id || anonymous
     })
 
 })

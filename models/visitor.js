@@ -5,5 +5,5 @@ module.export = mg.model('Visitor', {
     seconds: { type: Number },
     page: { type: String },
     app: { type: String},
-    user_id: { type: Strign}
+    user_id: { type: String}
 })

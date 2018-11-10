@@ -61,7 +61,7 @@ socket.on('connection', (ws, req) => {
         parsed = JSON.parse(msg)
         ws.page = parsed.page
         ws.app = parsed.app
-        ws.user_id = parsed.user_id || anonymous
+        ws.user_id = parsed.user_id
     })
 
 })

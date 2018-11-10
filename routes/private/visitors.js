@@ -1,5 +1,5 @@
 const Visitor = require('../../models/visitor')
-import { error } from '../../hlps'
+const { error } = require( '../../hlps')
 
 module.exports = (api) => {
     api.get('visitors', (req, res) => {

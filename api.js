@@ -54,8 +54,9 @@ socket.on('connection', (ws, req) => {
     })
 
     ws.on('message', (msg) => {
-        ws.page = msg.page 
-        ws.app = msg.app
+        parsed = JSON.parse(msg)
+        ws.page = parsed.page
+        ws.app = parsed.app
     })
 
 })

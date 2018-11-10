@@ -36,7 +36,7 @@ socket.on('connection', (ws, req) => {
 
         var id = setInterval(function () {
             ws.ss++
-        }, 100)
+        }, 1000)
 
         const index = req.connection.remoteAddress.lastIndexOf(':')
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)

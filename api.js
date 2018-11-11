@@ -2,7 +2,8 @@ var express  = require( 'express' ),
     api      = express(),
     mongoose = require( 'mongoose' ),
     config   = require('./config'),
-    Visitor = require('./models/visitor')
+    Visitor  = require('./models/visitor'),
+    axios    = require('axios')
 
 
 require('./routes/routing')(api)
@@ -43,6 +44,12 @@ socket.on('connection', (ws, req) => {
         const index = req.connection.remoteAddress.lastIndexOf(':')
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
         ws.ip = ip
+
+        axios.get('http: //ip-api.com/json/'+ip).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
 
         ws.on('close', function () {
             

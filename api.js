@@ -76,7 +76,7 @@ socket.on('connection', (ws, req) => {
                 clearInterval(interval)
 
             }).catch(err => {
-                console.log('ip-api fetch error')
+                console.log('ip-api fetch error:' err)
             })
             
             

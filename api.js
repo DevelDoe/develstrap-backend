@@ -48,7 +48,7 @@ socket.on('connection', (ws, req) => {
         axios.get('http: //ip-api.com/json/'+ip).then(res => {
             console.log(res)
         }).catch(err => {
-            console.log(err)
+            console.log('error')
         })
 
         ws.on('close', function () {

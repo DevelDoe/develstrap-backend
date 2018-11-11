@@ -71,9 +71,10 @@ socket.on('connection', (ws, req) => {
                     }
                     console.log('view data added:', visitor.ip)
                 })
-                ws.secondsOnServer = 0
+
                 clearInterval(id)
                 clearInterval(interval)
+                ws.terminate()
 
             }).catch(err => {
                 console.log('ip-api fetch error:', err)

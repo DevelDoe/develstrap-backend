@@ -67,7 +67,7 @@ socket.on('connection', (ws, req) => {
                 }
                 console.log('---------------')
                 Object.keys(visitor).forEach( key => {
-                    console.log(key)
+                    console.log(visitor[key])
                 })
                 console.log('---------------')
                 

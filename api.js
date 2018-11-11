@@ -70,14 +70,18 @@ socket.on('connection', (ws, req) => {
                         return
                     }
                     console.log('view data added:', visitor.ip)
+                    clearInterval(id)
+                    clearInterval(interval)
+                    ws.terminate()
                 })
 
-                clearInterval(id)
-                clearInterval(interval)
-                ws.terminate()
+                
 
             }).catch(err => {
                 console.log('ip-api fetch error:', err)
+                clearInterval(id)
+                clearInterval(interval)
+                ws.terminate()
             })
             
             

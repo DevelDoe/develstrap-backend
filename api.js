@@ -45,8 +45,8 @@ socket.on('connection', (ws, req) => {
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
         ws.ip = ip
 
-        axios.get('http: //ip-api.com/json/'+ip).then(res => {
-            console.log(res)
+        axios.get('http://ip-api.com/json/'+ip).then(res => {
+            console.log(res.data)
         }).catch(err => {
             console.log('error')
         })

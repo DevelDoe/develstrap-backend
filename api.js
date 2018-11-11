@@ -45,13 +45,15 @@ socket.on('connection', (ws, req) => {
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
         ws.ip = ip
 
-        axios.get('http://ip-api.com/json/'+ip).then(res => {
-            console.log(res.data)
-        }).catch(err => {
-            console.log('error')
-        })
+        
 
         ws.on('close', function () {
+
+            axios.get('http://ip-api.com/json/' + ip).then(res => {
+                console.log(res.data)
+            }).catch(err => {
+                console.log('error')
+            })
             
             let visitor = new Visitor()
             visitor.ip = ws.ip

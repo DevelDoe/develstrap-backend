@@ -66,14 +66,11 @@ socket.on('connection', (ws, req) => {
                     return
                 }
                 console.log('---------------')
-                console.log('ip:', visitor.ip)
-                console.log('date:', visitor.date)
-                console.log('seconds:', visitor.seconds)
-                console.log('page:', visitor.page)
-                console.log('app:', visitor.app)
-                console.log('user_id:', visitor.user_id)
-
+                Object.keys(visitor).forEach( key => {
+                    console.log(key)
+                })
                 console.log('---------------')
+                
             })
             ws.secondsOnServer = 0
             clearInterval(id)

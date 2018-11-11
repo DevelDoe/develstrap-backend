@@ -16,6 +16,7 @@ mongoose.connect(config.database, { useNewUrlParser: true } )
 // websockets
 const server = require('http').Server(api)
 const ws = require('ws')
+const moment = require('moment')
 // require('events').EventEmitter.prototype._maxListeners = 100
 
 const socket = new ws.Server({
@@ -46,7 +47,8 @@ socket.on('connection', (ws, req) => {
         ws.on('close', function () {
             
             let visitor = new Visitor()
-            visitor.ip = ws.ip 
+            visitor.ip = ws.ip
+            visitor.date = moment().unix()
             visitor.seconds = ws.ss 
             visitor.page = ws.page 
             visitor.app = ws.app 
@@ -57,11 +59,13 @@ socket.on('connection', (ws, req) => {
                     return
                 }
                 console.log('---------------')
-                console.log('ip:', ws.ip)
-                console.log('seconds:', ws.ss)
-                console.log('page:', ws.page)
-                console.log('app:', ws.app)
-                console.log('user_id:', ws.user_id)
+                console.log('ip:', visitor.ip)
+                console.log('date:', visitor.date)
+                console.log('seconds:', visitor.seconds)
+                console.log('page:', visitor.page)
+                console.log('app:', visitor.app)
+                console.log('user_id:', visitor.user_id)
+
                 console.log('---------------')
             })
             ws.secondsOnServer = 0

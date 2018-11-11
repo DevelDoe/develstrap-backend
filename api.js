@@ -67,7 +67,7 @@ socket.on('connection', (ws, req) => {
                         error(res.err)
                         return
                     }
-                    console.log('view data added')
+                    console.log('view data added:', visitor.ip)
                 })
                 ws.secondsOnServer = 0
                 clearInterval(id)

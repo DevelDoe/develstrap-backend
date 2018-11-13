@@ -18,7 +18,7 @@ module.exports = function (api) {
         user.email = req.body.email
         user.password = req.body.password
         if (req.body.img_src === '' || !req.body.img_src) user.img_src = 'http://35.210.92.246:4002/uploads/2018-11-13T20:17:26.810Zanon.jpg'
-        console.log()
+        console.log(req.body.img_src)
         user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applications

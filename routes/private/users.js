@@ -21,7 +21,7 @@ module.exports = function (api) {
         if (!req.body.img_src || req.body.img_src === '') user.img_src = 'http://35.210.92.246:4002/uploads/2018-11-13T20:17:26.810Zanon.jpg'
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
-        user.applications = req.body.applications
+        user.applications = req.body.applicationsgi
         user.administrations = req.body.administrations
 
         user.save(err => {

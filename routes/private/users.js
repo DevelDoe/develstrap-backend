@@ -12,6 +12,7 @@ module.exports = function (api) {
     })
     api.post('/users', (req, res) => {
         var user = new User()
+        console.log(req.body)
         user.fname = req.body.fname
         user.lname = req.body.lname
         if (req.body.username !== '') user.username = req.body.username
@@ -22,7 +23,7 @@ module.exports = function (api) {
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applications
         user.administrations = req.body.administrations
-        console.log(user)
+        
         user.save(err => {
             if (err) {
                 error(res, err)

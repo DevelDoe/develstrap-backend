@@ -1,10 +1,10 @@
 const mongoose = require('mongoose'),
       bcrypt   = require('bcrypt')
 
-let UserScema = new mongoose.Schema({
+var UserSchema = mongoose.Schema({
     fname           : { type: String  },
     lname           : { type: String  },
-    username        : { type: String , trim: true, index: { unique: true, partialFilterExpression: { username: { $type: 'string' } } } }, 
+    username        : { type: String , trim: true, index: { unique: true, partialFilterExpression: { username: { $type: 'string' } } } },  
     password        : { type: String , required: true },
     email           : { type: String , unique: true , required: true },
     img_src         : { type: String },
@@ -13,7 +13,7 @@ let UserScema = new mongoose.Schema({
     administrations : { type: Array},
 })
 
-UserScema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
     var user = this
     if( this.isModified( 'password' ) || user.isNew ) {
         bcrypt.genSalt( 10 , ( err , salt ) => {
@@ -29,11 +29,11 @@ UserScema.pre('save', function(next) {
     }
 })
 
-UserScema.methods.comparePassword = function ( passwd , cb ) {
+UserSchema.methods.comparePassword = function (passwd, cb) {
     bcrypt.compare( passwd , this.password , ( err , isMatched ) => {
         if ( err ) return cb( err )
         cb( null , isMatched )
     })
 }
 
-module.exports = mongoose.model('User', UserScema) 
+module.exports = mongoose.model('User', UserSchema)

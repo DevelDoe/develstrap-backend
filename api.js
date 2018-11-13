@@ -64,6 +64,7 @@ socket.on('connection', (ws, req) => {
                 visitor.page = ws.page
                 visitor.app = ws.app
                 visitor.user_id = ws.user_id
+                visitor.resolution = ws.resolution
                 visitor.save(err => {
                     if (err) {
                         error(res.err)
@@ -96,6 +97,7 @@ socket.on('connection', (ws, req) => {
         ws.page = parsed.page
         ws.app = parsed.app
         ws.user_id = parsed.user_id
+        ws.resolution = parsed.resolution
     })
 
 })

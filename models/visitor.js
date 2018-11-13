@@ -10,5 +10,6 @@ module.exports = mg.model('Visitor', {
     seconds: { type: Number },
     page: { type: String },
     app: { type: String},
-    user_id: { type: String}
+    user_id: { type: String},
+    resolution: { type: String }
 })

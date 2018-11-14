@@ -17,16 +17,16 @@ module.exports = function( api ) {
         
         var photo = new Photo()
         photo.title = req.body.title
-        post.summary = req.body.summary
-        post.published = req.body.published
-        post.createdAt = Moment().unix()
-        post.updatedAt = post.createdAt
-        post.publishedAt = req.body.publishedAt
-        post.tags = req.body.tags
-        post.user_id = req.body.user_id
-        post.shared = req.body.shared
-        post.feat = req.body.feat
-        post.photos = req.body.photos
+        photo.summary = req.body.summary
+        photo.published = req.body.published
+        photo.createdAt = Moment().unix()
+        photo.updatedAt = photo.createdAt
+        photo.publishedAt = req.body.publishedAt
+        photo.tags = req.body.tags
+        photo.user_id = req.body.user_id
+        photo.shared = req.body.shared
+        photo.feat = req.body.feat
+        photo.photos = req.body.photos
 
         photo.save( err => {
             if(err) {
@@ -45,15 +45,15 @@ module.exports = function( api ) {
             }
             
             photo.title = req.body.title
-            post.summary = req.body.summary
-            post.published = req.body.published
-            post.updatedAt = Moment().unix()
-            post.publishedAt = req.body.publishedAt
-            post.tags = req.body.tags
-            post.user_id = req.body.user_id
-            post.shared = req.body.shared
-            post.feat = req.body.feat
-            post.photos = req.body.photos
+            photo.summary = req.body.summary
+            photo.published = req.body.published
+            photo.updatedAt = Moment().unix()
+            photo.publishedAt = req.body.publishedAt
+            photo.tags = req.body.tags
+            photo.user_id = req.body.user_id
+            photo.shared = req.body.shared
+            photo.feat = req.body.feat
+            photo.photos = req.body.photos
 
             photo.save( err => {
                 if(err) {

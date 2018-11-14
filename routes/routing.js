@@ -1,6 +1,5 @@
 module.exports = function ( api ) {
     require( '../middleware' )( api )
-    require('./private/images')(api)
     require('./private/notes')(api)
     require('./private/posts')(api)
     require('./private/resources')(api)

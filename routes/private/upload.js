@@ -10,4 +10,8 @@ module.exports = function (api) {
         res.json({file: req.file})
     })
 
+    api.post('/image', upload.single('file') , (req,res) => {
+        res.json({file: req.file})
+    })
+
 }

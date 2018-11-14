@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 
 module.exports = mongoose.model('Photo', {
-    title       : { type: String },
+    title       : { type: String, required: true },
     summary     : { type: String },
     published   : { type: Boolean },
     createdAt   : { type: Number },

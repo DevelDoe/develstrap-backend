@@ -38,7 +38,7 @@ module.exports = function( api ) {
         })
     })
 
-    api.put('/photos/:id', (req, res) => {
+    api.put('/photos/:_id', (req, res) => {
         Photo.findById(req.params._id, (err, photo) => {
             if(err) {
                 error(res,err)

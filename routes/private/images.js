@@ -18,7 +18,7 @@ const upload = multer({
 module.exports = function ( api ) {
 
  
-    api.post('/image',( req, res ) => {
+    api.post('/',( req, res ) => {
         upload(req, res, (err) => {
             if( err ) {
                 if(err) {
@@ -29,9 +29,6 @@ module.exports = function ( api ) {
             return res.json({ file: req.file })
         })
     })
-    // api.post('/images', upload.array('avatari', 30), (req,res) => {
-    //     console.log(req)
-    // })
     
     function error(res, err) {
         res.status(500)

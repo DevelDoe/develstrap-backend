@@ -1,7 +1,21 @@
 const multer = require('multer')
 
+const imageFilter = (req, file, cb) => {
+    
+    const allowedType = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+
+    if(!allowedType.includes(file.mimtype)) {
+        const error = new Error('Wrong file type')
+        error.code = 'LIMIT_FILE_TYPES'
+        return cb(error, false)
+    }
+
+    cb(null, true)
+}
+
 const upload = multer({
-    dest: './uploads/'
+    dest: './uploads/',
+    imageFilter
 })
 
 module.exports = function (api) {

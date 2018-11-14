@@ -25,6 +25,7 @@ module.exports = function (api) {
     })
 
     api.post('/image', upload.single('file') , (req,res) => {
+        console.log('here')
         res.json({file: req.file})
     })
 

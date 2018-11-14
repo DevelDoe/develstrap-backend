@@ -8,7 +8,7 @@ module.exports = mongoose.model('Photo', {
     updatedAt   : { type: Number },
     publishedAt : { type: Date },
     tags        : { type: Array },
-    artist_id   : { type: String },
+    user_id     : { type: String },
     shared      : { type: Boolean },
     feat        : { type: Boolean },
     photos      : { type: Array }

@@ -4,7 +4,7 @@ const imageFilter = function (req, file, cb) {
     
     const allowedType = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
 
-    if(!allowedType.includes(file.mimtype)) {
+    if(!allowedType.includes(file.mimetype)) {
         const error = new Error('Wrong file type')
         error.code = 'LIMIT_FILE_TYPES'
         return cb(error, false)

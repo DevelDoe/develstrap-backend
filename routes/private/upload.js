@@ -18,6 +18,7 @@ const uploadFile = multer({
 })
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
+
 const uploadImage = multer({
     dest: './uploads/',
     fileFilter: imageFilter,
@@ -26,11 +27,19 @@ const uploadImage = multer({
 
 module.exports = function (api) {
 
-    api.post('/upload', uploadFile.single('file') , (req,res) => {
+    api.post('/file', uploadFile.single('file') , (req,res) => {
         res.json({file: req.file})
     })
 
-    api.post('/image', uploadImage.single('file'), (req, res) => {
+    api.post('/files', uploadFile.single('files') , (req,res) => {
+        res.json({file: req.file})
+    })
+
+    api.post('/image', uploadImage.single('image'), (req, res) => {
+        res.json({file: req.file})
+    })
+
+    api.post('/images', uploadImage.single('images'), (req, res) => {
         res.json({file: req.file})
     })
 

@@ -39,9 +39,9 @@ module.exports = function (api) {
         res.json({ image: req.image })
     })
 
-    api.post('/images', uploadImage.array('images'), (req, res) => {
-        console.log(req.images)
-        res.json({ images: req.images })
+    api.post('/images', uploadImage.array('files'), (req, res) => {
+        console.log(req.files)
+        res.json({ files: req.files })
     })
 
     api.use((err,req,res,next)=>{

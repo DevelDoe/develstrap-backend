@@ -1,6 +1,6 @@
 const multer = require('multer')
 
-const imageFilter = (req, file, cb) => {
+const imageFilter = function (req, file, cb) {
     
     const allowedType = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
 
@@ -25,7 +25,6 @@ module.exports = function (api) {
     })
 
     api.post('/image', upload.single('file') , (req,res) => {
-        console.log('here')
         res.json({file: req.file})
     })
 

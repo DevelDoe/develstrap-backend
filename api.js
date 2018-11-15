@@ -1,5 +1,5 @@
 var express  = require( 'express' ),
-    path     = require('paht'),
+    path     = require('path'),
     api      = express(),
     mongoose = require( 'mongoose' ),
     config   = require('./config'),

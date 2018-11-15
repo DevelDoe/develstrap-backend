@@ -1,4 +1,6 @@
-const multer = require('multer')
+const multer    = require('multer')
+const sharp     = require('sharp')
+const fs        = require('fs')
 
 const imageFilter = function (req, file, cb) {
     
@@ -12,8 +14,6 @@ const imageFilter = function (req, file, cb) {
 
     cb(null, true)
 }
-
-
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
 
@@ -37,8 +37,19 @@ module.exports = function (api) {
         res.json({files: req.files})
     })
 
-    api.post('/image', uploadImage.single('file'), (req, res) => {
-        res.json({ file: req.file })
+    api.post('/image', uploadImage.single('file'), async (req, res) => {
+        try {
+            await sharp(req.file.path)
+                .resize(300)
+                .background('white')
+                .embed()
+                .toFile(`./static/${req.file.originalname}`)
+            fs.unlink(req.file.path, () => {
+                res.json({ file: `./static/${req.file.originalname}` })
+            })
+        } catch (err) {
+            res.status(422).json({err})
+        }
     })
 
     api.post('/images', uploadImage.array('files'), (req, res) => {

@@ -13,6 +13,10 @@ const imageFilter = function (req, file, cb) {
     cb(null, true)
 }
 
+const uploadFile = multer({
+    dest: './uploads/',
+})
+
 const uploadImage = multer({
     dest: './uploads/',
     imageFilter
@@ -20,7 +24,7 @@ const uploadImage = multer({
 
 module.exports = function (api) {
 
-    api.post('/upload', upload.single('file') , (req,res) => {
+    api.post('/upload', uploadFile.single('file') , (req,res) => {
         res.json({file: req.file})
     })
 

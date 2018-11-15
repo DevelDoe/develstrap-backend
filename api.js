@@ -114,7 +114,7 @@ const interval = setInterval(function ping() {
     })
 }, 30000)
 
-api.use((err,req,res,next)=>{
+server.use((err, req, res, next) => {
     if(err.code === 'LIMIT_FILE_TYPES') {
         res.status(422).json({ error: 'Only images are allowed'})
         return

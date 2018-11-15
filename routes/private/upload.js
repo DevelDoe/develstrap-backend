@@ -32,7 +32,7 @@ module.exports = function (api) {
     })
 
     api.post('/files', uploadFile.array('files') , (req,res) => {
-        res.json({file: req.file})
+        res.json({file: req.files})
     })
 
     api.post('/image', uploadImage.single('image'), (req, res) => {

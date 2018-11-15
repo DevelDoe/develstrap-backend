@@ -13,11 +13,13 @@ const imageFilter = function (req, file, cb) {
     cb(null, true)
 }
 
+
+
+const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
+
 const uploadFile = multer({
     dest: './uploads/',
 })
-
-const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
 
 const uploadImage = multer({
     dest: './uploads/',
@@ -46,11 +48,11 @@ module.exports = function (api) {
     })
 
     api.post('/images', uploadImage.array('files'), (req, res) => {
-        console.log(req.files)
         res.json({ files: req.files })
     })
 
     api.post('/dropzone', dropzone.single('file'), (req, res) => {
+        console.log(req.files)
         res.json({ file: req.file })
     })
 

@@ -31,16 +31,16 @@ module.exports = function (api) {
         res.json({file: req.file})
     })
 
-    api.post('/files', uploadFile.single('files') , (req,res) => {
+    api.post('/files', uploadFile.array('files') , (req,res) => {
         res.json({file: req.file})
     })
 
     api.post('/image', uploadImage.single('image'), (req, res) => {
-        res.json({file: req.file})
+        res.json({ image: req.file })
     })
 
-    api.post('/images', uploadImage.single('images'), (req, res) => {
-        res.json({file: req.file})
+    api.post('/images', uploadImage.array('images'), (req, res) => {
+        res.json({ images: req.file })
     })
 
     api.use((err,req,res,next)=>{

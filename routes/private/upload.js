@@ -21,7 +21,7 @@ const uploadFile = multer({
 
 const uploadImage = multer({
     dest: './uploads/',
-    imageFilter: imageFilter
+    fileFilter: imageFilter
 })
 
 module.exports = function (api) {

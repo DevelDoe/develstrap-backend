@@ -46,8 +46,7 @@ module.exports = function (api) {
                 .embed()
                 .toFile(`./static/${req.file.originalname}`)
             fs.unlink(req.file.path, () => {
-                let p = path.join(__dirname, 'static') + req.file.originalname
-                res.json({ file: `./static/${p}` })
+                res.json({ file: `./static/${req.file.originalname}` })
             })
         } catch (err) {
             res.status(422).json({err})

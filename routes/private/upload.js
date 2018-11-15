@@ -17,9 +17,11 @@ const uploadFile = multer({
     dest: './uploads/',
 })
 
+const MAX_IMAGE_SIZE = 1024 * 1024 / 10 // 5 MB
 const uploadImage = multer({
     dest: './uploads/',
-    fileFilter: imageFilter
+    fileFilter: imageFilter,
+    limits: { fileSize:  MAX_IMAGE_SIZE }, 
 })
 
 module.exports = function (api) {
@@ -35,6 +37,10 @@ module.exports = function (api) {
     api.use((err,req,res,next)=>{
         if(err.code === 'LIMIT_FILE_TYPES') {
             res.status(422).json({ error: 'Only images are allowed'})
+            return
+        }
+        if(err.code === 'LIMIT_FILE_SIZE') {
+            res.status(422).json({ error: `File is to large. max size is ${MAX_IMAGE_SIZE / 1000}kB`})
             return
         }
     })

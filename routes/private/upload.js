@@ -25,6 +25,12 @@ const uploadImage = multer({
     limits: { fileSize:  MAX_IMAGE_SIZE }, 
 })
 
+const dropzone = multer({
+    dest: './uploads/',
+    fileFilter: imageFilter,
+    limits: { fileSize:  MAX_IMAGE_SIZE }, 
+})
+
 module.exports = function (api) {
 
     api.post('/file', uploadFile.single('file') , (req,res) => {
@@ -32,16 +38,20 @@ module.exports = function (api) {
     })
 
     api.post('/files', uploadFile.array('files') , (req,res) => {
-        res.json({file: req.files})
+        res.json({files: req.files})
     })
 
     api.post('/image', uploadImage.single('file'), (req, res) => {
-        res.json({ image: req.image })
+        res.json({ file: req.file })
     })
 
     api.post('/images', uploadImage.array('files'), (req, res) => {
         console.log(req.files)
         res.json({ files: req.files })
+    })
+
+    api.post('/dropzone', dropzone.single('file'), (req, res) => {
+        res.json({ file: req.file })
     })
 
     api.use((err,req,res,next)=>{

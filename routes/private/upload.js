@@ -41,7 +41,7 @@ module.exports = function (api) {
     api.post('/image', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)
-                .resize(100)
+                .resize(300)
                 .background('white')
                 .embed()
                 .toFile(`./static/${req.file.originalname}`)

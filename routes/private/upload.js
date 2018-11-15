@@ -34,13 +34,14 @@ module.exports = function (api) {
         res.json({file: req.file})
     })
 
+    api.use((err, req, res, next) => {
+        if (err.code === 'LIMIT_FILE_TYPES') {
+            res.status(422).json({
+                error: 'Only images are allowed'
+            })
+            return
+        }
+    })
+
 }
 
-api.use((err, req, res, next) => {
-    if (err.code === 'LIMIT_FILE_TYPES') {
-        res.status(422).json({
-            error: 'Only images are allowed'
-        })
-        return
-    }
-})

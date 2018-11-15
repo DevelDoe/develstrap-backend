@@ -2,9 +2,9 @@ const multer    = require('multer')
 const sharp     = require('sharp')
 const fs        = require('fs')
 
-const storage = multer.diskStorage({
+const imageUploads = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads/')
+        cb(null, './uploads/images/')
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -25,10 +25,6 @@ const imageFilter = function (req, file, cb) {
 }
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
-
-const uploadFile = multer({
-    dest: './uploads/',
-})
 
 const uploadImage = multer({
     storage: imageUploads,
@@ -52,9 +48,9 @@ module.exports = function (api) {
                 .resize(300)
                 .background('white')
                 .embed()
-                .toFile(`./static/${req.file.originalname}`)
+                .toFile(`./uploads/images/${req.file.originalname}`)
             fs.unlink(req.file.path, () => {
-                res.json({ file: `/static/${req.file.originalname}` })
+                res.json({ file: `/uploads/images/${req.file.originalname}` })
             })
         } catch (err) {
             res.status(422).json({err})

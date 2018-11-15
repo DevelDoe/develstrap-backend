@@ -34,14 +34,6 @@ const uploadImage = multer({
 
 module.exports = function (api) {
 
-    api.post('/file', uploadFile.single('file') , (req,res) => {
-        res.json({file: req.file})
-    })
-
-    api.post('/files', uploadFile.array('files') , (req,res) => {
-        res.json({files: req.files})
-    })
-
     api.post('/image', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)

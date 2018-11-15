@@ -1,7 +1,15 @@
 const multer    = require('multer')
 const sharp     = require('sharp')
 const fs        = require('fs')
-const path      = require('path')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
 
 const imageFilter = function (req, file, cb) {
     
@@ -23,7 +31,7 @@ const uploadFile = multer({
 })
 
 const uploadImage = multer({
-    dest: './uploads/',
+    storage: imageUploads,
     fileFilter: imageFilter,
     limits: { fileSize:  MAX_IMAGE_SIZE }, 
 })

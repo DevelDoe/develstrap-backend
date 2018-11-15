@@ -40,6 +40,7 @@ module.exports = function (api) {
     })
 
     api.post('/images', uploadImage.array('images'), (req, res) => {
+        console.log(req.images)
         res.json({ images: req.images })
     })
 

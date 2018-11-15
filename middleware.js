@@ -13,12 +13,6 @@ module.exports = function( api ) {
     api.use(passport.initialize())
     require('./passport')(passport)
     api.use(authenticate)
-    api.use((err,req,res,next)=>{
-        if(err.code === 'LIMIT_FILE_TYPES') {
-            res.status(422).json({ error: 'Only images are allowed'})
-            return
-        }
-    })
 }
 
 function authenticate(req, res, next) {

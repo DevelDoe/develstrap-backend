@@ -1,6 +1,7 @@
 const multer    = require('multer')
 const sharp     = require('sharp')
 const fs        = require('fs')
+const path      = require('path')
 
 const imageFilter = function (req, file, cb) {
     
@@ -45,7 +46,8 @@ module.exports = function (api) {
                 .embed()
                 .toFile(`./static/${req.file.originalname}`)
             fs.unlink(req.file.path, () => {
-                res.json({ file: `./static/${req.file.originalname}` })
+                let p = path.join(__dirname, 'static') + req.file.originalname
+                res.json({ file: `./static/${p}` })
             })
         } catch (err) {
             res.status(422).json({err})

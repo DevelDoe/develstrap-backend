@@ -10,13 +10,6 @@ require('./routes/routing')(api)
 
 api.use('/uploads', express.static('uploads'))
 
-api.use((err,req,res,next)=>{
-    if(err.code === 'LIMIT_FILE_TYPES') {
-        res.status(422).json({ error: 'Only images are allowed'})
-        return
-    }
-})
-
 var port = process.env.PORT || config.port
 
 mongoose.connect(config.database, { useNewUrlParser: true } )
@@ -120,8 +113,6 @@ const interval = setInterval(function ping() {
         ws.ping(noop)
     })
 }, 30000)
-
-
 
 server.listen(port)
 console.log( 'http://localhost:', port )

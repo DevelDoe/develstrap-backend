@@ -9,6 +9,14 @@ const storage = multer.diskStorage({
     }
 })
 
+const fileFilter = (req, file, cb) => {
+    // accept image only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true)
+}
+
 const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5  }, // 5 MB
@@ -18,7 +26,7 @@ const upload = multer({
 module.exports = function ( api ) {
 
  
-    api.post('/',( req, res ) => {
+    api.post('/image',( req, res ) => {
         upload(req, res, (err) => {
             if( err ) {
                 if(err) {
@@ -29,6 +37,9 @@ module.exports = function ( api ) {
             return res.json({ file: req.file })
         })
     })
+    // api.post('/images', upload.array('avatari', 30), (req,res) => {
+    //     console.log(req)
+    // })
     
     function error(res, err) {
         res.status(500)

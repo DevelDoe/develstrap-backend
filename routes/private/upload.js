@@ -4,6 +4,8 @@ const imageFilter = function (req, file, cb) {
     
     const allowedType = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
 
+    console.log('here')
+
     if(!allowedType.includes(file.mimtype)) {
         const error = new Error('Wrong file type')
         error.code = 'LIMIT_FILE_TYPES'
@@ -19,7 +21,7 @@ const uploadFile = multer({
 
 const uploadImage = multer({
     dest: './uploads/',
-    imageFilter
+    imageFilter: imageFilter
 })
 
 module.exports = function (api) {

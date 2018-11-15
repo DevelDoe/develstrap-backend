@@ -36,11 +36,11 @@ module.exports = function (api) {
     })
 
     api.post('/image', uploadImage.single('image'), (req, res) => {
-        res.json({ image: req.file })
+        res.json({ image: req.image })
     })
 
     api.post('/images', uploadImage.array('images'), (req, res) => {
-        res.json({ images: req.file })
+        res.json({ images: req.images })
     })
 
     api.use((err,req,res,next)=>{

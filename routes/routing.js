@@ -6,7 +6,7 @@ module.exports = function ( api ) {
     require('./private/todos')(api)
     require('./private/users')(api)
     require('./private/visitors')(api)
-    require('./private/photos')(api)
+    require('./private/images')(api)
     require('./private/upload')(api)
     require('./public/login')(api)
     require('./public/posts')(api)

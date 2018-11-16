@@ -28,7 +28,7 @@ const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
 
 
 const uploadImage = multer({
-    dest: imageUploads,
+    storage: imageUploads,
     fileFilter: imageFilter,
     limits: { fileSize:  MAX_IMAGE_SIZE }, 
 })

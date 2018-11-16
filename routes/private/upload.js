@@ -28,20 +28,12 @@ const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
 
 
 const uploadImage = multer({
-    storage: imageUploads,
+    dest: './uploads/',
     fileFilter: imageFilter,
     limits: { fileSize:  MAX_IMAGE_SIZE }, 
 })
 
 module.exports = function (api) {
-
-    api.post('/file', uploadFile.single('file') , (req,res) => {
-        res.json({file: req.file})
-    })
-
-    api.post('/files', uploadFile.array('files') , (req,res) => {
-        res.json({files: req.files})
-    })
 
     api.post('/image', uploadImage.single('file'), async (req, res) => {
         try {

@@ -4,7 +4,7 @@ const fs        = require('fs')
 
 const imageUploads = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads/images/')
+        cb(null, './uploads/images/raw/')
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -42,9 +42,7 @@ module.exports = function (api) {
                 .background('white')
                 .embed()
                 .toFile(`./uploads/images/processed/${req.file.originalname}`)
-            fs.unlink(req.file.path, () => {
-                res.json({ file: `/uploads/images/processed/${req.file.originalname}` })
-            })
+            res.json({ file: `/uploads/images/processed/${req.file.originalname}` })
         } catch (err) {
             res.status(422).json({err})
         }

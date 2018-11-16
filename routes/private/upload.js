@@ -1,15 +1,5 @@
 const multer    = require('multer')
 const sharp     = require('sharp')
-const fs        = require('fs')
-
-const imageUploads = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads/images/raw/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname)
-    }
-})
 
 const imageFilter = function (req, file, cb) {
     
@@ -28,7 +18,7 @@ const MAX_IMAGE_SIZE = 1024 * 1024 * 5 // 5 MB
 
 
 const uploadImage = multer({
-    storage: imageUploads,
+    dest: './uploads/images/raw/',
     fileFilter: imageFilter,
     limits: { fileSize:  MAX_IMAGE_SIZE }, 
 })

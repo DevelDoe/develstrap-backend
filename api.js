@@ -10,6 +10,7 @@ var express  = require( 'express' ),
 require('./routes/routing')(api)
 
 api.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+api.use('/uploads', express.static(path.join(__dirname, 'static')))
 
 var port = process.env.PORT || config.port
 

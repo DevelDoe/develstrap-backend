@@ -35,15 +35,23 @@ const uploadImage = multer({
 
 module.exports = function (api) {
 
+    api.post('/file', uploadFile.single('file') , (req,res) => {
+        res.json({file: req.file})
+    })
+
+    api.post('/files', uploadFile.array('files') , (req,res) => {
+        res.json({files: req.files})
+    })
+
     api.post('/image', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)
                 .resize(300)
                 .background('white')
                 .embed()
-                .toFile(`./uploads/images/${req.file.originalname}`)
+                .toFile(`./static/${req.file.originalname}`)
             fs.unlink(req.file.path, () => {
-                res.json({ file: `/uploads/images/${req.file.originalname}` })
+                res.json({ file: `/static/${req.file.originalname}` })
             })
         } catch (err) {
             res.status(422).json({err})

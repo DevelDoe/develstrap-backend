@@ -61,8 +61,8 @@ module.exports = function (api) {
                     fit: sharp.fit.cover,
                     position: sharp.strategy.entropy
                 })
-                .toFile(`./uploads/images/processed/${req.file.originalname}`)
-            res.json({ file: `/uploads/images/processed/${req.file.originalname}` })
+                .toFile(`./uploads/images/avatar/${req.file.originalname}`)
+            res.json({ file: `/uploads/images/avatar/${req.file.originalname}` })
         } catch (err) {
             res.status(422).json({err})
         }

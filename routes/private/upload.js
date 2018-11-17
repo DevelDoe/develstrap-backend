@@ -48,9 +48,9 @@ module.exports = function (api) {
         }
     })
 
-    api.post('/images', uploadImage.array('files'), (req, res) => {
-        res.json({ files: req.files })
-    })
+    // api.post('/images', uploadImage.array('files'), (req, res) => {
+    //     res.json({ files: req.files })
+    // })
 
     api.post('/avatar', uploadImage.single('file'), async (req, res) => {
         try {

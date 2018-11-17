@@ -55,11 +55,11 @@ module.exports = function (api) {
     api.post('/avatar', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)
-                .resize(35)
+                .resize(300)
                 .background('transparent')
                 .embed()
-                .toFile(`./uploads/images/avatar/${req.file.originalname}`)
-            res.json({ file: `/uploads/images/avatar/${req.file.originalname}` })
+                .toFile(`./uploads/images/processed/${req.file.originalname}`)
+            res.json({ file: `/uploads/images/processed/${req.file.originalname}` })
         } catch (err) {
             res.status(422).json({err})
         }

@@ -52,6 +52,24 @@ module.exports = function (api) {
         res.json({ files: req.files })
     })
 
+    api.post('/avatar', uploadImage.single('file'), async (req, res) => {
+        try {
+            await sharp(req.file.path)
+                .resize({
+                    width: 35,
+                    height: 35,
+                    fit: sharp.fit.cover,
+                    position: sharp.strategy.entropy
+                })
+                .background('transparent')
+                .embed()
+                .toFile(`./uploads/images/avatar/${req.file.originalname}`)
+            res.json({ file: `/uploads/images/avatar/${req.file.originalname}` })
+        } catch (err) {
+            res.status(422).json({err})
+        }
+    })
+
     api.use((err,req,res,next)=>{
         if(err.code === 'LIMIT_FILE_TYPES') {
             res.status(422).json({ error: 'Only images are allowed'})

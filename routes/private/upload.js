@@ -57,7 +57,7 @@ module.exports = function (api) {
             await sharp(req.file.path)
                 .resize(35,35)
                 .background('rgba(0,0,0,0)')
-                .embed()
+                .inside()
                 .toFile(`./uploads/images/processed/${req.file.originalname}`)
             res.json({ file: `/uploads/images/processed/${req.file.originalname}` })
         } catch (err) {

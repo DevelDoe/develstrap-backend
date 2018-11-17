@@ -55,8 +55,8 @@ module.exports = function (api) {
     api.post('/avatar', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)
-                .resize(35,35)
-                .background('transparent')
+                .resize(80,80)
+                .cover()
                 .toFile(`./uploads/images/processed/${req.file.originalname}`)
             res.json({ file: `/uploads/images/processed/${req.file.originalname}` })
         } catch (err) {

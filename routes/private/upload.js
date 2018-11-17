@@ -55,12 +55,7 @@ module.exports = function (api) {
     api.post('/avatar', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)
-                .resize({
-                    width: 35,
-                    height: 35,
-                    fit: sharp.fit.cover,
-                    position: sharp.strategy.entropy
-                })
+                .resize(35)
                 .background('transparent')
                 .embed()
                 .toFile(`./uploads/images/avatar/${req.file.originalname}`)

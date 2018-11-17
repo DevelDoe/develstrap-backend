@@ -67,10 +67,12 @@ module.exports = function( api ) {
     })
 
     api.delete('/images/:_id', (req, res) => {
-        Image.remove({ _id: req.param._id }, (err, image) =>{
-            if(err) {
-                error(res,err)
-                return 
+        Image.remove({
+            _id: req.params._id
+        }, (err, note) => {
+            if (err) {
+                error(res, err)
+                return
             }
             res.sendStatus(200)
         })

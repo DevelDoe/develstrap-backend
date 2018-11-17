@@ -18,7 +18,7 @@ module.exports = function (api) {
         if (req.body.username !== '') user.username = req.body.username
         user.email = req.body.email
         user.password = req.body.password
-        if (!req.body.img_src || req.body.img_src === '') user.img_src = 'http://35.210.92.246:4000/uploads/images/processed/NoPhoto_icon-user-default.jpg'
+        if (!req.body.img_src || req.body.img_src === '') user.img_src = '/uploads/images/processed/NoPhoto_icon-user-default.jpg'
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applicationsgi
@@ -54,7 +54,7 @@ module.exports = function (api) {
             if (req.body.username !== '') user.username = req.body.username
             user.email = req.body.email
             user.password = req.body.password
-            if (!req.body.img_src || req.body.img_src === '') user.img_src = 'http://35.210.92.246:4000/uploads/images/processed/NoPhoto_icon-user-default.jpg'
+            if (!req.body.img_src || req.body.img_src === '') user.img_src = '/uploads/images/processed/NoPhoto_icon-user-default.jpg'
             else user.img_src = req.body.img_src
             user.sec_lv = req.body.sec_lv
             user.applications = req.body.applications

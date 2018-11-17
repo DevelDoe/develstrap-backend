@@ -56,8 +56,8 @@ module.exports = function (api) {
         try {
             await sharp(req.file.path)
                 .resize({
-                    width: 200,
-                    height: 200,
+                    width: 80,
+                    height: 80,
                     fit: sharp.fit.cover,
                     position: sharp.strategy.entropy
                 })

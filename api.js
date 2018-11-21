@@ -1,4 +1,5 @@
 var express  = require( 'express' ),
+    path     = require('path'),
     api      = express(),
     mongoose = require( 'mongoose' ),
     config   = require('./config'),
@@ -8,7 +9,8 @@ var express  = require( 'express' ),
 
 require('./routes/routing')(api)
 
-api.use('/uploads', express.static('uploads'))
+api.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+api.use('/uploads', express.static(path.join(__dirname, 'static')))
 
 var port = process.env.PORT || config.port
 

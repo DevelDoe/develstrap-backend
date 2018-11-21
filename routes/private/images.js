@@ -1,50 +1,81 @@
-const multer   = require('multer')
+const Image = require('../../models/image')
+const { error } = require( '../../hlps')
+const Moment = require('moment')
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './uploads/')
-    },
-    filename: function(req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname)
-    }
-})
+module.exports = function( api ) {
 
-const fileFilter = (req, file, cb) => {
-    // accept image only
-    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-        return cb(new Error('Only image files are allowed!'), false);
-    }
-    cb(null, true)
-}
-
-const upload = multer({
-    storage: storage,
-    limits: { fileSize: 1024 * 1024 * 5  }, // 5 MB
-    fileFilter: fileFilter
-}).single('img_src')
-
-module.exports = function ( api ) {
-
- 
-    api.post('/image',( req, res ) => {
-        upload(req, res, (err) => {
-            if( err ) {
-                if(err) {
-                    error(res, err)
-                    return
-                }
+    api.get('/images', (req, res) => {
+        Image.find((err, images) => {
+            if(err) {
+                error(res, err)
+                return
             }
-            return res.json({ file: req.file })
+            res.json(images)
         })
     })
-    // api.post('/images', upload.array('avatari', 30), (req,res) => {
-    //     console.log(req)
-    // })
-    
-    function error(res, err) {
-        res.status(500)
-        res.json({
-            err: 'Server ' + err
+
+    api.post('/images', (req, res) => {
+        
+        var image = new Image()
+        image.title = req.body.title
+        image.summary = req.body.summary
+        image.published = req.body.published
+        image.createdAt = Moment().unix()
+        image.updatedAt = image.createdAt
+        image.publishedAt = req.body.publishedAt
+        image.tags = req.body.tags
+        image.user_id = req.body.user_id
+        image.private = req.body.private
+        image.feat = req.body.feat
+        image.images = req.body.images
+
+        image.save(err => {
+            if(err) {
+                error(res,err)
+                return
+            }
+            res.json(image)
         })
-    }
+    })
+
+    api.put('/images/:_id', (req, res) => {
+        Image.findById(req.params._id, (err, image) => {
+            if(err) {
+                error(res,err)
+                return
+            }
+            
+            image.title = req.body.title
+            image.summary = req.body.summary
+            image.published = req.body.published
+            image.updatedAt = Moment().unix()
+            image.publishedAt = req.body.publishedAt
+            image.tags = req.body.tags
+            image.user_id = req.body.user_id
+            image.private = req.body.private
+            image.feat = req.body.feat
+            image.images = req.body.images
+
+            image.save(err => {
+                if(err) {
+                    error(res,err)
+                    return
+                }
+                res.json(image)
+            })
+        })
+    })
+
+    api.delete('/images/:_id', (req, res) => {
+        Image.remove({
+            _id: req.params._id
+        }, (err, note) => {
+            if (err) {
+                error(res, err)
+                return
+            }
+            res.sendStatus(200)
+        })
+    })
+
 }

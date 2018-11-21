@@ -21,7 +21,7 @@ module.exports = function (api) {
         if (!req.body.img_src || req.body.img_src === '') user.img_src = '/uploads/images/processed/default.jpg'
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
-        user.applications = req.body.applicationsgi
+        user.applications = req.body.applications
         user.administrations = req.body.administrations
 
         user.save(err => {

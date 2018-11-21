@@ -53,6 +53,7 @@ module.exports = function (api) {
     // })
 
     api.post('/avatar', uploadImage.single('file'), async (req, res) => {
+        console.log('here')
         try {
             await sharp(req.file.path)
                 .resize({

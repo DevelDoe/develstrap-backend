@@ -9,7 +9,7 @@ module.exports = mongoose.model('Image', {
     publishedAt : { type: Date },
     tags        : { type: Array },
     user_id     : { type: String },
-    shared      : { type: Boolean },
+    private      : { type: Boolean },
     feat        : { type: Boolean },
     images      : { type: Array }
 })

@@ -25,7 +25,7 @@ module.exports = function( api ) {
         image.publishedAt = req.body.publishedAt
         image.tags = req.body.tags
         image.user_id = req.body.user_id
-        image.shared = req.body.shared
+        image.private = req.body.shared
         image.feat = req.body.feat
         image.images = req.body.images
 
@@ -52,7 +52,7 @@ module.exports = function( api ) {
             image.publishedAt = req.body.publishedAt
             image.tags = req.body.tags
             image.user_id = req.body.user_id
-            image.shared = req.body.shared
+            image.private = req.body.shared
             image.feat = req.body.feat
             image.images = req.body.images
 

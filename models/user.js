@@ -9,8 +9,9 @@ var UserSchema = mongoose.Schema({
     email           : { type: String , unique: true , required: true },
     img_src         : { type: String },
     sec_lv          : { type: String, required: true },
-    applications    : { type: Array},
-    administrations : { type: Array},
+    applications    : { type: Array },
+    administrations : { type: Array },
+    supports        : { type: Array }
 })
 
 UserSchema.pre('save', function (next) {

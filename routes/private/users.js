@@ -22,7 +22,8 @@ module.exports = function (api) {
         else user.img_src = req.body.img_src
         user.sec_lv = req.body.sec_lv
         user.applications = req.body.applications
-        user.administrations = req.body.administrations
+        user.administrations    = req.body.administrations
+        user.supports           = req.body.supports 
 
         user.save(err => {
             if (err) {
@@ -59,6 +60,7 @@ module.exports = function (api) {
             user.sec_lv = req.body.sec_lv
             user.applications = req.body.applications
             user.administrations = req.body.administrations
+            user.supports = req.body.supports
             user.save(err => {
                 if (err) {
                     error(res, err)

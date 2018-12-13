@@ -93,6 +93,8 @@ socket.on('connection', (ws, req) => {
 
     ws.on('message', (msg) => {
 
+        console.log(msg)
+
         parsed = JSON.parse(msg)
         
         ws.ss = 0

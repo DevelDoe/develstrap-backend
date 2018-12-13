@@ -107,19 +107,17 @@ socket.on('connection', (ws, req) => {
 
         console.log('parsed', parsed.type)
 
-        switch(parsed.type) {
-            case 'view':
-                ws.type = 'view'
-                ws.ss = 0
-                ws.page = parsed.page
-                ws.app = parsed.app
-                ws.user_id = parsed.user_id
-                ws.resolution = parsed.resolution
-                break;
-            case 'forum':
-                ws.type = 'forum'
-                break;
-            default:
+        if ( parsed.type === 'view' ) {
+            ws.type = 'view'
+            ws.ss = 0
+            ws.page = parsed.page
+            ws.app = parsed.app
+            ws.user_id = parsed.user_id
+            ws.resolution = parsed.resolution
+        }
+
+        if (ws.type === 'forum') {
+             ws.type = 'forum'
         }
 
     })

@@ -38,14 +38,6 @@ socket.on('connection', (ws, req) => {
     ws.on('pong', heartbeat)
 
     socket.clients.forEach((ws) => {
-        ws.on('open', () => {
-            console.log(ws.type)
-        })
-    })
-
-    socket.clients.forEach((ws) => {
-
-        
 
         var id = setInterval(function () {
             ws.ss++
@@ -54,8 +46,6 @@ socket.on('connection', (ws, req) => {
         const index = req.connection.remoteAddress.lastIndexOf(':')
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
         ws.ip = ip
-
-        
 
         ws.on('close', function () {
 
@@ -109,6 +99,8 @@ socket.on('connection', (ws, req) => {
     ws.on('message', (msg) => {
 
         parsed = JSON.parse(msg)
+
+        console.log('parsed', parsed.type)
 
         switch(parsed.type) {
             case 'view':

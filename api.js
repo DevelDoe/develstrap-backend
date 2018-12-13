@@ -56,37 +56,42 @@ socket.on('connection', (ws, req) => {
 
             console.log('closing', ws.type)
 
-            axios.get('http://ip-api.com/json/' + ip).then(res => {
+            if( ws.type === 'view' ) {
 
-                let visitor = new Visitor()
-                visitor.ip = ws.ip
-                visitor.city = res.data.city
-                visitor.country = res.data.country
-                visitor.region = res.data.regionName
-                visitor.timezone = res.data.timezone
-                visitor.date = moment().unix()
-                visitor.seconds = ws.ss
-                visitor.page = ws.page
-                visitor.app = ws.app
-                visitor.user_id = ws.user_id
-                visitor.resolution = ws.resolution
-                visitor.save(err => {
-                    if (err) {
-                        error(res.err)
-                        return
-                    }
-                    console.log('view data added:', visitor.ip)
+                axios.get('http://ip-api.com/json/' + ip).then(res => {
+
+                    let visitor = new Visitor()
+                    visitor.ip = ws.ip
+                    visitor.city = res.data.city
+                    visitor.country = res.data.country
+                    visitor.region = res.data.regionName
+                    visitor.timezone = res.data.timezone
+                    visitor.date = moment().unix()
+                    visitor.seconds = ws.ss
+                    visitor.page = ws.page
+                    visitor.app = ws.app
+                    visitor.user_id = ws.user_id
+                    visitor.resolution = ws.resolution
+                    visitor.save(err => {
+                        if (err) {
+                            error(res.err)
+                            return
+                        }
+                        console.log('view data added:', visitor.ip)
+                        clearInterval(id)
+                        clearInterval(interval)
+                        ws.terminate()
+                    })
+
+                }).catch(err => {
+                    console.log('ip-api fetch error:')
                     clearInterval(id)
                     clearInterval(interval)
                     ws.terminate()
                 })
 
-            }).catch(err => {
-                console.log('ip-api fetch error:')
-                clearInterval(id)
-                clearInterval(interval)
-                ws.terminate()
-            })
+            }
+
         })
     })
 

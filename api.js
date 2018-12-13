@@ -54,8 +54,7 @@ socket.on('connection', (ws, req) => {
 
         ws.on('close', function () {
 
-            console.log('closing view')
-            console.log('type:',ws.type)
+            console.log('closing ', ws.type)
 
             axios.get('http://ip-api.com/json/' + ip).then(res => {
 

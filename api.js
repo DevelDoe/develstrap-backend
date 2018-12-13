@@ -54,7 +54,7 @@ socket.on('connection', (ws, req) => {
 
         ws.on('close', function () {
 
-            console.log('closing ', ws.type)
+            console.log('closing', ws.type)
 
             axios.get('http://ip-api.com/json/' + ip).then(res => {
 
@@ -106,7 +106,7 @@ socket.on('connection', (ws, req) => {
                 ws.resolution = parsed.resolution
                 break
             case 'forum':
-                console.log(parsed)
+                ws.type = 'forum'
         }
 
     })

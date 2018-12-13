@@ -93,9 +93,7 @@ socket.on('connection', (ws, req) => {
             }
 
             if( ws.type === 'forum' ) {
-                clearInterval(interval)
-                ws.terminate()
-                console.log('terminated', ws.type)
+                
             }
 
         })

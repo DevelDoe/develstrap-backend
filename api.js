@@ -37,9 +37,11 @@ socket.on('connection', (ws, req) => {
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
+    console.log(ws)
+
     if(ws.type === 'view') {
 
-        console.log(ws.type)
+        
 
         socket.clients.forEach((ws) => {
 
@@ -97,8 +99,6 @@ socket.on('connection', (ws, req) => {
     ws.on('message', (msg) => {
 
         parsed = JSON.parse(msg)
-
-        console.log(parsed)
 
         switch(parsed.type) {
             case 'view':

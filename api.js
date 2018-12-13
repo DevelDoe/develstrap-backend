@@ -37,10 +37,10 @@ socket.on('connection', (ws, req) => {
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
-    console.log(ws.type)
- 
 
     socket.clients.forEach((ws) => {
+
+        console.log(ws.type)
 
         var id = setInterval(function () {
             ws.ss++

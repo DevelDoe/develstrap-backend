@@ -38,7 +38,9 @@ socket.on('connection', (ws, req) => {
     ws.on('pong', heartbeat)
 
     socket.clients.forEach((ws) => {
-        console.log(ws.type)
+        ws.on('open', () => {
+            console.log(ws.type)
+        })
     })
 
     socket.clients.forEach((ws) => {

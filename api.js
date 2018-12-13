@@ -115,10 +115,11 @@ socket.on('connection', (ws, req) => {
                 ws.app = parsed.app
                 ws.user_id = parsed.user_id
                 ws.resolution = parsed.resolution
-                break
+                break;
             case 'forum':
                 ws.type = 'forum'
-                break
+                break;
+            default:
         }
 
     })

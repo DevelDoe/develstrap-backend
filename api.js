@@ -50,7 +50,7 @@ socket.on('connection', (ws, req) => {
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
         ws.ip = ip
 
-        console.log(ws.ip)
+        console.log(ws.type)
 
         ws.on('close', function () {
 

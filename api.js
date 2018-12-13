@@ -88,7 +88,9 @@ socket.on('connection', (ws, req) => {
             }
 
             if( ws.type === 'forum' ) {
-                
+                clearInterval(id)
+                clearInterval(interval)
+                ws.terminate()
             }
 
         })

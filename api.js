@@ -118,6 +118,7 @@ socket.on('connection', (ws, req) => {
                 break
             case 'forum':
                 ws.type = 'forum'
+                break
         }
 
     })

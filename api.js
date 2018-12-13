@@ -39,6 +39,8 @@ socket.on('connection', (ws, req) => {
 
     if(ws.type === 'view') {
 
+        console.log(ws.type)
+
         socket.clients.forEach((ws) => {
 
             var id = setInterval(function () {
@@ -93,8 +95,6 @@ socket.on('connection', (ws, req) => {
     
 
     ws.on('message', (msg) => {
-
-        
 
         parsed = JSON.parse(msg)
 

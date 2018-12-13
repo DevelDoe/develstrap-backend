@@ -40,7 +40,7 @@ socket.on('connection', (ws, req) => {
 
     socket.clients.forEach((ws) => {
 
-        console.log(ws.type)
+        
 
         var id = setInterval(function () {
             ws.ss++
@@ -50,7 +50,7 @@ socket.on('connection', (ws, req) => {
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
         ws.ip = ip
 
-
+        console.log(ws.ip)
 
         ws.on('close', function () {
 

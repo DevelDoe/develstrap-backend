@@ -37,62 +37,58 @@ socket.on('connection', (ws, req) => {
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
-    console.log(ws)
+    console.log(ws.type)
+ 
 
-    if(ws.type === 'view') {
+    socket.clients.forEach((ws) => {
 
-        
+        var id = setInterval(function () {
+            ws.ss++
+        }, 1000)
 
-        socket.clients.forEach((ws) => {
-
-            var id = setInterval(function () {
-                ws.ss++
-            }, 1000)
-
-            const index = req.connection.remoteAddress.lastIndexOf(':')
-            const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
-            ws.ip = ip
+        const index = req.connection.remoteAddress.lastIndexOf(':')
+        const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
+        ws.ip = ip
 
 
 
-            ws.on('close', function () {
+        ws.on('close', function () {
 
-                console.log('closing view')
+            console.log('closing view')
 
-                axios.get('http://ip-api.com/json/' + ip).then(res => {
+            axios.get('http://ip-api.com/json/' + ip).then(res => {
 
-                    let visitor = new Visitor()
-                    visitor.ip = ws.ip
-                    visitor.city = res.data.city
-                    visitor.country = res.data.country
-                    visitor.region = res.data.regionName
-                    visitor.timezone = res.data.timezone
-                    visitor.date = moment().unix()
-                    visitor.seconds = ws.ss
-                    visitor.page = ws.page
-                    visitor.app = ws.app
-                    visitor.user_id = ws.user_id
-                    visitor.resolution = ws.resolution
-                    visitor.save(err => {
-                        if (err) {
-                            error(res.err)
-                            return
-                        }
-                        console.log('view data added:', visitor.ip)
-                        clearInterval(id)
-                        clearInterval(interval)
-                        ws.terminate()
-                    })
-
-                }).catch(err => {
-                    console.log('ip-api fetch error:')
+                let visitor = new Visitor()
+                visitor.ip = ws.ip
+                visitor.city = res.data.city
+                visitor.country = res.data.country
+                visitor.region = res.data.regionName
+                visitor.timezone = res.data.timezone
+                visitor.date = moment().unix()
+                visitor.seconds = ws.ss
+                visitor.page = ws.page
+                visitor.app = ws.app
+                visitor.user_id = ws.user_id
+                visitor.resolution = ws.resolution
+                visitor.save(err => {
+                    if (err) {
+                        error(res.err)
+                        return
+                    }
+                    console.log('view data added:', visitor.ip)
                     clearInterval(id)
                     clearInterval(interval)
                     ws.terminate()
                 })
+
+            }).catch(err => {
+                console.log('ip-api fetch error:')
+                clearInterval(id)
+                clearInterval(interval)
+                ws.terminate()
             })
         })
-    }
+    })
 
     
 

@@ -116,7 +116,7 @@ socket.on('connection', (ws, req) => {
             ws.resolution = parsed.resolution
         }
 
-        if (ws.type === 'forum') {
+        if ( parsed.type === 'forum' ) {
              ws.type = 'forum'
         }
 

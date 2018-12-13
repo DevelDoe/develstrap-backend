@@ -49,7 +49,7 @@ socket.on('connection', (ws, req) => {
 
         ws.on('close', function () {
 
-            console.log('closing', ws.type)
+            
 
             if( ws.type === 'view' ) {
 
@@ -76,6 +76,7 @@ socket.on('connection', (ws, req) => {
                         clearInterval(id)
                         clearInterval(interval)
                         ws.terminate()
+                        console.log('terminated', ws.type)
                     })
 
                 }).catch(err => {
@@ -83,6 +84,7 @@ socket.on('connection', (ws, req) => {
                     clearInterval(id)
                     clearInterval(interval)
                     ws.terminate()
+                    console.log('terminated', ws.type)
                 })
 
             }
@@ -91,6 +93,7 @@ socket.on('connection', (ws, req) => {
                 clearInterval(id)
                 clearInterval(interval)
                 ws.terminate()
+                console.log('terminated', ws.type)
             }
 
         })

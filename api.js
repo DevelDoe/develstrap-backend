@@ -37,6 +37,7 @@ socket.on('connection', (ws, req) => {
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
+    console.log(socket.clients)
 
     socket.clients.forEach((ws) => {
 

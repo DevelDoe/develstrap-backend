@@ -65,7 +65,7 @@ socket.on('connection', (ws, req) => {
                         error(res.err)
                         return
                     }
-                    console.log('view data added:', ws.user)
+                    console.log('view data added:', visitor)
                     clearInterval(id)
                     clearInterval(interval)
                     ws.terminate()

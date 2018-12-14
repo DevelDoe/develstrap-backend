@@ -95,11 +95,9 @@ socket.on('connection', (ws, req) => {
 
     ws.on('message', (msg) => {
 
-        
-
-        console.log('message type', ws.type)
-
         parsed = JSON.parse(msg)
+
+        console.log('message type', parsed.type)
 
         ws.type = parsed.type
         ws.ss = 0

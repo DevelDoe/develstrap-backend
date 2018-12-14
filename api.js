@@ -97,7 +97,7 @@ socket.on('connection', (ws, req) => {
 
         
 
-        console.log('message from', ws.ip)
+        console.log('message type', ws.type)
 
         parsed = JSON.parse(msg)
 

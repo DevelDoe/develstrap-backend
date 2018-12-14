@@ -99,6 +99,8 @@ socket.on('connection', (ws, req) => {
 
         console.log('message type', parsed.type)
 
+        if( parse.type === 'setUser') ws.user = parsed.user
+
         ws.type = parsed.type
 
         if( ws.type === 'view' ) {

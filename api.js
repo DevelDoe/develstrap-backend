@@ -42,11 +42,6 @@ socket.on('connection', (ws, req) => {
         var id = setInterval(function () {
             ws.ss++
         }, 1000)
-
-        const index = req.connection.remoteAddress.lastIndexOf(':')
-        const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
-        ws.ip = ip
-
         
 
         ws.on('close', function () {
@@ -99,7 +94,8 @@ socket.on('connection', (ws, req) => {
         console.log('message from', ip)
 
         parsed = JSON.parse(msg)
-        
+
+        ws.ip = ip
         ws.ss = 0
         ws.page = parsed.page
         ws.app = parsed.app

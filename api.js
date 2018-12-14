@@ -35,7 +35,9 @@ function heartbeat() {
 socket.on('connection', (ws, req) => {
 
     socket.clients.forEach(client => {
-        console.log('connection:', client)
+        const index = req.connection.remoteAddress.lastIndexOf(':')
+        const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
+        console.log('connection:', ip)
     })
 
     ws.isAlive = true
@@ -92,8 +94,7 @@ socket.on('connection', (ws, req) => {
 
     ws.on('message', (msg) => {
 
-        const index = req.connection.remoteAddress.lastIndexOf(':')
-        const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
+        
 
         console.log('message from', ip)
 

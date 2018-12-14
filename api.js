@@ -92,16 +92,16 @@ socket.on('connection', (ws, req) => {
 
         parsed = JSON.parse(msg)
 
-        if (debugSocket) console.log('message type', parsed.type)
-
-        if (parsed.type === 'setUser') {
-            ws.user = parsed.user
-            if (debugSocket) console.log('user:', ws.user)
-        } 
-
         ws.type = parsed.type
 
-        if( parsed.type === 'chat' ) {
+        if (debugSocket) console.log('message type', ws.type)
+
+        if (ws.type === 'setUser') {
+            ws.user = parsed.user
+            if (debugSocket) console.log('user:', ws.user)
+        }
+
+        if (ws.type === 'chat') {
             socket.clients.forEach((client) => {
                 if (client !== ws) client.send(JSON.stringify(parsed))
             })

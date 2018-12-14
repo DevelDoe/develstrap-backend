@@ -102,7 +102,10 @@ socket.on('connection', (ws, req) => {
         ws.user_id = parsed.user_id
         ws.resolution = parsed.resolution
 
-        ws.send("recieved message:", msg)
+        socket.clients.forEach((client)=>{
+            client.send(msg)
+        })
+
     })
 
 })

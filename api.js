@@ -95,6 +95,7 @@ socket.on('connection', (ws, req) => {
 
         parsed = JSON.parse(msg)
 
+        ws.type = parsed.type
         ws.ip = ip
         ws.ss = 0
         ws.page = parsed.page
@@ -103,7 +104,7 @@ socket.on('connection', (ws, req) => {
         ws.resolution = parsed.resolution
 
         socket.clients.forEach((client)=>{
-            
+
             if( client.type === 'forum') {
                 client.send(msg)
             }

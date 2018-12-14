@@ -38,7 +38,7 @@ socket.on('connection', (ws, req) => {
         const index = req.connection.remoteAddress.lastIndexOf(':')
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
         ws.ip = ip
-        console.log('connection:', ws.ip)
+        console.log('ip:', ws.ip)
     })
 
     ws.isAlive = true
@@ -99,7 +99,10 @@ socket.on('connection', (ws, req) => {
 
         console.log('message type', parsed.type)
 
-        if( parse.type === 'setUser') ws.user = parsed.user
+        if( parse.type === 'setUser') {
+            ws.user = parsed.user
+            console.log('user:', ws.user)
+        } 
 
         ws.type = parsed.type
 

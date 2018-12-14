@@ -69,7 +69,7 @@ socket.on('connection', (ws, req) => {
                     clearInterval(id)
                     clearInterval(interval)
                     ws.terminate()
-                    console.log('terminated socket')
+                    console.log('terminated', ws.ip)
                 })
 
                 

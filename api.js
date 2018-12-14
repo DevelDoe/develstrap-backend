@@ -103,7 +103,11 @@ socket.on('connection', (ws, req) => {
         ws.resolution = parsed.resolution
 
         socket.clients.forEach((client)=>{
-            client.send(msg)
+            
+            if( client.type === 'forum') {
+                client.send(msg)
+            }
+            
         })
 
     })

@@ -72,11 +72,11 @@ socket.on('connection', (ws, req) => {
                         error(res.err)
                         return
                     }
-                    console.log('view data added:', visitor.ip)
+                    console.log('view data added:', ws.user)
                     clearInterval(id)
                     clearInterval(interval)
                     ws.terminate()
-                    console.log('terminated', ws.ip)
+                    console.log('terminated', ws.user)
                 })
 
                 

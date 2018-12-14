@@ -113,9 +113,8 @@ socket.on('connection', (ws, req) => {
         
         socket.clients.forEach((client)=>{
 
-            console.log('client.type', client.type)
-
             if( client.type === 'chat') {
+                console.log('type', client.type)
                 if( client !== ws ) client.send(msg)
             }
             

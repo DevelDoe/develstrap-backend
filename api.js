@@ -96,7 +96,7 @@ socket.on('connection', (ws, req) => {
 
         if (parsed.type === 'setUser') {
             ws.user = parsed.user
-            console.log('user:', ws.user)
+            if (debugSocket) console.log('user:', ws.user)
         } 
 
         ws.type = parsed.type

@@ -115,7 +115,7 @@ socket.on('connection', (ws, req) => {
 
             if( client.type === 'chat') {
                 console.log('type', client.type)
-                if( client !== ws ) client.send(msg)
+                if( client !== ws ) client.send(JSON.stringify(msg))
             }
             
         })

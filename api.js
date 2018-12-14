@@ -35,7 +35,7 @@ function heartbeat() {
 socket.on('connection', (ws, req) => {
 
     socket.clients.forEach(client => {
-        console.log('connection:', client.ip)
+        console.log('connection:', client)
     })
 
     ws.isAlive = true

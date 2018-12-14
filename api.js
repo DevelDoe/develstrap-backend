@@ -37,7 +37,8 @@ socket.on('connection', (ws, req) => {
     socket.clients.forEach(client => {
         const index = req.connection.remoteAddress.lastIndexOf(':')
         const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
-        console.log('connection:', ip)
+        ws.ip = ip
+        console.log('connection:', ws.ip)
     })
 
     ws.isAlive = true

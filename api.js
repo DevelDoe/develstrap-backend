@@ -32,6 +32,8 @@ function heartbeat() {
     this.isAlive = true
 }
 
+const debugSocket = true
+
 socket.on('connection', (ws, req) => {
 
     ws.isAlive = true
@@ -65,11 +67,11 @@ socket.on('connection', (ws, req) => {
                         error(res.err)
                         return
                     }
-                    console.log('view data added:', visitor)
+                    if( debugSocket ) console.log('view data added:', visitor)
                     clearInterval(id)
                     clearInterval(interval)
                     ws.terminate()
-                    console.log('terminated', ws.user)
+                    if (debugSocket) console.log('terminated', ws.user)
                 })
 
                 
@@ -79,7 +81,7 @@ socket.on('connection', (ws, req) => {
                 clearInterval(id)
                 clearInterval(interval)
                 ws.terminate()
-                console.log('terminated socket')
+                if (debugSocket) console.log('terminated socket')
             })
             
             
@@ -90,7 +92,7 @@ socket.on('connection', (ws, req) => {
 
         parsed = JSON.parse(msg)
 
-        console.log('message type', parsed.type)
+        if (debugSocket) console.log('message type', parsed.type)
 
         if (parsed.type === 'setUser') {
             ws.user = parsed.user

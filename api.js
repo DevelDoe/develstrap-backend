@@ -100,12 +100,16 @@ socket.on('connection', (ws, req) => {
         console.log('message type', parsed.type)
 
         ws.type = parsed.type
-        ws.ss = 0
-        ws.page = parsed.page
-        ws.app = parsed.app
-        ws.user_id = parsed.user_id
-        ws.resolution = parsed.resolution
 
+        if( ws.type === 'view' ) {
+            ws.ss = 0
+            ws.page = parsed.page
+            ws.app = parsed.app
+            ws.user_id = parsed.user_id
+            ws.resolution = parsed.resolution
+        }
+
+        
         socket.clients.forEach((client)=>{
 
             if( client.type === 'chat') {

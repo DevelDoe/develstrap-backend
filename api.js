@@ -46,7 +46,7 @@ socket.on('connection', (ws, req) => {
 
         ws.on('close', function () {
 
-            axios.get('http://ip-api.com/json/' + ip).then(res => {
+            axios.get('http://ip-api.com/json/' + ws.ip).then(res => {
 
                 let visitor = new Visitor()
                 visitor.ip = ws.ip

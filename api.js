@@ -99,6 +99,12 @@ socket.on('connection', (ws, req) => {
 
         ws.type = parsed.type
 
+        if( parsed.type === 'chat' ) {
+            socket.clients.forEach((client) => {
+                if (client !== ws) client.send(JSON.stringify(parsed))
+            })
+        }
+
         if( ws.type === 'view' ) {
             const index = req.connection.remoteAddress.lastIndexOf(':')
             const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
@@ -109,16 +115,6 @@ socket.on('connection', (ws, req) => {
             ws.user_id = parsed.user_id
             ws.resolution = parsed.resolution
         }
-
-        
-        socket.clients.forEach((client)=>{
-
-            if( client.type === 'chat') {
-                console.log('type', client.type)
-                if (client !== ws) client.send(JSON.stringify(parsed))
-            }
-            
-        })
 
     })
 

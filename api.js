@@ -101,7 +101,6 @@ socket.on('connection', (ws, req) => {
         parsed = JSON.parse(msg)
 
         ws.type = parsed.type
-        ws.ip = ip
         ws.ss = 0
         ws.page = parsed.page
         ws.app = parsed.app

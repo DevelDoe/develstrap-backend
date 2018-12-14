@@ -34,13 +34,6 @@ function heartbeat() {
 
 socket.on('connection', (ws, req) => {
 
-    socket.clients.forEach(client => {
-        const index = req.connection.remoteAddress.lastIndexOf(':')
-        const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
-        ws.ip = ip
-        console.log('ip:', ws.ip)
-    })
-
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
@@ -107,6 +100,9 @@ socket.on('connection', (ws, req) => {
         ws.type = parsed.type
 
         if( ws.type === 'view' ) {
+            const index = req.connection.remoteAddress.lastIndexOf(':')
+            const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
+            ws.ip = ip
             ws.ss = 0
             ws.page = parsed.page
             ws.app = parsed.app

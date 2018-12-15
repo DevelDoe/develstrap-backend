@@ -11,7 +11,8 @@ var UserSchema = mongoose.Schema({
     sec_lv          : { type: String, required: true },
     applications    : { type: Array },
     administrations : { type: Array },
-    supports        : { type: Array }
+    supports        : { type: Array },
+    forums          : { type: Array }
 })
 
 UserSchema.pre('save', function (next) {

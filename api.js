@@ -73,10 +73,9 @@ socket.on('connection', (ws, req) => {
 
             socket.clients.forEach((client) => {
 
-                
-                if (debugSocket) console.log('sending user')
-                client.send(JSON.stringify({ type: 'onlineStatus', user: ws.user, status: 'online' }))
-                
+                socket.clients.forEach((client) => {
+                    client.send(JSON.stringify({ type: 'onlineStatus', user: client.user, status: 'online' }))
+                })
                 
             })
 

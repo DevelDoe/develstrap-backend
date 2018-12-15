@@ -40,53 +40,15 @@ socket.on('connection', (ws, req) => {
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
+    if (debugSocket) console.log('open socket')
+
     socket.clients.forEach((ws) => {
 
-        var id = setInterval(function () {
-            ws.ss++
-        }, 1000)
-        
-
         ws.on('close', function () {
-
-            axios.get('http://ip-api.com/json/' + ws.ip).then(res => {
-
-                let visitor = new Visitor()
-                visitor.ip = ws.ip
-                visitor.city = res.data.city
-                visitor.country = res.data.country
-                visitor.region = res.data.regionName 
-                visitor.timezone = res.data.timezone
-                visitor.date = moment().unix()
-                visitor.seconds = ws.ss
-                visitor.page = ws.page
-                visitor.app = ws.app
-                visitor.user_id = ws.user_id
-                visitor.resolution = ws.resolution
-                visitor.save(err => {
-                    if (err) {
-                        console.log( err )
-                        return
-                    }
-                    if( debugSocket ) console.log('view data added:', visitor)
-                    clearInterval(id)
-                    clearInterval(interval)
-                    ws.terminate()
-                    if (debugSocket) console.log('terminated', ws.user)
-                })
-
-                
-
-            }).catch(err => {
-                console.log('ip-api fetch error:')
-                clearInterval(id)
-                clearInterval(interval)
-                ws.terminate()
-                if (debugSocket) console.log('terminated socket')
-            })
-            
-            
+            clearInterval(interval)
+            if (debugSocket) console.log('closing socket')
         })
+
     })
 
     ws.on('message', (msg) => {
@@ -133,6 +95,41 @@ socket.on('connection', (ws, req) => {
             ws.app = parsed.app
             ws.user_id = parsed.user_id
             ws.resolution = parsed.resolution
+
+            var id = setInterval(function () {
+                ws.ss++
+            }, 1000)
+        }
+
+        if( ws.type === 'endview') {
+            axios.get('http://ip-api.com/json/' + ws.ip).then(res => {
+
+                let visitor = new Visitor()
+
+                visitor.ip = ws.ip
+                visitor.city = res.data.city
+                visitor.country = res.data.country
+                visitor.region = res.data.regionName
+                visitor.timezone = res.data.timezone
+                visitor.date = moment().unix()
+                visitor.seconds = ws.ss
+                visitor.page = ws.page
+                visitor.app = ws.app
+                visitor.user_id = ws.user_id
+                visitor.resolution = ws.resolution
+
+                visitor.save(err => {
+                    if (err) {
+                        console.log(err)
+                        return
+                    }
+                    clearInterval(id)
+                    if (debugSocket) console.log('view data added:', visitor)
+                })
+
+            }).catch(err => {
+                console.log('ip-api fetch error:')
+            })
         }
 
     })

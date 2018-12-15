@@ -5,4 +5,5 @@ module.exports = mongoose.model('Message', {
      user           : { type: String },
      message        : { type: String },
      created_at     : { type: String },
+     deleted        : { type: Boolean }
 })

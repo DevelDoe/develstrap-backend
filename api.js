@@ -61,7 +61,9 @@ socket.on('connection', (ws, req) => {
 
         if (ws.type === 'setUser') {
             ws.user = parsed.user
-            ws.send(JSON.stringify({user: ws.user}))
+            socket.clients.forEach((client) => {
+                if (client !== ws) client.send(JSON.stringify({user: ws.user}))
+            })
             if (debugSocket) console.log('user:', ws.user)
         }
 

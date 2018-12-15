@@ -33,7 +33,7 @@ function heartbeat() {
     this.isAlive = true
 }
 
-const debugSocket = true
+const debugSocket = false
 
 socket.on('connection', (ws, req) => {
 

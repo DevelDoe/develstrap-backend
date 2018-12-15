@@ -108,7 +108,7 @@ socket.on('connection', (ws, req) => {
 
              message.room       = parsed.room 
              message.user       = parsed.user 
-             message.message    = parsed.msg
+             message.message    = parsed.message
              message.created_at = parsed.created_at 
 
              message.save( err => {

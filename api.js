@@ -33,7 +33,7 @@ function heartbeat() {
     this.isAlive = true
 }
 
-const debugSocket = false
+const debugSocket = true
 
 socket.on('connection', (ws, req) => {
 
@@ -49,8 +49,6 @@ socket.on('connection', (ws, req) => {
             if (debugSocket) console.log('closing socket')
         })
 
-        ws.send(JSON.stringify({user: ws.user}))
-
     })
 
     ws.on('message', (msg) => {
@@ -63,6 +61,7 @@ socket.on('connection', (ws, req) => {
 
         if (ws.type === 'setUser') {
             ws.user = parsed.user
+            ws.send(JSON.stringify({user: ws.user}))
             if (debugSocket) console.log('user:', ws.user)
         }
 

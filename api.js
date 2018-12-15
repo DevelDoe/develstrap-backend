@@ -4,7 +4,8 @@ var express  = require( 'express' ),
     mongoose = require( 'mongoose' ),
     config   = require('./config'),
     Visitor  = require('./models/visitor'),
-    axios    = require('axios')
+    axios    = require('axios'),
+    Message = require('../../models/message')
 
 
 require('./routes/routing')(api)
@@ -104,7 +105,7 @@ socket.on('connection', (ws, req) => {
         if (ws.type === 'chat') {
 
              var message        = new Message()
-             
+
              message.room       = parsed.room 
              message.user       = parsed.user 
              message.message    = parsed.msg

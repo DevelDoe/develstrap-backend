@@ -5,7 +5,7 @@ var express  = require( 'express' ),
     config   = require('./config'),
     Visitor  = require('./models/visitor'),
     axios    = require('axios'),
-    Message = require('../../models/message')
+    Message = require('./models/message')
 
 
 require('./routes/routing')(api)

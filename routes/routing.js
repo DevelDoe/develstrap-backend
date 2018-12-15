@@ -11,4 +11,5 @@ module.exports = function ( api ) {
     require('./public/login')(api)
     require('./public/posts')(api)
     require('./public/authors')(api)
+    require('./private/messages')(api)
 }

@@ -67,7 +67,8 @@ socket.on('connection', (ws, req) => {
 
                 if (client !== ws) {
                     if (debugSocket) console.log('sending user')
-                } client.send(JSON.stringify({user: ws.user}))
+                    client.send(JSON.stringify({user: ws.user}))
+                } 
                 
             })
 

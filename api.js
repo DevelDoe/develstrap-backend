@@ -32,7 +32,7 @@ function heartbeat() {
     this.isAlive = true
 }
 
-const debugSocket = false
+const debugSocket = true
 
 socket.on('connection', (ws, req) => {
 
@@ -64,7 +64,7 @@ socket.on('connection', (ws, req) => {
                 visitor.resolution = ws.resolution
                 visitor.save(err => {
                     if (err) {
-                        error(res.err)
+                        console.log( err )
                         return
                     }
                     if( debugSocket ) console.log('view data added:', visitor)
@@ -102,9 +102,25 @@ socket.on('connection', (ws, req) => {
         }
 
         if (ws.type === 'chat') {
-            socket.clients.forEach((client) => {
-                if (client !== ws) client.send(JSON.stringify(parsed))
-            })
+
+             var message        = new Message()
+             
+             message.room       = parsed.room 
+             message.user       = parsed.user 
+             message.message    = parsed.msg
+             message.created_at = parsed.created_at 
+
+             message.save( err => {
+                 if( err ) {
+                     console.log(err)
+                     return
+                 }
+                 if (debugSocket) console.log('message added:', message)
+                 socket.clients.forEach((client) => {
+                     if (client !== ws) client.send(JSON.stringify(message))
+                 })
+             })
+            
         }
 
         if( ws.type === 'view' ) {

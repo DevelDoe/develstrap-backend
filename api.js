@@ -49,6 +49,8 @@ socket.on('connection', (ws, req) => {
             if (debugSocket) console.log('closing socket')
         })
 
+        ws.send(JSON.stringify({user: ws.user}))
+
     })
 
     ws.on('message', (msg) => {

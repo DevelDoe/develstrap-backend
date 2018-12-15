@@ -50,7 +50,7 @@ socket.on('connection', (ws, req) => {
 
                 if (client !== ws) {
                     if (debugSocket) console.log('sending user')
-                    client.send(JSON.stringify({ type: 'onlineStatus', user: ws.user, status: 'offline' }))
+                    client.send(JSON.stringify({ type: 'onlineStatus', user: client.user, status: 'offline' }))
                 } 
                 
             })

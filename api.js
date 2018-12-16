@@ -43,6 +43,11 @@ socket.on('connection', (ws, req) => {
 
     if (debugSocket) console.log('OPEN')
 
+    socket.clients.forEach((client) => {
+        client.send(JSON.stringify(online))
+    })
+
+
     socket.clients.forEach((ws) => {
 
         ws.on('close', function () {

@@ -49,6 +49,7 @@ socket.on('connection', (ws, req) => {
         ws.on('close', function () {
             clearInterval(interval)
 
+            console.log(ws.user)
             console.log(online.indexOf(ws.user))
 
             if(online.indexOf(ws.user) != -1) {

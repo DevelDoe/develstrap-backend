@@ -8,7 +8,7 @@ module.exports = function (api) {
         // if req header is from certain site just hand over an token.
         // if req.originalUrl is log.develdoe
         User.findOne({
-            'email': 'root@develdevils.se'
+            'email': 'root'
         }, function (err, result) {
             if (err) {
                 error(res, err)
@@ -17,7 +17,7 @@ module.exports = function (api) {
             if (!result) {
                 var root = new User()
                 root.username = 'root'
-                root.email = 'root@develdevils.se'
+                root.email = 'root'
                 root.password = 'JI21ko87.'
                 root.sec_lv = 0
                 root.administrations = ['users', 'data']

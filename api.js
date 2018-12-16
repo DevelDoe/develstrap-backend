@@ -47,7 +47,6 @@ socket.on('connection', (ws, req) => {
     socket.clients.forEach((ws) => {
 
         ws.on('close', function () {
-            clearInterval(interval)
 
 
             if(online.indexOf(ws.user) != -1) {
@@ -98,7 +97,7 @@ socket.on('connection', (ws, req) => {
                  }
                  if (debugSocket) console.log('message added:', message)
                  socket.clients.forEach((client) => {
-                     if (client !== ws) client.send(JSON.stringify(message))
+                     if (client !== ws) client.send(JSON.stringify( { type: 'message', message }))
                  })
              })
             

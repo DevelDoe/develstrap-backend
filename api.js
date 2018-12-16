@@ -46,14 +46,19 @@ socket.on('connection', (ws, req) => {
 
         ws.on('close', function () {
             clearInterval(interval)
+
             socket.clients.forEach((client) => {
 
-                if (client !== ws) {
-                    if (debugSocket) console.log('sending user')
-                    client.send(JSON.stringify({ type: 'onlineStatus', user: ws.user, status: 'offline' }))
-                } 
+                socket.clients.forEach((client) => {
+                    if (client !== ws) {
+                        if (debugSocket) console.log('sending user')
+                        client.send(JSON.stringify({ type: 'onlineStatus', user: ws.user, status: 'offline' }))
+                    } 
+                })
+                
                 
             })
+
             if (debugSocket) console.log('closing socket')
         })
 
@@ -74,7 +79,10 @@ socket.on('connection', (ws, req) => {
             socket.clients.forEach((client) => {
 
                 socket.clients.forEach((client) => {
-                    client.send(JSON.stringify({ type: 'onlineStatus', user: client.user, status: 'online' }))
+                    if (client !== ws) {
+                        if (debugSocket) console.log('sending user')
+                        client.send(JSON.stringify({ type: 'onlineStatus', user: ws.user, status: 'online' }))
+                    } 
                 })
                 
             })

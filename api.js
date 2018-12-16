@@ -53,7 +53,7 @@ socket.on('connection', (ws, req) => {
                 online.splice(online.indexOf(ws.user), 1)
                 console.log(online)
                 socket.clients.forEach((client) => {
-                    if (ws !== client) client.send(JSON.stringify({ type: 'online', online: ws.user }))
+                    if (ws !== client) client.send(JSON.stringify({ type: 'online', online: false, id: ws.user }))
                 })
                 
             } 
@@ -76,7 +76,7 @@ socket.on('connection', (ws, req) => {
             if (debugSocket) console.log('user:', ws.user)
             console.log(online)
             socket.clients.forEach((client) => {
-                client.send(JSON.stringify({ type: 'online', online: ws.user }))
+                client.send(JSON.stringify({ type: 'online', online: true, id: ws.user  }))
             })
         }
 

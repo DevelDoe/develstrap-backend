@@ -41,7 +41,7 @@ socket.on('connection', (ws, req) => {
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
-    if (debugSocket) console.log('connection')
+    if (debugSocket) console.log('OPEN')
 
     socket.clients.forEach((ws) => {
 
@@ -51,7 +51,7 @@ socket.on('connection', (ws, req) => {
             online.splice(online.indexOf(ws.user), 1)
             console.log(online)
 
-            if (debugSocket) console.log('close')
+            if (debugSocket) console.log('CLOSE')
         })
 
     })

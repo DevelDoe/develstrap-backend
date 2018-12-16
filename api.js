@@ -122,7 +122,8 @@ socket.on('connection', (ws, req) => {
                 visitor.seconds = ws.ss
                 visitor.page = ws.page
                 visitor.app = ws.app
-                visitor.user_id = ws.user_id
+                if (ws.user) visitor.user_id = ws.user 
+                else visitor.user_id = ws.user_id
                 visitor.resolution = ws.resolution
 
                 visitor.save(err => {

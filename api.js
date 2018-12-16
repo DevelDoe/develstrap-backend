@@ -4,7 +4,8 @@ var express  = require( 'express' ),
     mongoose = require( 'mongoose' ),
     config   = require('./config'),
     Visitor  = require('./models/visitor'),
-    axios    = require('axios')
+    axios    = require('axios'),
+    Message = require('./models/message')
 
 
 require('./routes/routing')(api)
@@ -32,74 +33,128 @@ function heartbeat() {
     this.isAlive = true
 }
 
+const debugSocket = true
+let online = []
+
 socket.on('connection', (ws, req) => {
 
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
+    if (debugSocket) console.log('OPEN')
+
+
     socket.clients.forEach((ws) => {
-
-        var id = setInterval(function () {
-            ws.ss++
-        }, 1000)
-
-        const index = req.connection.remoteAddress.lastIndexOf(':')
-        const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
-        ws.ip = ip
-
-        
 
         ws.on('close', function () {
 
-            console.log('close')
 
-            axios.get('http://ip-api.com/json/' + ip).then(res => {
-
-                let visitor = new Visitor()
-                visitor.ip = ws.ip
-                visitor.city = res.data.city
-                visitor.country = res.data.country
-                visitor.region = res.data.regionName 
-                visitor.timezone = res.data.timezone
-                visitor.date = moment().unix()
-                visitor.seconds = ws.ss
-                visitor.page = ws.page
-                visitor.app = ws.app
-                visitor.user_id = ws.user_id
-                visitor.resolution = ws.resolution
-                visitor.save(err => {
-                    if (err) {
-                        error(res.err)
-                        return
-                    }
-                    console.log('view data added:', visitor.ip)
-                    clearInterval(id)
-                    clearInterval(interval)
-                    ws.terminate()
+            if(online.indexOf(ws.user) != -1) {
+                online.splice(online.indexOf(ws.user), 1)
+                console.log(online)
+                socket.clients.forEach((client) => {
+                    if (ws !== client) client.send(JSON.stringify({ type: 'online', online: false, id: ws.user }))
                 })
-
                 
+            } 
 
-            }).catch(err => {
-                console.log('ip-api fetch error:')
-                clearInterval(id)
-                clearInterval(interval)
-                ws.terminate()
-            })
-            
-            
+            if (debugSocket) console.log('CLOSE')
         })
+
     })
 
     ws.on('message', (msg) => {
 
         parsed = JSON.parse(msg)
-        
-        ws.ss = 0
-        ws.page = parsed.page
-        ws.app = parsed.app
-        ws.user_id = parsed.user_id
-        ws.resolution = parsed.resolution
+
+        ws.type = parsed.type
+
+        if (debugSocket) console.log(ws.type)
+
+        if (ws.type === 'setUser') {
+            ws.user = parsed.user
+            if (debugSocket) console.log('user:', ws.user)
+            online.push(ws.user)
+            console.log(online)
+            socket.clients.forEach((client) => {
+                online.forEach( user => {
+                    client.send(JSON.stringify({ type: 'online', online: true, id: user }))
+                })
+            })
+        }
+
+        if (ws.type === 'chat') {
+
+             var message        = new Message()
+
+             message.room       = parsed.room 
+             message.user       = parsed.user 
+             message.message    = parsed.message
+             message.created_at = parsed.created_at 
+
+             message.save( err => {
+                 if( err ) {
+                     console.log(err)
+                     return
+                 }
+                 if (debugSocket) console.log('message added:', message)
+                 socket.clients.forEach((client) => {
+                     if (client !== ws) {
+                        client.send(JSON.stringify( { type: 'message', message }))
+                        if (debugSocket) console.log('sending message')
+                     } 
+                 })
+             })
+            
+        }
+
+        if( ws.type === 'view' ) {
+            const index = req.connection.remoteAddress.lastIndexOf(':')
+            const ip = req.connection.remoteAddress.substr(index + 1, req.connection.remoteAddress.length)
+            ws.ip = ip
+            ws.ss = 0
+            ws.page = parsed.page
+            ws.app = parsed.app
+            ws.user_id = parsed.user_id
+            ws.resolution = parsed.resolution
+
+            var id = setInterval(function () {
+                ws.ss++
+            }, 1000)
+        }
+
+        if( ws.type === 'endview') {
+            axios.get('http://ip-api.com/json/' + ws.ip).then(res => {
+
+                let visitor = new Visitor()
+
+                visitor.ip = ws.ip
+                visitor.city = res.data.city
+                visitor.country = res.data.country
+                visitor.region = res.data.regionName
+                visitor.timezone = res.data.timezone
+                visitor.date = moment().unix()
+                visitor.seconds = ws.ss
+                visitor.page = ws.page
+                visitor.app = ws.app
+                if (ws.user) visitor.user_id = ws.user 
+                else visitor.user_id = ws.user_id
+                visitor.resolution = ws.resolution
+
+                visitor.save(err => {
+                    if (err) {
+                        console.log(err)
+                        return
+                    }
+                    clearInterval(id)
+                    if (debugSocket) console.log('view data added:', visitor)
+                })
+
+            }).catch(err => {
+                console.log('ip-api fetch error:')
+            })
+        }
+
     })
 
 })

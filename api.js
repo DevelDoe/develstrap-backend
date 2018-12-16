@@ -75,7 +75,7 @@ socket.on('connection', (ws, req) => {
             online.push(ws.user)
             console.log(online)
             socket.clients.forEach((client) => {
-                client.send(JSON.stringify(online))
+                if (client !== ws) client.send(JSON.stringify(online))
             })
         }
 

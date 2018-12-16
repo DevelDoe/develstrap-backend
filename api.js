@@ -97,7 +97,7 @@ socket.on('connection', (ws, req) => {
                  }
                  if (debugSocket) console.log('message added:', message)
                  socket.clients.forEach((client) => {
-                     if (client !== ws) client.send(JSON.stringify( { type: 'addMessage', message }))
+                     if (client !== ws) client.send(JSON.stringify( { type: 'message', message }))
                  })
              })
             

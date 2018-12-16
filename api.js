@@ -55,6 +55,7 @@ socket.on('connection', (ws, req) => {
             if(online.indexOf(ws.user) != -1) {
                 online.splice(online.indexOf(ws.user), 1)
                 console.log(online)
+                client.send(JSON.stringify(online))
             } 
 
             if (debugSocket) console.log('CLOSE')

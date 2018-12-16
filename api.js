@@ -54,7 +54,7 @@ socket.on('connection', (ws, req) => {
                 online.splice(online.indexOf(ws.user), 1)
                 console.log(online)
                 socket.clients.forEach((client) => {
-                    if (ws !== client) ws.send(JSON.stringify(online))
+                    if (ws !== client) client.send(JSON.stringify(online))
                 })
                 
             } 

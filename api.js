@@ -73,7 +73,7 @@ socket.on('connection', (ws, req) => {
         if (ws.type === 'setUser') {
             ws.user = parsed.user
             if (debugSocket) console.log('user:', ws.user)
-            online.push({ user: ws.user })
+            online.push(ws.user)
             console.log(online)
             socket.clients.forEach((client) => {
                 client.send(JSON.stringify(online))

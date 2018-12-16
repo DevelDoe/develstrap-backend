@@ -34,7 +34,6 @@ function heartbeat() {
 }
 
 const debugSocket = true
-let online = []
 
 socket.on('connection', (ws, req) => {
 
@@ -48,15 +47,9 @@ socket.on('connection', (ws, req) => {
 
         ws.on('close', function () {
 
-
-            if(online.indexOf(ws.user) != -1) {
-                online.splice(online.indexOf(ws.user), 1)
-                console.log(online)
-                socket.clients.forEach((client) => {
-                    if (ws !== client) client.send(JSON.stringify({ type: 'online', online: false, id: ws.user }))
-                })
-                
-            } 
+            socket.clients.forEach((client) => {
+                if (ws !== client) client.send(JSON.stringify({ type: 'online', online: false, id: ws.user }))
+            })
 
             if (debugSocket) console.log('CLOSE')
         })
@@ -74,7 +67,6 @@ socket.on('connection', (ws, req) => {
         if (ws.type === 'setUser') {
             ws.user = parsed.user
             if (debugSocket) console.log('user:', ws.user)
-            console.log(online)
             socket.clients.forEach((client) => {
                 client.send(JSON.stringify({ type: 'online', online: true, id: ws.user  }))
             })

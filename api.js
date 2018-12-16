@@ -43,18 +43,16 @@ socket.on('connection', (ws, req) => {
 
     if (debugSocket) console.log('OPEN')
 
-    socket.clients.forEach((client) => {
-        client.send(JSON.stringify(online))
-    })
-
 
     socket.clients.forEach((ws) => {
 
         ws.on('close', function () {
             clearInterval(interval)
 
-            if(online.indexOf(ws.user)) online.splice(online.indexOf(ws.user), 1)
-            console.log(online)
+            if(online.indexOf(ws.user) != -1) {
+                online.splice(online.indexOf(ws.user), 1)
+                console.log(online)
+            } 
 
             if (debugSocket) console.log('CLOSE')
         })
@@ -74,6 +72,9 @@ socket.on('connection', (ws, req) => {
             if (debugSocket) console.log('user:', ws.user)
             online.push({ user: ws.user })
             console.log(online)
+            socket.clients.forEach((client) => {
+                client.send(JSON.stringify(online))
+            })
         }
 
         if (ws.type === 'chat') {

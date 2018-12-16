@@ -49,6 +49,7 @@ socket.on('connection', (ws, req) => {
             clearInterval(interval)
 
             online.splice(online.indexOf(ws.user), 1)
+            console.log(online)
 
             if (debugSocket) console.log('closing socket')
         })
@@ -67,6 +68,7 @@ socket.on('connection', (ws, req) => {
             ws.user = parsed.user
             if (debugSocket) console.log('user:', ws.user)
             online.push({ user: ws.user })
+            console.log(online)
         }
 
         if (ws.type === 'chat') {

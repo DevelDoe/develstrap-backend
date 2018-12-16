@@ -41,7 +41,7 @@ socket.on('connection', (ws, req) => {
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
-    if (debugSocket) console.log('open socket')
+    if (debugSocket) console.log('connection')
 
     socket.clients.forEach((ws) => {
 
@@ -51,7 +51,7 @@ socket.on('connection', (ws, req) => {
             online.splice(online.indexOf(ws.user), 1)
             console.log(online)
 
-            if (debugSocket) console.log('closing socket')
+            if (debugSocket) console.log('close')
         })
 
     })
@@ -62,7 +62,7 @@ socket.on('connection', (ws, req) => {
 
         ws.type = parsed.type
 
-        if (debugSocket) console.log('message type', ws.type)
+        if (debugSocket) console.log(ws.type)
 
         if (ws.type === 'setUser') {
             ws.user = parsed.user

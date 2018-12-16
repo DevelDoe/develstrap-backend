@@ -49,6 +49,8 @@ socket.on('connection', (ws, req) => {
         ws.on('close', function () {
             clearInterval(interval)
 
+            console.log(online.indexOf(ws.user))
+
             if(online.indexOf(ws.user) != -1) {
                 online.splice(online.indexOf(ws.user), 1)
                 console.log(online)

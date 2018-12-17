@@ -28,6 +28,6 @@ module.exports = mongoose.model('Ticket', {
           type: String
      },
      repro: {
-          type: Array
+          type: String
      }
 })

@@ -40,7 +40,7 @@ module.exports = api => {
 
      })
 
-     api.post( '/tickets/:_id', ( req, res ) => {
+     api.put( '/tickets/:_id', ( req, res ) => {
 
           Ticket.findById( req.params._id, ( err, ticket ) => {
 

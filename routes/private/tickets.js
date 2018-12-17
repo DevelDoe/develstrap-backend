@@ -49,8 +49,6 @@ module.exports = api => {
                     return
                }
 
-               var ticket = new Ticket() 
-
                ticket.title             = req.body.title 
                ticket.category          = req.body.category 
                ticket.steps             = req.body.steps 

@@ -4,7 +4,7 @@ module.exports = mongoose.model('Ticket', {
           type: String
      },
      category: {
-          type: Array
+          type: String
      },
      steps: {
           type: Array

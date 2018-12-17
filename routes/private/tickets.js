@@ -24,7 +24,7 @@ module.exports = api => {
           ticket.category          = req.body.category 
           ticket.steps             = req.body.steps 
           ticket.created_at        = Moment().unix() 
-          ticket.deleted           = req.body.deleted 
+          ticket.deleted           = req.body.deleted || false
           ticket.result            = req.body.result
           ticket.expected          = req.body.expected
           ticket.workaround        = req.body.workaround 
@@ -53,7 +53,7 @@ module.exports = api => {
                ticket.category          = req.body.category 
                ticket.steps             = req.body.steps 
                ticket.updated_at        = Moment().unix() 
-               ticket.deleted           = req.body.deleted 
+               ticket.deleted           = req.body.deleted || false 
                ticket.result            = req.body.result
                ticket.expected          = req.body.expected
                ticket.workaround        = req.body.workaround 

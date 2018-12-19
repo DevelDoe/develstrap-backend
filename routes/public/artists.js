@@ -3,7 +3,7 @@ const { error } = require('../../hlps')
 module.exports = api => {
      
      api.get( '/public/artists', ( req, res )  => {
-          User.find( ( err, users  ) => {
+          User.find( { artist: true }, ( err, users  ) => {
                if( err ) {
                     error( res, err )
                     return

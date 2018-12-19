@@ -13,4 +13,5 @@ module.exports = function ( api ) {
     require('./public/authors')(api)
     require('./private/messages')(api)
     require('./private/tickets')(api)
+    require('./public/artists')(api)
 }

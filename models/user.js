@@ -12,7 +12,8 @@ var UserSchema = mongoose.Schema({
     applications    : { type: Array },
     administrations : { type: Array },
     supports        : { type: Array },
-    forums          : { type: Array }
+    forums          : { type: Array },
+    artist          : { type: Boolean }
 })
 
 UserSchema.pre('save', function (next) {

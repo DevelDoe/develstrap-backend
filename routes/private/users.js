@@ -11,18 +11,21 @@ module.exports = function (api) {
         })
     })
     api.post('/users', (req, res) => {
+        
         var user = new User()
-        console.log(req.body)
-        user.fname = req.body.fname
-        user.lname = req.body.lname
+        user.fname              = req.body.fname
+        user.lname              = req.body.lname
         if (req.body.username !== '') user.username = req.body.username
-        user.email = req.body.email
+        user.email              = req.body.email
         user.password = req.body.password
         if (!req.body.img_src || req.body.img_src === '') user.img_src = '/uploads/images/processed/default.jpg'
-        else user.img_src = req.body.img_src
-        user.sec_lv = req.body.sec_lv
-        user.applications = req.body.applications
-        user.administrations = req.body.administrations
+        else user.img_src       = req.body.img_src
+        user.sec_lv             = req.body.sec_lv
+        user.applications       = req.body.applications
+        user.administrations    = req.body.administrations
+        user.supports           = req.body.supports 
+        user.forums             = req.body.forums
+
         user.save(err => {
             if (err) {
                 error(res, err)
@@ -48,16 +51,20 @@ module.exports = function (api) {
                 error(res, err)
                 return
             }
-            user.fname = req.body.fname
-            user.lname = req.body.lname
+
+            user.fname              = req.body.fname
+            user.lname              = req.body.lname
             if (req.body.username !== '') user.username = req.body.username
-            user.email = req.body.email
+            user.email              = req.body.email
             user.password = req.body.password
             if (!req.body.img_src || req.body.img_src === '') user.img_src = '/uploads/images/processed/default.jpg'
-            else user.img_src = req.body.img_src
-            user.sec_lv = req.body.sec_lv
-            user.applications = req.body.applications
-            user.administrations = req.body.administrations
+            else user.img_src       = req.body.img_src
+            user.sec_lv             = req.body.sec_lv
+            user.applications       = req.body.applications
+            user.administrations    = req.body.administrations
+            user.supports           = req.body.supports 
+            user.forums             = req.body.forums
+
             user.save(err => {
                 if (err) {
                     error(res, err)

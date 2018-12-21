@@ -19,7 +19,7 @@ module.exports = api => {
                          album.artist = users.find(user => {
                               return user._id === album.user_id
                          })
-                         
+                         console.log(album.artis)
                     })
                     res.json(modAlbums)
                })

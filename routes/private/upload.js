@@ -38,7 +38,7 @@ module.exports = function (api) {
     api.post('/image', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)
-                .resize(300)
+                .resize(900)
                 .background('transparent')
                 .embed()
                 .toFile(`./uploads/images/processed/${encodeURI(req.file.originalname)}`)

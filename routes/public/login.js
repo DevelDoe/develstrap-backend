@@ -41,7 +41,6 @@ module.exports = function (api) {
                     })
                 } else {
                     user.comparePassword(req.body.password, function (err, isMatched) {
-                        console.log(isMatched)
                         if (isMatched && !err) {
                             var token = jwt.encode(user, config.secret)
 

@@ -31,4 +31,18 @@ module.exports = api => {
           })
      })
 
+     api.get( '/public/album', ( req, res ) => {
+          Album.findById( req.param( 'id' ), ( err, album ) => {
+               if (err) {
+                    error(res, err)
+                    return
+               }
+               if (!album) {
+                    res.end('No album')
+               } else {
+                    res.json(album)
+               }
+          })
+     })
+
 }

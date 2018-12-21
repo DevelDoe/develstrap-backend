@@ -41,7 +41,20 @@ module.exports = api => {
                if (!album) {
                     res.end('No album')
                } else {
-                    res.json(album)
+                    User.findById(album.user_id, (err, user) => {
+                         if (err) {
+                              error(res, err)
+                              return
+                         }
+                         if (!user) {
+                              res.end('No user')
+                         } else {
+                              const res = JSON.parse(JSON.stringify(album))
+                              res.artist = user.username
+                              res.json(album)
+                         }
+                    })
+                    
                }
           })
      })

@@ -23,6 +23,7 @@ module.exports = api => {
 
      api.get( '/public/artist/:id ', ( req, res ) => {
           User.findById(req.param('id'), (err, artist) => {
+               console.log(artist)
                if (err) {
                     error(res, err)
                     return

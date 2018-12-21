@@ -30,7 +30,7 @@ module.exports = api => {
                if (!artist) {
                     res.end('No user')
                } else {
-                    const artist = JSON.parse(JSON.stringify(user))
+                    const artist = JSON.parse(JSON.stringify(artist))
                     delete artist.password
                     delete artist.applications
                     delete artist.administrations

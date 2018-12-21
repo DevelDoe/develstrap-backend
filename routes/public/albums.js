@@ -20,7 +20,7 @@ module.exports = api => {
                          let artist
                          users.forEach(user => {
                               console.log('user._id ' + user._id)
-                              if (user._id === album.user_id) artist = user.username
+                              if (user._id == album.user_id) artist = user.username
                          })
                          console.log(artist)
                     })

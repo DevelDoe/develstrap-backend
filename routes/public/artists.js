@@ -22,7 +22,7 @@ module.exports = api => {
      })
 
      api.get( '/public/artist', ( req, res ) => {
-          User.findById(req.param('id'), (err, user) => {
+          User.find( { username : req.param('username') }, (err, user) => {
                if (err) {
                     error(res, err)
                     return

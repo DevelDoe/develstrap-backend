@@ -16,7 +16,11 @@ module.exports = api => {
                     }
                     let modAlbums = JSON.parse(JSON.stringify(albums))
                     modAlbums.forEach(album => {
-                         album.artist = users.find(user => user._id === album.user_id)
+                         album.artist = users.find(user => {
+                              console.log(user)
+                              user._id === album.user_id
+                         })
+                         
                     })
                     res.json(modAlbums)
                })

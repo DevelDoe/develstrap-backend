@@ -21,7 +21,7 @@ module.exports = api => {
           })
      })
 
-     api.get( '/public/artist ', ( req, res ) => {
+     api.get( '/public/artist/:id ', ( req, res ) => {
           User.findById(req.param('id'), (err, artist) => {
                if (err) {
                     error(res, err)

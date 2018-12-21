@@ -50,7 +50,6 @@ module.exports = api => {
                               res.end('No user')
                          } else {
                               const al = JSON.parse(JSON.stringify(album))
-                              console.log(al)
                               al.artist = user.username
                               res.json(al)
                          }

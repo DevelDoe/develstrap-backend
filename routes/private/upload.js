@@ -38,11 +38,11 @@ module.exports = function (api) {
     api.post('/image', uploadImage.single('file'), async (req, res) => {
         try {
             await sharp(req.file.path)
-                .resize(300)
+                .resize(900)
                 .background('transparent')
                 .embed()
-                .toFile(`./uploads/images/processed/${req.file.originalname}`)
-            res.json({ file: `/uploads/images/processed/${req.file.originalname}` })
+                .toFile(`./uploads/images/processed/${encodeURI(req.file.originalname)}`)
+            res.json({ file: `/uploads/images/processed/${encodeURI(req.file.originalname)}` })
         } catch (err) {
             res.status(422).json({err})
         }
@@ -61,8 +61,8 @@ module.exports = function (api) {
                     fit: sharp.fit.cover,
                     position: sharp.strategy.entropy
                 })
-                .toFile(`./uploads/images/avatar/${req.file.originalname}`)
-            res.json({ file: `/uploads/images/avatar/${req.file.originalname}` })
+                .toFile(`./uploads/images/processed/${encodeURI(req.file.originalname)}`)
+            res.json({ file: `/uploads/images/processed/${encodeURI(req.file.originalname)}` })
         } catch (err) {
             res.status(422).json({err})
         }

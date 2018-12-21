@@ -22,15 +22,15 @@ module.exports = api => {
      })
 
      api.get( '/public/artist', ( req, res ) => {
-          User.findById(req.param('id'), (err, artist) => {
+          User.findById(req.param('id'), (err, user) => {
                if (err) {
                     error(res, err)
                     return
                }
-               if (!artist) {
+               if (!user) {
                     res.end('No user')
                } else {
-                    const artist = JSON.parse(JSON.stringify(artist))
+                    const artist = JSON.parse(JSON.stringify(user))
                     delete artist.password
                     delete artist.applications
                     delete artist.administrations

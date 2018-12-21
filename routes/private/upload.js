@@ -41,7 +41,7 @@ module.exports = function (api) {
                 .resize(900)
                 .background('transparent')
                 .embed()
-                .toFile(`./uploads/images/processed/${encodeURI(req.file.originalname)}`)
+                .toFile(`./uploads/images/processed/${req.file.originalname}`)
             res.json({ file: `/uploads/images/processed/${encodeURI(req.file.originalname)}` })
         } catch (err) {
             res.status(422).json({err})
@@ -61,7 +61,7 @@ module.exports = function (api) {
                     fit: sharp.fit.cover,
                     position: sharp.strategy.entropy
                 })
-                .toFile(`./uploads/images/processed/${encodeURI(req.file.originalname)}`)
+                .toFile(`./uploads/images/processed/${req.file.originalname}`)
             res.json({ file: `/uploads/images/processed/${encodeURI(req.file.originalname)}` })
         } catch (err) {
             res.status(422).json({err})

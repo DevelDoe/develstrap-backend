@@ -49,9 +49,9 @@ module.exports = api => {
                          if (!user) {
                               res.end('No user')
                          } else {
-                              const res = JSON.parse(JSON.stringify(album))
-                              res.artist = user.username
-                              res.json(album)
+                              const al = JSON.parse(JSON.stringify(album))
+                              al.artist = user.username
+                              res.json(al)
                          }
                     })
                     

@@ -22,12 +22,12 @@ module.exports = api => {
      })
 
      api.get( '/public/artist ', ( req, res ) => {
-          User.findById(req.param('id'), (err, user) => {
+          User.findById(req.param('id'), (err, artist) => {
                if (err) {
                     error(res, err)
                     return
                }
-               if (!user) {
+               if (!artist) {
                     res.end('No user')
                } else {
                     const artist = JSON.parse(JSON.stringify(user))

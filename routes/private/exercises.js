@@ -1,4 +1,4 @@
-const Exercise           = require('../../models/exercise')
+const Exercise      = require('../../models/exercise')
 const { error }     = require('../../hlps')
 const Moment        = require('moment')
 

@@ -63,7 +63,7 @@ module.exports = api => {
 
    })
 
-   api.delete('/exercises/:_id', (req, exercise) => {
+   api.delete('/exercises/:_id', (req, res) => {
 
         Exercise.remove({
             _id: req.params._id

@@ -12,6 +12,9 @@ module.exports = mongoose.model('Exercise', {
      repetitions: {
         type: Number
      },
+     target: {
+       type: Number
+     },
      created_at: {
           type: String
      },

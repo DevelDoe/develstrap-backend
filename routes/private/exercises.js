@@ -21,6 +21,7 @@ module.exports = api => {
 
         exercise.group       = req.body.group 
         exercise.name        = req.body.name
+        exercise.target      = req.body.target
         exercise.created_at  = Moment().unix() 
 
         exercise.save( err => {
@@ -46,6 +47,7 @@ module.exports = api => {
              exercise.name         = req.body.name
              exercise.weight       = req.body.weight
              exercise.repetitions  = req.body.repetitions
+             exercise.target       = req.body.target
 
              exercise.updated_at   = Moment().unix()
 

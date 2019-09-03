@@ -1,5 +1,5 @@
 const User = require('../../models/user')
-
+const { error } = require('../../hlps')
 module.exports = function ( api ) {
     api.get('/public/authors', (req, res) => {
         User.find((err, a) => {
@@ -26,15 +26,13 @@ module.exports = function ( api ) {
             if (!user) {
                 res.end('No user')
             } else {
-                delete user.password
-                res.json(user)
+                const author = JSON.parse(JSON.stringify(user))
+                delete author.password
+                delete author.applications
+                delete author.administrations
+                delete author.sec_lv
+                res.json(author)
             }
         })
     })
-    function error(res, err) {
-        res.status(500)
-        res.json({
-            err: 'Server ' + err
-        })
-    } 
 }

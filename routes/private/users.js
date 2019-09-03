@@ -25,6 +25,7 @@ module.exports = function (api) {
         user.administrations    = req.body.administrations
         user.supports           = req.body.supports 
         user.forums             = req.body.forums
+        user.artist             = req.body.artist
 
         user.save(err => {
             if (err) {
@@ -64,6 +65,7 @@ module.exports = function (api) {
             user.administrations    = req.body.administrations
             user.supports           = req.body.supports 
             user.forums             = req.body.forums
+            user.artist             = req.body.artist
 
             user.save(err => {
                 if (err) {

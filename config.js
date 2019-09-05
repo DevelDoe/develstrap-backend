@@ -1,5 +1,5 @@
 module.exports = {
     secret: 'JI21ko87.HJ/(@df34',
     database: 'mongodb://localhost:27017/develdevils',
-    port: '4002' 
+    port: '4000' 
 }

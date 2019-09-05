@@ -19,7 +19,6 @@ module.exports = api => {
 
         var exercise = new Exercise() 
 
-        exercise.user_id     = req.body.user_id
         exercise.group       = req.body.group 
         exercise.name        = req.body.name
         exercise.target      = req.body.target
@@ -45,12 +44,11 @@ module.exports = api => {
                   return
              }
 
-             exercise.user_id       = req.body.user_id
-             exercise.group         = req.body.group
-             exercise.name          = req.body.name
-             exercise.weight        = req.body.weight
-             exercise.repetitions   = req.body.repetitions
-             exercise.target        = req.body.target
+             exercise.group        = req.body.group
+             exercise.name         = req.body.name
+             exercise.weight       = req.body.weight
+             exercise.repetitions  = req.body.repetitions
+             exercise.target       = req.body.target
 
              exercise.updated_at   = Moment().unix()
 

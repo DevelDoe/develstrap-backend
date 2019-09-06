@@ -47,7 +47,7 @@ module.exports = api => {
                   return
              }
 
-             exercise.user_id       = req.body.user_id
+             exercise.user_id      = req.body.user_id
              exercise.group        = req.body.group
              exercise.name         = req.body.name
              exercise.weight       = req.body.weight

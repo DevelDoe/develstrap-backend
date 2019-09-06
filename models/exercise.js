@@ -24,4 +24,7 @@ module.exports = mongoose.model('Exercise', {
      updated_at: {
           type: String
      },
+     user_id: {
+          type: String
+     }
 })

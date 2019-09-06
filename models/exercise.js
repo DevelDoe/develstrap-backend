@@ -6,6 +6,9 @@ module.exports = mongoose.model('Exercise', {
      name: {
           type: String
      },
+     level: {
+          type: Number
+     },
      weight: {
           type: Number
      },

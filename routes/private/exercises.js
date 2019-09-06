@@ -24,7 +24,9 @@ module.exports = api => {
         exercise.name       = req.body.name
         exercise.target     = req.body.target
         exercise.weight     = req.body.weight
-        exercise.created_at = Moment().unix() 
+        exercise.created_at = Moment().unix()
+        if(!req.body.level) exercise.level = 1
+        else exercise.level = req.body.level
 
         exercise.save( err => {
             if( err ) {

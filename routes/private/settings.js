@@ -19,6 +19,8 @@ module.exports = api => {
 
         var setting = new Setting() 
 
+        console.log(req.body.user_id)
+
         setting.user_id     = req.body.user_id
         setting.website     = req.body.website
         setting.port        = req.body.port

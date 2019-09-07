@@ -25,7 +25,7 @@ module.exports = api => {
         setting.website     = req.body.website
         setting.port        = req.body.port
         setting.ingress     = req.body.ingress
-        setting.image       = req.body.weimagebsite
+        setting.image       = req.body.image
         setting.created_at  = Moment().unix()
 
 

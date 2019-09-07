@@ -52,7 +52,7 @@ module.exports = api => {
             setting.website     = req.body.website
             setting.port        = req.body.port
             setting.ingress     = req.body.ingress
-            setting.image       = req.body.weimagebsite
+            setting.image       = req.body.image
             setting.updated_at  = Moment().unix()
 
              setting.save( err => {

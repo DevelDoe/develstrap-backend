@@ -8,11 +8,11 @@ module.exports = api => {
     api.get('/exercises/:user_id', (req, res) => {
 
         Exercise.find( { user_id: req.params.user_id }, ( err, exercises ) => {
-                if ( err ) {
-                    error( res, err )
-                    return
-                }
-                res.json( exercises )
+            if ( err ) {
+                error( res, err )
+                return
+            }
+            res.json( exercises )
         })
     })
    

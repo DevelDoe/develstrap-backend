@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-module.exports = mongoose.model('Weight', {
+module.exports = mongoose.model('Workout', {
      group: {
           type: String
      },

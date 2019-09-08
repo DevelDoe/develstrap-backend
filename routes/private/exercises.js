@@ -1,12 +1,19 @@
 const Exercise      = require('../../models/exercise')
+const mongoose = require('mongoose')
 const { error }     = require('../../hlps')
 const Moment        = require('moment')
 
 module.exports = api => {
 
-    api.get('/exercises', (req, res) => {
+    api.get('/exercises/:user_id', (req, res) => {
 
-        Exercise.find( ( err, exercises ) => {
+        console.log('user_id' + req.params.user_id)
+
+        Exercise.find( {
+            '_id': { $in: [
+                mongoose.Types.ObjectId(req.params.user_id),
+            ]}
+        }, ( err, exercises ) => {
                 if ( err ) {
                     error( res, err )
                     return

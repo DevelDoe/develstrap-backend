@@ -4,9 +4,9 @@ const Moment        = require('moment')
 
 module.exports = api => {
 
-    api.get('/exercises', (req, res) => {
+    api.get('/exercises/:user_id', (req, res) => {
 
-        Exercise.find( ( err, exercises ) => {
+        Exercise.find( req.params.user_id, ( err, exercises ) => {
                 if ( err ) {
                     error( res, err )
                     return

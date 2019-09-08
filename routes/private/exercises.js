@@ -6,7 +6,7 @@ module.exports = api => {
 
     api.get('/exercises/:user_id', (req, res) => {
 
-        Exercise.find( req.params.user_id, ( err, exercises ) => {
+        Exercise.find( { '_id' : [req.params.user_id] }, ( err, exercises ) => {
                 if ( err ) {
                     error( res, err )
                     return

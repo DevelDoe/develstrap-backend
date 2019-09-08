@@ -6,12 +6,12 @@ module.exports = api => {
 
     api.get('/exercises', (req, res) => {
 
-        Exercise.find( ( err, exercises ) => {
-                if ( err ) {
-                    error( res, err )
-                    return
-                }
-                res.json( exercises )
+        Exercise.find( { user_id: req.params.user_id }, ( err, exercises ) => {
+            if ( err ) {
+                error( res, err )
+                return
+            }
+            res.json( exercises )
         })
     })
    

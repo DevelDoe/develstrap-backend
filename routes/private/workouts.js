@@ -77,6 +77,8 @@ module.exports = api => {
                 return
             }
 
+            console.log(workouts)
+
             workouts.forEach( workout => {
                 if(workout.name === req.params.name) {
                     console.log(workout)

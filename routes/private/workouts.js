@@ -79,6 +79,7 @@ module.exports = api => {
 
             workouts.forEach( workout => {
                 if(workout.name === req.params.name) {
+                    console.log(workout)
                     Workout.remove({
                         _id: workout._id
                     }, (err) => {

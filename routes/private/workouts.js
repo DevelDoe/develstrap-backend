@@ -87,15 +87,9 @@ module.exports = api => {
 
                 workouts.forEach( w => {
                     if(w.name === workout.name) {
-                        Workout.remove({
-                            _id: w._id
-                        }, (err) => {
-                            if (err) {
-                                error(w, err)
-                                return
-                            }
-                            res.sendStatus(200)
-                        })
+                        console.log(
+                            w.name
+                        )
                     }
                 })
     

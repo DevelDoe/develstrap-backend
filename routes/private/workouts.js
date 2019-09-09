@@ -78,21 +78,15 @@ module.exports = api => {
                  return
             }
 
-            console.log(workout)
-
-
             Workout.find( { user_id: workout.user_id }, ( err, workouts ) => {
                 if ( err ) {
                     error( res, err )
                     return
                 }
 
-                console.log(workouts)
-
                 let eFlag = false
 
                 workouts.forEach( w => {
-                    console.log(w)
                     if(w.name === workout.name) {
                         Workout.remove({
                             _id: w._id

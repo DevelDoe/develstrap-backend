@@ -70,6 +70,7 @@ module.exports = api => {
 
    api.delete('/workouts/:_id', (req, res) => {
 
+        console.log(req.params.user_id)
 
         Workout.find( { user_id: req.params.user_id }, ( err, workouts ) => {
             if ( err ) {

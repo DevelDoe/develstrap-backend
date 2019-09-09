@@ -99,10 +99,12 @@ module.exports = api => {
                                 error(w, err)
                                 return
                             }
-                            res.sendStatus(200)
+                            
                         })
                     }
                 })
+
+                res.sendStatus(200)
     
                 
                 

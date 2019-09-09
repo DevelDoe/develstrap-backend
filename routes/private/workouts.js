@@ -78,30 +78,32 @@ module.exports = api => {
                  return
             }
 
-            Workout.find( { user_id: workout.user_id }, ( err, workouts ) => {
-                if ( err ) {
-                    error( res, err )
-                    return
-                }
+            console.log(workout.user_id)
+
+            // Workout.find( { user_id: workout.user_id }, ( err, workouts ) => {
+            //     if ( err ) {
+            //         error( res, err )
+            //         return
+            //     }
     
-                workouts.forEach( workout => {
-                    if(workout.name === req.params.name) {
-                        console.log(workout)
-                        Workout.remove({
-                            _id: workout._id
-                        }, (err) => {
-                            if (err) {
-                                error(workout, err)
-                                return
-                            }
-                            res.sendStatus(200)
-                        })
-                    }
-                })
+            //     workouts.forEach( workout => {
+            //         if(workout.name === req.params.name) {
+            //             console.log(workout)
+            //             Workout.remove({
+            //                 _id: workout._id
+            //             }, (err) => {
+            //                 if (err) {
+            //                     error(workout, err)
+            //                     return
+            //                 }
+            //                 res.sendStatus(200)
+            //             })
+            //         }
+            //     })
     
                 
                 
-            })
+            // })
 
        })
 

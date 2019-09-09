@@ -89,22 +89,29 @@ module.exports = api => {
 
                 console.log(workouts)
 
+                let eFlag = false
+
                 workouts.forEach( w => {
                     console.log(w)
                     if(w.name === workout.name) {
                         Workout.remove({
                             _id: w._id
                         }, (err) => {
-                            if (err) {
-                                error(w, err)
-                                return
-                            }
-                            
+                            eFlag = true
                         })
                     }
                 })
 
-                res.sendStatus(200)
+                if(eFlag) {
+                    if (err) {
+                        error(w, err)
+                        return
+                    }
+                } else {
+                    res.sendStatus(200)
+                }
+
+                
     
                 
                 

@@ -85,13 +85,7 @@ module.exports = api => {
                     return
                 }
 
-                workouts.forEach( w => {
-                    if(w.name === workout.name) {
-                        console.log(
-                            w.name
-                        )
-                    }
-                })
+                
     
                 
                 

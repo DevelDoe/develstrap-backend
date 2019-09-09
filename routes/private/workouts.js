@@ -70,15 +70,26 @@ module.exports = api => {
 
    api.delete('/workouts/:_id', (req, res) => {
 
-        Workout.remove({
-            _id: req.params._id
-        }, (err) => {
-            if (err) {
-                error(workout, err)
+
+        Workout.find( { user_id: req.params.user_id }, ( err, workouts ) => {
+            if ( err ) {
+                error( res, err )
                 return
             }
-            res.sendStatus(200)
+
+            Workout.remove({
+                name: req.params.name
+            }, (err) => {
+                if (err) {
+                    error(workout, err)
+                    return
+                }
+                res.sendStatus(200)
+            })
+            
         })
+
+        
 
     })
 

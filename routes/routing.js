@@ -9,7 +9,7 @@ module.exports = function ( api ) {
     require('./private/images')(api)
     require('./private/upload')(api)
     require('./private/workouts')(api)
-    require('./private/exercises')(api)
+    // require('./private/exercises')(api)
     require('./private/settings')(api)
     require('./public/login')(api)
     require('./public/posts')(api)

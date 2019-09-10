@@ -19,14 +19,13 @@ module.exports = api => {
 
         var exercise = new Exercise() 
 
-        exercise.user_id    = req.body.user_id
         exercise.group      = req.body.group 
         exercise.name       = req.body.name
-        exercise.target     = req.body.target
-        exercise.weight     = req.body.weight
+        exercise.equipment  = req.body.equipment
+        exercise.rated      = req.body.rated
+        exercise.type       = req.body.type
+        exercise.mechanics  = req.body.mechanics
         exercise.created_at = Moment().unix()
-        if(!req.body.level) exercise.level = 1
-        else exercise.level = req.body.level
 
         exercise.save( err => {
             if( err ) {
@@ -47,14 +46,13 @@ module.exports = api => {
                   return
              }
 
-             exercise.user_id      = req.body.user_id
-             exercise.group        = req.body.group
-             exercise.name         = req.body.name
-             exercise.weight       = req.body.weight
-             exercise.repetitions  = req.body.repetitions
-             exercise.target       = req.body.target
-
-             exercise.updated_at   = Moment().unix()
+            exercise.group      = req.body.group 
+            exercise.name       = req.body.name
+            exercise.equipment  = req.body.equipment
+            exercise.rated      = req.body.rated
+            exercise.type       = req.body.type
+            exercise.mechanics  = req.body.mechanics
+            exercise.updated_at   = Moment().unix()
 
              exercise.save( err => {
                   if( err ) {
@@ -70,9 +68,7 @@ module.exports = api => {
 
    api.delete('/exercises/:_id', (req, res) => {
 
-        Exercise.remove({
-            _id: req.params._id
-        }, (err) => {
+        Exercise.remove({ _id: req.params._id }, (err) => {
             if (err) {
                 error(exercise, err)
                 return

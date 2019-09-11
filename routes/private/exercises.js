@@ -24,7 +24,7 @@ module.exports = api => {
         exercise.equipment  = req.body.equipment
         exercise.rated      = req.body.rated
         exercise.type       = req.body.type
-        exercise.mechanics  = req.body.mechanics
+        exercise.mechanic  = req.body.mechanic
         exercise.created_at = Moment().unix()
 
         exercise.save( err => {
@@ -51,7 +51,7 @@ module.exports = api => {
             exercise.equipment  = req.body.equipment
             exercise.rated      = req.body.rated
             exercise.type       = req.body.type
-            exercise.mechanics  = req.body.mechanics
+            exercise.mechanic  = req.body.mechanic
             exercise.updated_at   = Moment().unix()
 
              exercise.save( err => {

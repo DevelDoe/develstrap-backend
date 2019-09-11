@@ -5,7 +5,7 @@ module.exports = mongoose.model('Exercise', {
      equipment  : { type: String, required: true },
      rated      : { type: Number },
      type       : { type: String, required: true },
-     mechanics  : { type: String, required: true },
+     mechanic  : { type: String, required: true },
      created_at : { type: String },
      updated_at : { type: String },
 })

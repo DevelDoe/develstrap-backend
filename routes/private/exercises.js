@@ -26,8 +26,7 @@ module.exports = api => {
         exercise.type         = req.body.type
         exercise.mechanic     = req.body.mechanic
         exercise.video        = req.body.video
-        exercise.imageStart   = req.body.imageStart
-        exercise.imageEnd     = req.body.imageEnd
+        exercise.images       = req.body.images
         exercise.instructions = req.body.instructions
 
         exercise.created_at = Moment().unix()
@@ -58,8 +57,7 @@ module.exports = api => {
             exercise.type         = req.body.type
             exercise.mechanic     = req.body.mechanic
             exercise.video        = req.body.video
-            exercise.imageStart   = req.body.imageStart
-            exercise.imageEnd     = req.body.imageEnd
+            exercise.images       = req.body.images
             exercise.instructions = req.body.instructions
 
             exercise.updated_at   = Moment().unix()

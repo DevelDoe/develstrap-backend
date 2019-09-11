@@ -19,12 +19,17 @@ module.exports = api => {
 
         var exercise = new Exercise() 
 
-        exercise.group      = req.body.group 
-        exercise.name       = req.body.name
-        exercise.equipment  = req.body.equipment
-        exercise.rated      = req.body.rated
-        exercise.type       = req.body.type
-        exercise.mechanic  = req.body.mechanic
+        exercise.group        = req.body.group 
+        exercise.name         = req.body.name
+        exercise.equipment    = req.body.equipment
+        exercise.rated        = req.body.rated
+        exercise.type         = req.body.type
+        exercise.mechanic     = req.body.mechanic
+        exercise.video        = req.body.video
+        exercise.imageStart   = req.body.imageStart
+        exercise.imageEnd     = req.body.imageEnd
+        exercise.instructions = req.body.instructions
+
         exercise.created_at = Moment().unix()
 
         exercise.save( err => {
@@ -46,12 +51,17 @@ module.exports = api => {
                   return
              }
 
-            exercise.group      = req.body.group 
-            exercise.name       = req.body.name
-            exercise.equipment  = req.body.equipment
-            exercise.rated      = req.body.rated
-            exercise.type       = req.body.type
-            exercise.mechanic  = req.body.mechanic
+            exercise.group        = req.body.group 
+            exercise.name         = req.body.name
+            exercise.equipment    = req.body.equipment
+            exercise.rated        = req.body.rated
+            exercise.type         = req.body.type
+            exercise.mechanic     = req.body.mechanic
+            exercise.video        = req.body.video
+            exercise.imageStart   = req.body.imageStart
+            exercise.imageEnd     = req.body.imageEnd
+            exercise.instructions = req.body.instructions
+
             exercise.updated_at   = Moment().unix()
 
              exercise.save( err => {

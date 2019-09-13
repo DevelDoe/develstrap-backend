@@ -7,7 +7,7 @@ module.exports = mongoose.model('Exercise', {
      type         : { type: String, required: true },
      mechanic     : { type: String, required: true },
      video        : { type: String },
-     images       : { type: String },
+     images       : { type: Array },
      instructions : { type: Array },
      created_at   : { type: String },
      updated_at   : { type: String },

@@ -71,23 +71,47 @@ module.exports = api => {
    api.delete('/workouts/:_id', (req, res) => {
 
 
-        Workout.find( { user_id: req.params.user_id }, ( err, workouts ) => {
-            if ( err ) {
-                error( res, err )
-                return
+        Workout.findById( req.params._id, ( err, workout ) => {
+
+            if( err ) {
+                 error( res, err )
+                 return
             }
 
-            Workout.remove({
-                name: req.params.name
-            }, (err) => {
-                if (err) {
-                    error(workout, err)
+            Workout.find( { user_id: workout.user_id }, ( err, workouts ) => {
+                if ( err ) {
+                    error( res, err )
                     return
                 }
-                res.sendStatus(200)
+
+                let eFlag = false
+
+                workouts.forEach( w => {
+                    if(w.name === workout.name) {
+                        Workout.remove({
+                            _id: w._id
+                        }, (err) => {
+                            eFlag = true
+                        })
+                    }
+                })
+
+                if(eFlag) {
+                    if (err) {
+                        error(w, err)
+                        return
+                    }
+                } else {
+                    res.sendStatus(200)
+                }
+
+                
+    
+                
+                
             })
-            
-        })
+
+       })
 
         
 

@@ -110,11 +110,5 @@ module.exports = api => {
                 }
             })
        })
-<<<<<<< HEAD
-
-        
-
-=======
->>>>>>> master
     })
 }

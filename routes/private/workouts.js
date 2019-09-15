@@ -22,7 +22,7 @@ module.exports = api => {
         workout.user_id     = req.body.user_id
         workout.group       = req.body.group 
         workout.name        = req.body.name
-        workout.exercise_id =  req.body.exercise_id
+        workout.exercise_id = req.body.exercise_id
         workout.target      = req.body.target
         workout.weight      = req.body.weight
 
@@ -50,11 +50,6 @@ module.exports = api => {
                   return
              }
 
-             workout.user_id      = req.body.user_id
-             workout.group        = req.body.group
-             workout.name         = req.body.name
-             workout.exercise_id  = req.body.exercise_id
-             workout.weight       = req.body.weight
              workout.repetitions  = req.body.repetitions
              workout.target       = req.body.target
 

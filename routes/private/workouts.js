@@ -19,12 +19,15 @@ module.exports = api => {
 
         var workout = new Workout() 
 
-        workout.user_id    = req.body.user_id
-        workout.group      = req.body.group 
-        workout.name       = req.body.name
-        workout.target     = req.body.target
-        workout.weight     = req.body.weight
-        workout.created_at = Moment().unix()
+        workout.user_id     = req.body.user_id
+        workout.group       = req.body.group 
+        workout.name        = req.body.name
+        workout.exercise_id =  req.body.exercise_id
+        workout.target      = req.body.target
+        workout.weight      = req.body.weight
+
+        workout.created_at  = Moment().unix()
+        
         if(!req.body.level) workout.level = 1
         else workout.level = req.body.level
 
@@ -50,6 +53,7 @@ module.exports = api => {
              workout.user_id      = req.body.user_id
              workout.group        = req.body.group
              workout.name         = req.body.name
+             workout.exercise_id  = req.body.exercise_id
              workout.weight       = req.body.weight
              workout.repetitions  = req.body.repetitions
              workout.target       = req.body.target
@@ -104,17 +108,13 @@ module.exports = api => {
                 } else {
                     res.sendStatus(200)
                 }
-
-                
-    
-                
-                
             })
-
        })
+<<<<<<< HEAD
 
         
 
+=======
+>>>>>>> master
     })
-
 }

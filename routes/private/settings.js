@@ -23,11 +23,6 @@ module.exports = api => {
 
         setting.user_id     = req.body.user_id
         setting.sites       = req.body.sites
-        setting.port        = req.body.port
-        setting.ingress     = req.body.ingress
-        setting.image       = req.body.image
-        setting.created_at  = Moment().unix()
-
 
         setting.save( err => {
             if( err ) {
@@ -50,10 +45,6 @@ module.exports = api => {
 
             setting.user_id     = req.body.user_id
             setting.sites       = req.body.sites
-            setting.port        = req.body.port
-            setting.ingress     = req.body.ingress
-            setting.image       = req.body.image
-            setting.updated_at  = Moment().unix()
 
              setting.save( err => {
                   if( err ) {

@@ -22,7 +22,7 @@ module.exports = api => {
         console.log(req.body.user_id)
 
         setting.user_id     = req.body.user_id
-        setting.website     = req.body.website
+        setting.sites       = req.body.sites
         setting.port        = req.body.port
         setting.ingress     = req.body.ingress
         setting.image       = req.body.image
@@ -49,7 +49,7 @@ module.exports = api => {
              }
 
             setting.user_id     = req.body.user_id
-            setting.website     = req.body.website
+            setting.sites       = req.body.sites
             setting.port        = req.body.port
             setting.ingress     = req.body.ingress
             setting.image       = req.body.image

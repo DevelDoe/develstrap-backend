@@ -22,10 +22,7 @@ module.exports = api => {
         console.log(req.body.user_id)
 
         setting.user_id     = req.body.user_id
-        setting.website     = req.body.website
-        setting.port        = req.body.port
-        setting.ingress     = req.body.ingress
-        setting.image       = req.body.image
+        setting.sites       = req.body.sites
         setting.created_at  = Moment().unix()
 
 
@@ -49,10 +46,6 @@ module.exports = api => {
              }
 
             setting.user_id     = req.body.user_id
-            setting.website     = req.body.website
-            setting.port        = req.body.port
-            setting.ingress     = req.body.ingress
-            setting.image       = req.body.image
             setting.updated_at  = Moment().unix()
 
              setting.save( err => {

@@ -29,6 +29,7 @@ module.exports = function (api) {
         post.wip = req.body.wip
         post.feat = req.body.feat
         post.important = req.body.important
+        post.site = req.body.site
         post.save(function (err) {
             if (err) {
                 error(res, err)
@@ -69,6 +70,7 @@ module.exports = function (api) {
             post.wip = req.body.wip
             post.feat = req.body.feat
             post.important = req.body.important
+            post.site = req.body.site
             post.save(err => {
                 if (err) {
                     error(res, err)

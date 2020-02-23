@@ -23,6 +23,8 @@ module.exports = api => {
 
         setting.user_id     = req.body.user_id
         setting.sites       = req.body.sites
+        setting.created_at  = Moment().unix()
+
 
         setting.save( err => {
             if( err ) {
@@ -44,7 +46,7 @@ module.exports = api => {
              }
 
             setting.user_id     = req.body.user_id
-            setting.sites       = req.body.sites
+            setting.updated_at  = Moment().unix()
 
              setting.save( err => {
                   if( err ) {

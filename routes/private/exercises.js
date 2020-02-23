@@ -4,14 +4,14 @@ const Moment        = require('moment')
 
 module.exports = api => {
 
-    api.get('/exercises', (req, res) => {
+    api.get('/exercises/', (req, res) => {
 
         Exercise.find( ( err, exercises ) => {
-                if ( err ) {
-                    error( res, err )
-                    return
-                }
-                res.json( exercises )
+            if ( err ) {
+                error( res, err )
+                return
+            }
+            res.json( exercises )
         })
     })
    
@@ -19,12 +19,17 @@ module.exports = api => {
 
         var exercise = new Exercise() 
 
-        exercise.user_id     = req.body.user_id
-        exercise.group       = req.body.group 
-        exercise.name        = req.body.name
-        exercise.target      = req.body.target
-        exercise.weight      = req.body.weight
-        exercise.created_at  = Moment().unix() 
+        exercise.group        = req.body.group 
+        exercise.name         = req.body.name
+        exercise.equipment    = req.body.equipment
+        exercise.rated        = req.body.rated
+        exercise.type         = req.body.type
+        exercise.mechanic     = req.body.mechanic
+        exercise.video        = req.body.video
+        exercise.images       = req.body.images
+        exercise.instructions = req.body.instructions
+
+        exercise.created_at = Moment().unix()
 
         exercise.save( err => {
             if( err ) {
@@ -45,14 +50,17 @@ module.exports = api => {
                   return
              }
 
-             exercise.user_id       = req.body.user_id
-             exercise.group         = req.body.group
-             exercise.name          = req.body.name
-             exercise.weight        = req.body.weight
-             exercise.repetitions   = req.body.repetitions
-             exercise.target        = req.body.target
+            exercise.group        = req.body.group 
+            exercise.name         = req.body.name
+            exercise.equipment    = req.body.equipment
+            exercise.rated        = req.body.rated
+            exercise.type         = req.body.type
+            exercise.mechanic     = req.body.mechanic
+            exercise.video        = req.body.video
+            exercise.images       = req.body.images
+            exercise.instructions = req.body.instructions
 
-             exercise.updated_at   = Moment().unix()
+            exercise.updated_at   = Moment().unix()
 
              exercise.save( err => {
                   if( err ) {
@@ -68,9 +76,7 @@ module.exports = api => {
 
    api.delete('/exercises/:_id', (req, res) => {
 
-        Exercise.remove({
-            _id: req.params._id
-        }, (err) => {
+        Exercise.remove({ _id: req.params._id }, (err) => {
             if (err) {
                 error(exercise, err)
                 return

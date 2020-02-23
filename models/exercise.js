@@ -1,24 +1,14 @@
 var mongoose = require('mongoose')
 module.exports = mongoose.model('Exercise', {
-     group: {
-          type: String
-     },
-     name: {
-          type: String
-     },
-     weight: {
-          type: Number
-     },
-     repetitions: {
-        type: Number
-     },
-     target: {
-       type: Number
-     },
-     created_at: {
-          type: String
-     },
-     updated_at: {
-          type: String
-     },
+     group        : { type: String, required: true },
+     name         : { type: String, required: true, unique: true },
+     equipment    : { type: String, required: true },
+     rated        : { type: Number },
+     type         : { type: String, required: true },
+     mechanic     : { type: String, required: true },
+     video        : { type: String },
+     images       : { type: Array },
+     instructions : { type: Array },
+     created_at   : { type: String },
+     updated_at   : { type: String },
 })

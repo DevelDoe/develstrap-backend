@@ -15,8 +15,12 @@ api.use('/uploads', express.static(path.join(__dirname, 'static')))
 
 var port = process.env.PORT || config.port
 
-mongoose.connect(config.database, { useNewUrlParser: true } )
-
+// Update mongoose.connect to fix the deprecation warning
+mongoose.connect(config.database, { 
+    useNewUrlParser: true,
+    useCreateIndex: true,
+})
+console.log('test')
 // websockets
 const server = require('http').Server(api)
 const ws = require('ws')

@@ -1,0 +1,7 @@
+mongo
+show dbs
+use mydb
+show collections
+db.users.find().pretty()
+db.users.deleteMany({})
+db.users.find()

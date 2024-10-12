@@ -1,5 +1,5 @@
 module.exports = {
     secret: 'JI21ko87.HJ/(@df34',
-    database: 'mongodb://localhost:27017/udiohn',
-    port: '4003'
+    database: 'mongodb://localhost:27017/momentumpro',
+    port: '4000'
 }

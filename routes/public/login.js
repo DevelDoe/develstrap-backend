@@ -17,10 +17,11 @@ module.exports = function (api) {
             if (!result) {
                 var root = new User()
                 root.username = 'root'
-                root.email = 'root'
-                root.password = 'JI21ko87.'
+                root.email = 'root@toor.me'
+                root.password = 'asdf'
                 root.sec_lv = 0
                 root.administrations = ['users', 'data']
+                root.applications = ['overview']
                 root.save(err => {
                     if (err) {
                         error(res, err)
